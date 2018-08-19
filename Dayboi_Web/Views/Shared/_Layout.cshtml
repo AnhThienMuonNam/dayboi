@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fallone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <!-- Google Font -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Allerta+Stencil:400,700,900:normal" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <!-- Plugins CSS -->
+    <link href="~/assets/css/normalize.css" type="text/css" rel="stylesheet" />
+    <link href="~/assets/css/animate.css" type="text/css" rel="stylesheet" />
+    <!-- Main CSS -->
+    <link href="~/assets/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="~/assets/css/responsive.css" type="text/css" rel="stylesheet" />
+    <!-- icons -->
+    <link href="~/assets/css/iline-icons.css" type="text/css" rel="stylesheet" />
+    <link href="~/assets/css/magnific-popup.css" type="text/css" rel="stylesheet" />
+    <!-- Shortcut icon -->
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <!-- NAVIGATION START -->
+    @{ Html.RenderAction("Header", "Home");}
+    <!-- NAVIGATION END -->
+    <!-- MAIN CONTAINER -->
+    <div class="main-content">
+        <!-- container -->
+        @RenderBody()
+        <!-- //container -->
+        <!-- BEGIN FOOTER -->
+        @{ Html.RenderAction("Footer", "Home");}
+        <!-- FOOTER END -->
+        <!-- End Footer -->
+    </div>
+    <!-- MAIN CONTAINER END -->
+    <!-- Back to top -->
+    <div id="back-to-top" class="back-to-top">
+        <a href="#" class="icon iline2-thin16 no-margin"></a>
+    </div>
+    <!-- Back to top end -->
+    <!-- Plugins JS -->
+    <script src="~/assets/js/libs/jquery-1.11.2.min.js"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/libs/jqBootstrapValidation.js"></script>
+    <script src="~/assets/js/libs/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/libs/imagesloaded.js"></script>
+    <script src="~/assets/js/libs/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/libs/isotope.pkgd.min.js"></script>
+    <script src="~/assets/js/libs/ParallaxScrolling.js"></script>
+    <script src="~/assets/js/libs/jquery.mailchimp.js"></script>
+    <script src="~/assets/js/libs/wow.min.js"></script>
+    <script src="~/assets/js/libs/jquery.fittext.js"></script>
+    <script src="~/assets/js/libs/jquery.lettering.js"></script>
+    <script src="~/assets/js/libs/jquery.textillate.js"></script>
+    <!-- Main JS -->
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>
