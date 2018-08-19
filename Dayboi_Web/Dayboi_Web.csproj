@@ -2158,6 +2158,8 @@
     <Content Include="Views\Admin\Shared\Footer.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateProduct.cshtml" />
+    <Content Include="Template\Admin\AdminLTE-2.4.2.zip" />
+    <Content Include="Template\Client\fallone.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

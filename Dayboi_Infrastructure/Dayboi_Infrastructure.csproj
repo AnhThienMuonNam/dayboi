@@ -70,10 +70,18 @@
     <Compile Include="Migrations\201808190810209_addFullnamColumn.Designer.cs">
       <DependentUpon>201808190810209_addFullnamColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808191031120_addProductCategory.cs" />
+    <Compile Include="Migrations\201808191031120_addProductCategory.Designer.cs">
+      <DependentUpon>201808191031120_addProductCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AspNetUsersRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -87,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808190810209_addFullnamColumn.resx">
       <DependentUpon>201808190810209_addFullnamColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808191031120_addProductCategory.resx">
+      <DependentUpon>201808191031120_addProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
