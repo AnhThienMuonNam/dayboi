@@ -16,7 +16,6 @@ namespace Dayboi_Infrastructure
             this.Configuration.LazyLoadingEnabled = false;
         }
 
-      
-       
+        public DbSet<AspNetUser> AspNetUser { set; get; }
     }
 }
