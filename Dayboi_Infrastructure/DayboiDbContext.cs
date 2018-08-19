@@ -17,5 +17,9 @@ namespace Dayboi_Infrastructure
         }
 
         public DbSet<AspNetUser> AspNetUser { set; get; }
+        public DbSet<Category> Category { set; get; }
+
+        public DbSet<Product> Product { set; get; }
+
     }
 }

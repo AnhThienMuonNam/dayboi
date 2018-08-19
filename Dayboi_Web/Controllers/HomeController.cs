@@ -1,4 +1,6 @@
 ﻿using Dayboi_Service;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,7 @@ namespace Dayboi_Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
+
             return PartialView();
         }
 
