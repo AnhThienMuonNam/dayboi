@@ -17,6 +17,7 @@ namespace Dayboi_Web.Controllers
         [ChildActionOnly]
         public ActionResult Footer()
         {
+            var a = 1;
             return PartialView("~/Views/Admin/Shared/Footer.cshtml");
         }
 
