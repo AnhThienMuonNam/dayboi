@@ -62,20 +62,16 @@
     <Compile Include="Infrastructures\IUnitOfWork.cs" />
     <Compile Include="Infrastructures\RepositoryBase.cs" />
     <Compile Include="Infrastructures\UnitOfWork.cs" />
-    <Compile Include="Migrations\201808181759034_newTable.cs" />
-    <Compile Include="Migrations\201808181759034_newTable.Designer.cs">
-      <DependentUpon>201808181759034_newTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808190810209_addFullnamColumn.cs" />
-    <Compile Include="Migrations\201808190810209_addFullnamColumn.Designer.cs">
-      <DependentUpon>201808190810209_addFullnamColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808191031120_addProductCategory.cs" />
-    <Compile Include="Migrations\201808191031120_addProductCategory.Designer.cs">
-      <DependentUpon>201808191031120_addProductCategory.cs</DependentUpon>
+    <Compile Include="Migrations\201808241712456_re-initDB.cs" />
+    <Compile Include="Migrations\201808241712456_re-initDB.Designer.cs">
+      <DependentUpon>201808241712456_re-initDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\ApplicationGroup.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationRoleGroup.cs" />
+    <Compile Include="Models\ApplicationUserGroup.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,14 +86,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808181759034_newTable.resx">
-      <DependentUpon>201808181759034_newTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808190810209_addFullnamColumn.resx">
-      <DependentUpon>201808190810209_addFullnamColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808191031120_addProductCategory.resx">
-      <DependentUpon>201808191031120_addProductCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808241712456_re-initDB.resx">
+      <DependentUpon>201808241712456_re-initDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

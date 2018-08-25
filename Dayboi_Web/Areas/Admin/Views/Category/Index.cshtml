@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Dayboi_Web.ViewModels.CategoryModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section footerJS{
+    <script src="~/Scripts/Client/category_index.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            data.Categories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            options.EditCategoryUrl = '@Url.Action("Edit", "Category")';
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("category_index"));
+        });
+    </script>
+}
+<section class="content" id="category_index">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Danh mục</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                        <!-- ko foreach: Categories-->
+                        <tr>
+                            <td data-bind="text: Id"></td>
+                            <td data-bind="text: Name"></td>
+                            <td data-bind="text: Description"></td>
+                            <td data-bind="text: IsActive"></td>
+                            <td><a class="label label-warning" data-bind="attr: {href: EditCategoryUrl() +'/' + Id}">Edit</a></td>
+
+                        </tr>
+                        <!-- /ko -->
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>
+

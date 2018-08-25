@@ -39,16 +39,16 @@ namespace Dayboi_Infrastructure.Models
         public string UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
         public int? DisplayOrder { get; set; }
-        public bool IsActive{ get; set; }
+        public bool IsActive { get; set; }
 
         [ForeignKey("CreatedBy")]
-        public virtual AspNetUser CreatedUser { get; set; }
+        public ApplicationUser CreatedUser { get; set; }
 
         [ForeignKey("UpdatedBy")]
-        public virtual AspNetUser UpdatedUser { get; set; }
+        public ApplicationUser UpdatedUser { get; set; }
 
 
         //references
-        public virtual IEnumerable<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

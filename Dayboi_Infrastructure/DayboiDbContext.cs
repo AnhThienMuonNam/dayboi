@@ -9,17 +9,32 @@ using System.Threading.Tasks;
 
 namespace Dayboi_Infrastructure
 {
-    public class DayboiDbContext: IdentityDbContext
+    public class DayboiDbContext: IdentityDbContext<ApplicationUser>
     {
         public DayboiDbContext() : base("DB_DayboiConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
 
-        public DbSet<AspNetUser> AspNetUser { set; get; }
         public DbSet<Category> Category { set; get; }
 
         public DbSet<Product> Product { set; get; }
 
+        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
+        public static DayboiDbContext Create()
+        {
+            return new DayboiDbContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
+            builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
+
+        }
     }
 }

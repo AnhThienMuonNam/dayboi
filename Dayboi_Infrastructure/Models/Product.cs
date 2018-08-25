@@ -48,17 +48,17 @@ namespace Dayboi_Infrastructure.Models
         public bool IsActive { get; set; }
 
         [ForeignKey("CreatedBy")]
-        public virtual AspNetUser CreatedUser { get; set; }
+        public ApplicationUser CreatedUser { get; set; }
 
         [ForeignKey("UpdatedBy")]
-        public virtual AspNetUser UpdatedUser { get; set; }
+        public ApplicationUser UpdatedUser { get; set; }
 
 
         //reference tables
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public Category Category { get; set; }
 
     }
 }

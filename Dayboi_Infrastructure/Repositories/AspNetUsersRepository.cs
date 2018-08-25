@@ -3,11 +3,11 @@ using Dayboi_Infrastructure.Models;
 
 namespace Dayboi_Infrastructure.Repositories
 {
-    public interface IAspNetUsersRepository : IRepository<AspNetUser>
+    public interface IAspNetUsersRepository : IRepository<ApplicationUser>
     {
     }
 
-    public class AspNetUsersRepository : RepositoryBase<AspNetUser>, IAspNetUsersRepository
+    public class AspNetUsersRepository : RepositoryBase<ApplicationUser>, IAspNetUsersRepository
     {
         public AspNetUsersRepository(IDbFactory dbFactory) : base(dbFactory)
         {

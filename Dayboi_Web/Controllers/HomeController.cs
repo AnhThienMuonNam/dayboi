@@ -11,10 +11,6 @@ namespace Dayboi_Web.Controllers
 {
     public class HomeController : Controller
     {
-        ITestService testService;
-        public HomeController(ITestService testService) {
-            this.testService = testService;
-        }
 
         [ChildActionOnly]
         public ActionResult Footer()
@@ -31,7 +27,8 @@ namespace Dayboi_Web.Controllers
 
         public ActionResult Index()
         {
-            testService.GetWinner();
+            //testdayboi
+            var user = User.Identity.GetUserId();
             return View();
         }
 

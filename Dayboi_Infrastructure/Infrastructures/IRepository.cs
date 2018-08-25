@@ -37,5 +37,8 @@ namespace Dayboi_Infrastructure.Infrastructures
         int Count(Expression<Func<T, bool>> where);
 
         bool CheckContains(Expression<Func<T, bool>> predicate);
+
+
+        IQueryable<T> GetMany(Expression<Func<T, bool>> where);
     }
 }

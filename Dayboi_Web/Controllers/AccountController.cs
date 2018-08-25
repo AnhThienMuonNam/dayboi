@@ -1,14 +1,14 @@
-﻿using System;
-using System.Globalization;
+﻿using Dayboi_Infrastructure.Models;
+using Dayboi_Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Dayboi_Web.Models;
 
 namespace Dayboi_Web.Controllers
 {
@@ -22,7 +22,7 @@ namespace Dayboi_Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +34,9 @@ namespace Dayboi_Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -75,15 +75,24 @@ namespace Dayboi_Web.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+
+            //goi service check user - password co trung vs DB. neu ok thif chay tiep ham duoi. || bao lỗi
+            //return user
+            //Neu ham duoi ko xai được thì thay PasswordSignInAsync bang //loginFunction
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
+
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -116,17 +125,19 @@ namespace Dayboi_Web.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
+            // The following code protects for brute force attacks against the two factor codes.
+            // If a user enters incorrect codes for a specified amount of time then the user account
+            // will be locked out for a specified amount of time.
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
+
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid code.");
@@ -149,27 +160,92 @@ namespace Dayboi_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDay = DateTime.Now };
+            //    //gọi serivce tạo user. nếu trả về thành công chạy tiếp hàm dưới + return user. || return error
+
+            //    var isSuccess = true;
+            //    if (isSuccess)
+            //    {
+            //        var result = await _userManager.CreateAsync(user, model.Password);
+            //        if (result.Succeeded)
+            //        {
+            //            //loginFunction
+            //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+            //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+            //            // Send an email with this link
+            //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+            //            return RedirectToAction("Index", "Home");
+            //        }
+            //        AddErrors(result);
+            //    }
+            //    else
+            //    {
+            //        //do something
+            //    }
+            //}
+
+            //// If we got this far, something failed, redisplay form
+            //return View(model);
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var userByEmail = await _userManager.FindByEmailAsync(model.Email);
+                //if (userByEmail != null)
+                //{
+                //    ModelState.AddModelError("email", "Email đã tồn tại");
+                //    return View(model);
+                //}
+                //var userByUserName = await _userManager.FindByNameAsync(model.UserName);
+                //if (userByUserName != null)
+                //{
+                //    ModelState.AddModelError("username", "Tài khoản đã tồn tại");
+                //    return View(model);
+                //}
+
+                //testdayboi
+                var user = new ApplicationUser()
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    Email = model.Email,
+                    EmailConfirmed = true,
+                    BirthDay = DateTime.Now,
+                    FullName = "Thien",
+                    PhoneNumber = "0893123",
+                    Address = "03182302",
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false,
+                    LockoutEnabled = false,
+                    AccessFailedCount = 0,
+                    UserName="xuan0123"
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded) {
+                    //after created successfully. login user. use this method for login action
+                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                    ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationProperties props = new AuthenticationProperties();
+                    props.IsPersistent = true;
+                    authenticationManager.SignIn(props, identity);
 
-                    return RedirectToAction("Index", "Home");
+                    //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
+
+
+                    //var result1 = await SignInManager.PasswordSignInAsync(model.Email, model.Password, true, shouldLockout: false);
+                    return RedirectToLocal("");
                 }
-                AddErrors(result);
+                var findUser = await _userManager.FindByEmailAsync(model.Email);
+                if (findUser != null)
+                {
+                    await _userManager.AddToRolesAsync(findUser.Id, new string[] { "client" });
+                }
+                ViewData["SuccessMessage"] = "Đăng Kí Thành Công";
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return View();
         }
 
         //
@@ -212,7 +288,7 @@ namespace Dayboi_Web.Controllers
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
@@ -334,10 +410,13 @@ namespace Dayboi_Web.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
+
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
@@ -424,6 +503,7 @@ namespace Dayboi_Web.Controllers
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -480,6 +560,7 @@ namespace Dayboi_Web.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+
+        #endregion Helpers
     }
 }

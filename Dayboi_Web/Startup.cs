@@ -3,8 +3,12 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Dayboi_Infrastructure;
 using Dayboi_Infrastructure.Infrastructures;
+using Dayboi_Infrastructure.Models;
 using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service;
+using Dayboi_Service.Admin;
+using Dayboi_Web.Mappings;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.DataProtection;
 using Owin;
@@ -20,10 +24,8 @@ namespace Dayboi_Web
     {
         public void Configuration(IAppBuilder app)
         {
-            // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
-            //AutoMapperConfiguration.Configure();
+            AutoMapperConfiguration.Configure();
             ConfigureAuth(app);
-
             ConfigAutofac(app);
         }
 
@@ -40,7 +42,7 @@ namespace Dayboi_Web
             builder.RegisterType<DayboiDbContext>().AsSelf().InstancePerRequest();
 
             //Asp.net Identity
-            //builder.RegisterType<ApplicationUserStore>().As<IUserStore<AspNetUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
@@ -52,7 +54,7 @@ namespace Dayboi_Web
                 .AsImplementedInterfaces().InstancePerRequest();
 
             // Services
-            builder.RegisterAssemblyTypes(typeof(TestService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(CategoryService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section footerJS{
+    <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
+    <script src="~/Scripts/Client/category_create-edit.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+
+            options.CreateCategory= "@Url.Action("CreateCategory", "Category")";
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("createCategory_AdminPage"));
+        });
+    </script>
+}
+<section class="content" id="createCategory_AdminPage">
+    <div class="row" data-bind="with: categoryModel">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tạo Danh mục</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tên danh mục</label>
+                        <input type="text" class="form-control" placeholder="Tên danh mục" data-bind="value: Name, valueUpdate: 'keypress'">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tiêu đề SEO</label>
+                        <input type="text" class="form-control" placeholder="Tiêu đề SEO" data-bind="value: Alias">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Meta Keyword</label>
+                        <input type="text" class="form-control" placeholder="Meta Keyword" data-bind="value: MetaKeyword">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mô tả</label>
+                        <textarea class="form-control" placeholder="Mô tả" data-bind="value: Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Hình ảnh</label>
+                        <button type="button" class="btn btn-primary" data-bind="click: uploadImage">Tải ảnh</button>
+                    </div>
+
+                    <div class="form-group">
+                        <img style="height: 200px;" data-bind="attr : {src: Image}" />
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Check me out
+                        </label>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" data-bind="click: create">Tạo sản phẩm</button>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+

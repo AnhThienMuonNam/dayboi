@@ -65,11 +65,21 @@ namespace Dayboi_Infrastructure.Infrastructures
             return dbSet.Find(id);
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
+        public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return dbSet.Where(where).ToList();
+            return dbSet.Where(where);
         }
-
+        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+        {
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.FirstOrDefault(expression);
+            }
+            return dataContext.Set<T>().FirstOrDefault(expression);
+        }
 
         public virtual int Count(Expression<Func<T, bool>> where)
         {
@@ -90,17 +100,6 @@ namespace Dayboi_Infrastructure.Infrastructures
             return dataContext.Set<T>().AsQueryable();
         }
 
-        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
-        {
-            if (includes != null && includes.Count() > 0)
-            {
-                var query = dataContext.Set<T>().Include(includes.First());
-                foreach (var include in includes.Skip(1))
-                    query = query.Include(include);
-                return query.FirstOrDefault(expression);
-            }
-            return dataContext.Set<T>().FirstOrDefault(expression);
-        }
 
         public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
