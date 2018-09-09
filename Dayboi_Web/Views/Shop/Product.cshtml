@@ -1,10 +1,24 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Scripts{
+    <script src="~/assets/js/libs/owl.carousel.min.js"></script>
+    <script src="~/Scripts/page_product.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            data.Product = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            options.AddToCart = '@Url.Action("AddToCart", "Cart")';
 
- <!-- HEADER TREE -->
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<!-- HEADER TREE -->
 <section class="header-tree" data-speed="8" data-type="background">
     <h2 class="hidden">Header tree</h2>
     <!-- parallax background -->
@@ -16,8 +30,9 @@
             <!-- .col-md-12 -->
             <div class="col-md-12">
                 <ul class="breadcrumb clearfix mar-top-3x">
-                    <li><a class="link text-success" href="/">Fallone</a></li>
-                    <li><a class="link" href="#">Products</a></li>
+                    <li><a class="link text-success" href="/">Trang chủ</a></li>
+                    <li><a class="link" href="~/shop/@Model.CategoryId/@Model.CategoryName">@Model.CategoryName</a></li>
+                    <li><a class="link" href="#">@Model.Name</a></li>
                 </ul>
             </div>
             <!-- /.col-md-12 -->
@@ -28,10 +43,9 @@
 </section>
 <!-- HEADER TREE END -->
 
-
-<section class="pattern-3">
+<section class="pattern-3" id="main-page">
     <!-- .container -->
-    <div class="container">
+    <div class="container" data-bind="with: productModel">
         <!-- .row -->
         <div class="row">
             <!-- .col-md-12 -->
@@ -41,50 +55,48 @@
                     <div class="col-md-6">
                         <div class="thumbnail">
                             <div id="carousel-product-1" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carousel-product-1" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-product-1" data-slide-to="1" class=""></li>
-                                    <li data-target="#carousel-product-1" data-slide-to="2" class=""></li>
-                                </ol>
+                                @*<ol class="carousel-indicators">
+                                        <li data-target="#carousel-product-1" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel-product-1" data-slide-to="1" class=""></li>
+                                        <li data-target="#carousel-product-1" data-slide-to="2" class=""></li>
+                                    </ol>*@
                                 <div class="carousel-inner" role="listbox">
-                                    <div class="item">
-                                        <figure>
-                                            <img alt="First slide" src="~/assets/images/blog/detail-0.jpg" data-holder-rendered="true">
-                                            <div class="image-overlay">
-                                                <p>
-                                                    <a href="~/assets/images/blog/detail-0.jpg" class="show-image">
-                                                        <i class="iline2-arrows55"></i>
-                                                    </a>
-                                                </p>
-                                            </div><!--image overlay-->
-                                        </figure><!--/figure-->
-                                       
-                                    </div>
-                                    <div class="item">
-                                        <figure>
-                                            <img alt="Second slide" src="~/assets/images/blog/detail-3.jpg" data-holder-rendered="true">
-                                            <div class="image-overlay">
-                                                <p>
-                                                    <a href="~/assets/images/blog/detail-3.jpg" class="show-image">
-                                                        <i class="iline2-arrows55"></i>
-                                                    </a>
-                                                </p>
-                                            </div><!--image overlay-->
-                                        </figure><!--/figure-->
-                                       
-                                    </div>
-                                    <div class="item active">
-                                        <figure>
-                                            <img alt="Third slide" src="~/assets/images/blog/detail-2.jpg" data-holder-rendered="true">
-                                            <div class="image-overlay">
-                                                <p>
-                                                    <a href="~/assets/images/blog/detail-2.jpg" class="show-image">
-                                                        <i class="iline2-arrows55"></i>
-                                                    </a>
-                                                </p>
-                                            </div><!--image overlay-->
-                                        </figure><!--/figure-->
-                                    </div>
+
+                                    @{bool isFirstImage = true;}
+                                    @foreach (var item in Model.ImageList)
+                                    {
+                                        if (isFirstImage)
+                                        {
+                                            isFirstImage = false;
+                                            <div class="item active">
+                                                <figure>
+                                                    <img alt="First slide" src="@item" data-holder-rendered="true">
+                                                    <div class="image-overlay">
+                                                        <p>
+                                                            <a href="@item" class="show-image">
+                                                                <i class="iline2-arrows55"></i>
+                                                            </a>
+                                                        </p>
+                                                    </div><!--image overlay-->
+                                                </figure><!--/figure-->
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="item ">
+                                                <figure>
+                                                    <img alt="First slide" src="@item" data-holder-rendered="true">
+                                                    <div class="image-overlay">
+                                                        <p>
+                                                            <a href="@item" class="show-image">
+                                                                <i class="iline2-arrows55"></i>
+                                                            </a>
+                                                        </p>
+                                                    </div><!--image overlay-->
+                                                </figure><!--/figure-->
+                                            </div>
+                                        }
+                                    }
                                 </div>
                                 <a class="left carousel-control" href="#carousel-product-1" role="button" data-slide="prev">
                                     <span class="prev iline1-arrow244" aria-hidden="true"></span>
@@ -96,33 +108,28 @@
                                 </a>
                             </div>
                         </div>
-                        <button class="btn btn-default btn-lg pull-left mar-top-md hidden-xs hidden-sm"> <i class="iline2-shopping60"></i> <span class="textillate">Buy now</span> </button>
+
+                        <a class="btn btn-default btn-lg pull-left mar-top-md hidden-xs hidden-sm" data-bind="click: addToCart">
+                            <i class="iline2-shopping60"></i>
+                            Thêm vào giỏ hàng
+                        </a>
                     </div>
                     <div class="col-md-6">
-                        <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">DT</h2>
-                        <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s">$ 129.99</i>
-                        <button class="btn btn-default btn-lg hidden-md hidden-lg"> <i class="iline2-shopping60"></i> <span class="textillate">Buy now</span> </button>
+                        <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: Name"></h2>
+                        <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price())"></i>
+                        <a class="btn btn-default btn-lg hidden-md hidden-lg" data-bind="click: addToCart">
+                            <i class="iline2-shopping60"></i>
+                            Thêm vào giỏ hàng
+                        </a>
                         <span class="line-sep-blue"></span>
-                        <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
-                            Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
-                            Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                            nec luctus magna felis sollicitudin mauris. Integer in mauris eu
-                            nibh euismod gravida. Duis ac tellus et risus vulputate vehicula.
-                            Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper,
-                            ligula eu tempor congue, eros est euismod turpis..
+                        <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" data-bind="text: Description">
                         </p>
                         <ul class="ic-list wow bounceInRight" data-wow-duration="1s" data-wow-delay="1.4s">
                             <li>
-                                <i class="icon iline2-full19"></i> Inbox feature
+                                <i class="icon iline2-bullet3"></i> <span data-bind="text: CategoryName"></span>
                             </li>
                             <li>
-                                <i class="icon iline2-layers4"></i> Multiple layers
-                            </li>
-                            <li>
-                                <i class="icon iline2-lock22"></i> Very secure app
-                            </li>
-                            <li>
-                                <i class="icon iline2-wifi26"></i> Wifi speed booster
+                                <i class="icon iline2-tag27"></i> TAGS
                             </li>
                         </ul>
                     </div>
@@ -132,6 +139,68 @@
             <!-- /.col-md-12 -->
         </div>
         <!-- /.row -->
+     
+    </div>
+    <!-- /.container -->
+    <!-- /Product item -->
+</section>
+
+
+<section class="white" style="padding: 10px 0;">
+    <!-- .container -->
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="post-detail mar-top-md mar-bottom-md">
+                    <div class="post-detail-body sep-xs">
+                        <h3 class="text-primary text-uppercase text-center">Sản phẩm liên quan</h3>
+                        <div class="owl-carousel" id="related-posts">
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-1.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-success text-uppercase">555Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-2.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-3.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-4.png" alt="" class="img-responsive" />
+                                <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-5.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-6.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-success">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-7.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                                <img src="~/assets/images/works/work-7.jpg" alt="" class="img-responsive" />
+                                <h5 class="text-center text-primary text-uppercase">12344Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                                <i class="text-center text-muted">April 17, 2015</i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.container -->
     <!-- /Product item -->

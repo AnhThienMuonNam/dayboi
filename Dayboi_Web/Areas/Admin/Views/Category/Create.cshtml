@@ -12,14 +12,16 @@
             var data = {};
             var options = {};
 
-            options.CreateCategory= "@Url.Action("CreateCategory", "Category")";
+            options.CreateCategory = "@Url.Action("CreateCategory", "Category")";
+            options.EditCategoryPage = "@Url.Action("Edit", "Category")";
+
             data.API_URLs = options;
 
-            ko.applyBindings(MainModel(data), document.getElementById("createCategory_AdminPage"));
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
         });
     </script>
 }
-<section class="content" id="createCategory_AdminPage">
+<section class="content" id="main-page">
     <div class="row" data-bind="with: categoryModel">
         <!-- left column -->
         <div class="col-md-12">
@@ -59,13 +61,13 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> Check me out
+                            <input type="checkbox" data-bind="checked: IsActive"> Is Active
                         </label>
                     </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: create">Tạo sản phẩm</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: create">Tạo danh mục</button>
                 </div>
             </div>
             <!-- /.box -->

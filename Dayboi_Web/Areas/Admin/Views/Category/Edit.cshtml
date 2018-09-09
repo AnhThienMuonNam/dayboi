@@ -55,17 +55,19 @@
                     <div class="form-group">
                         <img style="height: 200px;" data-bind="attr : {src: Image}" />
                     </div>
-                    <div class="form-group">
-                    </div>
+                   
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> Check me out
+                            <input type="checkbox" data-bind="checked: IsActive"> Is Active
                         </label>
                     </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-primary" data-bind="click: create">Cập nhật</button>
+                    <button type="button" class="btn btn-danger pull-right" data-bind="click: update">Xoá</button>
+                    <button type="button" class="btn btn-warning" data-bind="click: update">Danh sách sản phẩm</button>
+
+                    <button type="button" class="btn btn-primary" data-bind="click: update">Cập nhật</button>
                 </div>
             </div>
             <!-- /.box -->

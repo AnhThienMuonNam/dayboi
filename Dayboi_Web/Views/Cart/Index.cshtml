@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Dayboi_Web.ViewModels.CartModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/Scripts/page_cart.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            data.Carts = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            options.CreateOrder = '@Url.Action("CreateOrder", "Cart")';
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<div>
+    <section style="padding: 30px 0;">
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="text-uppercase text-primary wow fadeInDown text-center" data-wow-duration=".8s" data-wow-delay=".2s">GIỎ HÀNG</h1>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+    <section class="white" style="padding: 10px 0;" id="main-page">
+        <!-- Product item -->
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <!-- ko foreach: Carts -->
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="~/assets/images/works/work-1.jpg" class="img-responsive" alt="" />
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-primary text-uppercase" data-bind="text: ProductName"></h4>
+                            Đơn giá: <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price)"></i>
+                        </div>
+                        <div class="col-md-3" style="text-align:right;">
+                            Số lượng:
+                            <i class="iline2-subtract1" style="margin-right:20px;"></i>
+                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: Quantity"></span></i>
+                            <i class="iline2-add63"></i>
+                            <hr />
+                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: formatMoney(SumPrice)"></span></i>
+                        </div>
+                        <div class="col-md-1" style="text-align:center;">
+                            <a class="text-danger text-uppercase" style="cursor:pointer;">Xoá</a>
+                        </div>
+                    </div>
+                    <br />
+                    <!-- /ko -->
+                    <!-- /.row -->
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row" data-bind="with: orderModel">
+                <div class="col-md-12 blog-main">
+                    <div class="row">
+                        <div class="post-detail mar-top-xs">
+                            <div class="post-detail-body sep-xs">
+                                <h4 class="mar-top-md">Xác nhận đặt hàng</h4>
+                                <span class="line-sep-gray"></span>
+                                <p>Bạn vui lòng điền đầy đủ thông tin dưới đây</p>
+                                <form class="form-horizontal mar-top-sm wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s" method="post" action="/" name="commentForm" novalidate="">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group control-group">
+                                                <input type="text" class="form-control input-lg" data-bind="value: Name" name="customername" placeholder="Họ tên* :" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <div class="form-group control-group">
+                                                <input type="number" class="form-control input-lg" data-bind="value: Phone" name="customerphone" placeholder="Số điện thoại* :" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <div class="form-group control-group">
+                                                <input type="email" class="form-control input-lg" data-bind="value: Email" name="customeremail" placeholder="E-mail* :" required="" data-validation-required-message="Bạn chưa nhập e-mail" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group control-group">
+                                                <textarea class="form-control" name="customeraddress" data-bind="text: Address" placeholder="Địa chỉ nhận hàng*" required="" data-validation-required-message="Bạn chưa nhập địa chỉ nhận hàng"></textarea>
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <button type="button" class="submit btn btn-primary pull-right" data-bind="click: createOrder">Đặt hàng</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </section>
+
+</div>

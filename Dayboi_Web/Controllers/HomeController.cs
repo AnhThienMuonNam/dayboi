@@ -1,4 +1,8 @@
-﻿using Dayboi_Service;
+﻿using AutoMapper;
+using Dayboi_Infrastructure.Models;
+using Dayboi_Service;
+using Dayboi_Service.Admin;
+using Dayboi_Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -11,6 +15,11 @@ namespace Dayboi_Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICategoryService _categoryService;
+        public HomeController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
 
         [ChildActionOnly]
         public ActionResult Footer()
@@ -21,8 +30,11 @@ namespace Dayboi_Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-
-            return PartialView();
+            var headerModel = new HeaderModel();
+            var categories = _categoryService.GetAll();
+            var categoryModels = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(categories);
+            headerModel.Categories = categoryModels;
+            return PartialView(headerModel);
         }
 
         public ActionResult Index()

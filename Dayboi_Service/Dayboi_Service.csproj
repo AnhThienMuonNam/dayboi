@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dayboi_Service</RootNamespace>
     <AssemblyName>Dayboi_Service</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\CategoryService.cs" />
+    <Compile Include="Admin\ProductService.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="CommonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dayboi_Infrastructure\Dayboi_Infrastructure.csproj">

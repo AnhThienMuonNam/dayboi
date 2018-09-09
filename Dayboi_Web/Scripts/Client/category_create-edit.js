@@ -37,7 +37,29 @@ var CategoryModel = function (data, parent) {
             type: "POST",
             data: { model: category },
             success: function (response) {
-                var data = response;
+                if (response.IsSuccess == true) {
+                    alertify.success('Tạo danh mục thành công');
+                    setTimeout(function () {
+                        window.location.replace(data.API_URLs.EditCategoryPage + '/' + response.Data.Id);
+                    }, 200);
+                }
+
+            },
+            error: function (xhr, error) {
+                var e = 0;
+            },
+        });
+    };
+
+    self.update = function () {
+        var category = self.toJSON();
+        $.ajax({
+            url: data.API_URLs.UpdateCategory,
+            type: "POST",
+            data: { model: category },
+            success: function (response) {
+                if (response.IsSuccess == true)
+                    alertify.success('Cập nhật thành công');
             },
             error: function (xhr, error) {
                 var e = 0;

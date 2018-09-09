@@ -1,21 +1,50 @@
-﻿using System;
+﻿using AutoMapper;
+using Dayboi_Infrastructure.Models;
+using Dayboi_Service;
+using Dayboi_Web.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Dayboi_Web.Controllers
 {
     public class ShopController : Controller
     {
-        // GET: Shop
-        public ActionResult Index()
+        private readonly IShopService _shopService;
+
+        public ShopController(IShopService shopService)
         {
-            return View();
+            _shopService = shopService;
         }
-        public ActionResult Product()
+
+        // GET: Shop
+        public ActionResult Index(int categoryId)
         {
-            return View();
+            if (categoryId > 0)
+            {
+                var category = _shopService.GetCategoryId(categoryId);
+                var categoryModel = Mapper.Map<Category, CategoryModel>(category);
+                return View(categoryModel);
+            }
+            return null;
+        }
+
+        private IEnumerable<ProductModel> GetProductsByCategoryId(int categoryId)
+        {
+            var products = _shopService.GetProductsByCategoryId(categoryId);
+            var productModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductModel>>(products);
+            return productModels;
+        }
+
+        public ActionResult Product(int productId)
+        {
+            if (productId > 0)
+            {
+                var product = _shopService.GetProductById(productId);
+                var productModel = Mapper.Map<Product, ProductModel>(product);
+
+                return View(productModel);
+            }
+            return null;
         }
     }
 }

@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dayboi_Web</RootNamespace>
     <AssemblyName>Dayboi_Web</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -104,6 +104,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -116,6 +117,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -167,6 +169,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -259,9 +262,12 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoaHocController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Helper\MailHelper.cs" />
+    <Compile Include="Models\SelectItemModel.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,9 +280,32 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\CategoryModel.cs" />
+    <Compile Include="ViewModels\HeaderModel.cs" />
+    <Compile Include="ViewModels\OrderDetailModel.cs" />
+    <Compile Include="ViewModels\OrderModel.cs" />
+    <Compile Include="ViewModels\ProductModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\alertifyjs\alertify.js" />
+    <Content Include="assets\alertifyjs\alertify.min.js" />
+    <Content Include="assets\alertifyjs\css\alertify.css" />
+    <Content Include="assets\alertifyjs\css\alertify.min.css" />
+    <Content Include="assets\alertifyjs\css\alertify.rtl.css" />
+    <Content Include="assets\alertifyjs\css\alertify.rtl.min.css" />
+    <Content Include="assets\alertifyjs\css\themes\bootstrap.css" />
+    <Content Include="assets\alertifyjs\css\themes\bootstrap.min.css" />
+    <Content Include="assets\alertifyjs\css\themes\bootstrap.rtl.css" />
+    <Content Include="assets\alertifyjs\css\themes\bootstrap.rtl.min.css" />
+    <Content Include="assets\alertifyjs\css\themes\default.css" />
+    <Content Include="assets\alertifyjs\css\themes\default.min.css" />
+    <Content Include="assets\alertifyjs\css\themes\default.rtl.css" />
+    <Content Include="assets\alertifyjs\css\themes\default.rtl.min.css" />
+    <Content Include="assets\alertifyjs\css\themes\semantic.css" />
+    <Content Include="assets\alertifyjs\css\themes\semantic.min.css" />
+    <Content Include="assets\alertifyjs\css\themes\semantic.rtl.css" />
+    <Content Include="assets\alertifyjs\css\themes\semantic.rtl.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap-theme.css" />
     <Content Include="assets\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap.css" />
@@ -384,6 +413,8 @@
     <Content Include="assets\js\libs\ParallaxScrolling.js" />
     <Content Include="assets\js\libs\wow.min.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\nprogress-master\nprogress.css" />
+    <Content Include="assets\nprogress-master\nprogress.js" />
     <Content Include="assets\video\jelly.mp4" />
     <Content Include="assets\video\jelly.webm" />
     <Content Include="assets_admin\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
@@ -5416,6 +5447,24 @@
     <Content Include="assets_admin\dist\js\demo.js" />
     <Content Include="assets_admin\dist\js\pages\dashboard.js" />
     <Content Include="assets_admin\dist\js\pages\dashboard2.js" />
+    <Content Include="ckfinder\userfiles\images\116366845.jpg" />
+    <Content Include="ckfinder\userfiles\images\28763403_2091105131172381_880871919526608896_n.jpg" />
+    <Content Include="ckfinder\userfiles\images\296-1246544205ElRY-960x720%281%29.jpg" />
+    <Content Include="ckfinder\userfiles\images\296-1246544205ElRY-960x720.jpg" />
+    <Content Include="ckfinder\userfiles\images\35484238_10156348702821092_3802209172758462464_n.png" />
+    <Content Include="ckfinder\userfiles\images\960x720.jpg" />
+    <Content Include="ckfinder\userfiles\images\caribbean_cinemas_montehedra_17-uai-960x720.jpg" />
+    <Content Include="ckfinder\userfiles\images\gk-20-site-1-960x720.jpg" />
+    <Content Include="ckfinder\userfiles\images\images1051843_1.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\116366845.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\28763403_2091105131172381_880871919526608896_n.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\296-1246544205ElRY-960x720%281%29.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\296-1246544205ElRY-960x720.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\35484238_10156348702821092_3802209172758462464_n.png" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\960x720.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\caribbean_cinemas_montehedra_17-uai-960x720.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\gk-20-site-1-960x720.jpg" />
+    <Content Include="ckfinder\userfiles\_thumbs\Images\images1051843_1.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -5659,10 +5708,19 @@
     <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Client\category_create-edit.js" />
     <Content Include="Scripts\Client\category_index.js" />
+    <Content Include="Scripts\Client\header.js" />
     <Content Include="Scripts\Client\product_create-edit.js" />
+    <Content Include="Scripts\Client\product_index.js" />
+    <Content Include="Scripts\Common\common_functions.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -5671,8 +5729,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\page-shop.js" />
+    <Content Include="Scripts\page_cart.js" />
+    <Content Include="Scripts\page_product.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Template\order_info.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -5715,12 +5777,14 @@
     <Content Include="Template\Admin\AdminLTE-2.4.2.zip" />
     <Content Include="Template\Client\fallone.zip" />
     <Content Include="Views\KhoaHoc\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="Areas\Admin\Views\Home\" />
+    <Folder Include="ckfinder\userfiles\files\" />
     <Folder Include="Upload_Images\" />
   </ItemGroup>
   <ItemGroup>

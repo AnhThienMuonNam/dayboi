@@ -1,0 +1,271 @@
+﻿@model Dayboi_Web.ViewModels.ProductModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section headerStyles{
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/assets_admin/bower_components/select2/dist/css/select2.min.css">
+}
+
+@section footerJS{
+    <!-- ckeditor -->
+    <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
+    <!-- Select2 -->
+    <script src="~/assets_admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+    <script src="~/Scripts/Client/product_create-edit.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                tags: true,
+                selectOnBlur: true,
+                multiple: true
+            });
+
+
+
+            var data = {};
+            var urls = {};
+            var options = {};
+            data.Product = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            options.Categories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.Categories));
+
+            urls.UpdateProduct = "@Url.Action("UpdateProduct", "Product")";
+
+            data.API_URLs = urls;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+
+        });
+    </script>
+}
+
+<section class="content" id="main-page">
+    <div class="row" data-bind="with: productModel">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cập nhật Sản Phẩm</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tên sản phẩm</label>
+                        <input type="email" class="form-control" placeholder="Enter email" data-bind="value: Name, valueUpdate: 'keypress'">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tiêu đề SEO</label>
+                        <input type="email" class="form-control" placeholder="Tiêu đề SEO" data-bind="value: Alias">
+                    </div>
+
+                    <!-- select -->
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select class="form-control" data-bind="options: Categories,
+                                                                    optionsText: 'Text',
+                                                                    optionsValue: 'Value',
+                                                                    value: CategoryId,
+                                                                    optionsCaption: 'Chọn danh mục'"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Giá sản phẩm</label>
+                        <input type="number" class="form-control" placeholder="Giá sản phẩm" data-bind="value: Price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Hình ảnh</label>
+                        <button type="button" class="btn btn-primary" data-bind="click: uploadImage">Tải ảnh</button>
+                    </div>
+
+                    <div class="form-group">
+                        <ul class="list-group">
+                            <!-- ko foreach: Images -->
+                            <li class="list-group-item removeItem" style="display: inline-grid; border: 0px; padding: 1px 3px;">
+                                <img style="height: 80px; cursor: pointer;" data-bind="attr : {src: $data}" />
+                                <a class='delete' href="#" data-bind="click: $parent.removeImage" style="text-align: center;"><span class="glyphicon glyphicon-remove"></span></a>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                        <p class="help-block">Nhiều ảnh cho sản phẩm</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mô tả sản phẩm</label>
+                        <textarea class="form-control" placeholder="Mô tả" data-bind="value: Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Meta Keyword</label>
+                        <input type="text" class="form-control" placeholder="Meta Keyword" data-bind="value: MetaKeyword">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
+                                style="width: 100%;"></select>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-bind="checked: IsActive"> Check me out
+                        </label>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhật</button>
+                </div>
+            </div>
+            <!-- /.box -->
+            <!-- Form Element sizes -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Different Height</h3>
+                </div>
+                <div class="box-body">
+                    <input class="form-control input-lg" type="text" placeholder=".input-lg">
+                    <br>
+                    <input class="form-control" type="text" placeholder="Default input">
+                    <br>
+                    <input class="form-control input-sm" type="text" placeholder=".input-sm">
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Different Width</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" placeholder=".col-xs-3">
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" placeholder=".col-xs-4">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control" placeholder=".col-xs-5">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- Input addon -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Input Addon</h3>
+                </div>
+                <div class="box-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input type="text" class="form-control" placeholder="Username">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                    <h4>With icons</h4>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon"><i class="fa fa-ambulance"></i></span>
+                    </div>
+                    <h4>With checkbox and radio inputs</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox">
+                                </span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="radio">
+                                </span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                    <h4>With buttons</h4>
+                    <p class="margin">Large: <code>.input-group.input-group-lg</code></p>
+                    <div class="input-group input-group-lg">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                Action
+                                <span class="fa fa-caret-down"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <!-- /btn-group -->
+                        <input type="text" class="form-control">
+                    </div>
+                    <!-- /input-group -->
+                    <p class="margin">Normal</p>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-danger">Action</button>
+                        </div>
+                        <!-- /btn-group -->
+                        <input type="text" class="form-control">
+                    </div>
+                    <!-- /input-group -->
+                    <p class="margin">Small <code>.input-group.input-group-sm</code></p>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat">Go!</button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+      
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

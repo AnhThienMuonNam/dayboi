@@ -1,115 +1,124 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section headerStyles{
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/assets_admin/bower_components/select2/dist/css/select2.min.css">
 }
 
 @section footerJS{
     <!-- ckeditor -->
-    <script src="~/assets_admin/bower_components/ckeditor/ckeditor.js"></script>
     <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
+    <!-- Select2 -->
+    <script src="~/assets_admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+
     <script src="~/Scripts/Client/product_create-edit.js"></script>
     <script>
         $(document).ready(function () {
-            CKEDITOR.replace('editor1');
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                tags: true,
+                selectOnBlur: true,
+                multiple: true
+            });
+
+
 
             var data = {};
+            var urls = {};
             var options = {};
 
+            options.Categories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.Categories));
 
-            data.API_URLs = options;
+            urls.CreateProduct = "@Url.Action("CreateProduct", "Product")";
+            urls.EditProductPage = "@Url.Action("Edit", "Product")";
+            data.API_URLs = urls;
+            data.Options = options;
 
-            ko.applyBindings(ProductModel(data), document.getElementById("createProduct_AdminPage"));
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
 
         });
     </script>
 }
 
-<section class="content" id="createProduct_AdminPage">
-    <div class="row">
+<section class="content" id="main-page">
+    <div class="row" data-bind="with: productModel">
         <!-- left column -->
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Quick Example</h3>
+                    <h3 class="box-title">Tạo Sản Phẩm</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Tên sản phẩm</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Danh mục</label>
-                            <input type="email" class="form-control" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Giá</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tên sản phẩm</label>
+                        <input type="email" class="form-control" placeholder="Enter email" data-bind="value: Name, valueUpdate: 'keypress'">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tiêu đề SEO</label>
+                        <input type="email" class="form-control" placeholder="Tiêu đề SEO" data-bind="value: Alias">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Giá</label>
+                    <!-- select -->
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select class="form-control" data-bind="options: Categories,
+                                                                    optionsText: 'Text',
+                                                                    optionsValue: 'Value',
+                                                                    value: CategoryId,
+                                                                    optionsCaption: 'Chọn danh mục'"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Giá sản phẩm</label>
+                        <input type="number" class="form-control" placeholder="Giá sản phẩm" data-bind="value: Price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Hình ảnh</label>
+                        <button type="button" class="btn btn-primary" data-bind="click: uploadImage">Tải ảnh</button>
+                    </div>
+
+                    <div class="form-group">
+                        <ul class="list-group">
                             <!-- ko foreach: Images -->
-                            <label for="exampleInputPassword1">Giá</label>
-                            <img style="height: 50px;" data-bind="attr : {src: $data}" />
+                            <li class="list-group-item removeItem" style="display: inline-grid; border: 0px; padding: 1px 3px;">
+                                <img style="height: 80px; cursor: pointer;" data-bind="attr : {src: $data}" />
+                                <a class='delete' href="#" data-bind="click: $parent.removeImage" style="text-align: center;"><span class="glyphicon glyphicon-remove"></span></a>
+                            </li>
                             <!-- /ko -->
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <button type="button" class="btn btn-primary" data-bind="click: uploadImage">Tải ảnh</button>
-                            <p class="help-block">Example block-level help text here.</p>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Check me out
-                            </label>
-                        </div>
-
-                        <!--  ckeditor -->
-                        <div class="box box-info">
-                            <div class="box-header">
-                                <h3 class="box-title">
-                                    CK Editor
-                                    <small>Advanced and full of features</small>
-                                </h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                            title="Collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-                                            title="Remove">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body pad">
-                                <form>
-                                    <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                            This is my textarea to be replaced with CKEditor.
-                                    </textarea>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- end  ckeditor -->
-
-
-
+                        </ul>
+                        <p class="help-block">Nhiều ảnh cho sản phẩm</p>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Tạo sản phẩm</button>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mô tả sản phẩm</label>
+                        <textarea class="form-control" placeholder="Mô tả" data-bind="value: Description"></textarea>
                     </div>
-                </form>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Meta Keyword</label>
+                        <input type="text" class="form-control" placeholder="Meta Keyword" data-bind="value: MetaKeyword">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
+                                style="width: 100%;"></select>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Check me out
+                        </label>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" data-bind="click: create" class="btn btn-primary">Tạo sản phẩm</button>
+                </div>
             </div>
             <!-- /.box -->
             <!-- Form Element sizes -->

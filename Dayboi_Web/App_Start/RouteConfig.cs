@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Dayboi_Web
@@ -12,6 +8,22 @@ namespace Dayboi_Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute(
+            name: "Category",
+            url: "shop/{categoryId}/{alias}",
+            defaults: new { controller = "Shop", action = "Index", categoryId = UrlParameter.Optional },
+            namespaces: new string[] { "Dayboi_Web.Controllers" }
+            );
+
+            routes.MapRoute(
+           name: "Product",
+           url: "product/{productId}/{alias}",
+           defaults: new { controller = "Shop", action = "Product", productId = UrlParameter.Optional },
+           namespaces: new string[] { "Dayboi_Web.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "Default",

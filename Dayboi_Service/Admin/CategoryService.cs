@@ -5,37 +5,38 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dayboi_Service.Admin
 {
     public interface ICategoryService
     {
-        Category Create(Category category);
+        Category Create(Category entity);
 
-        IEnumerable<Category> GetCategories();
+        Category GetById(int id);
 
-        Category GetById(int categoryId);
+        IEnumerable<Category> GetAll();
 
-
+        bool Update(Category entity);
     }
+
     public class CategoryService : ICategoryService
     {
-        private readonly ICategoryRepository categoryReponsitory;
+        private readonly ICategoryRepository _categoryReponsitory;
 
-        private readonly IUnitOfWork unitOfWork;
-        public CategoryService(ICategoryRepository _categoryReponsitory, IUnitOfWork _unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CategoryService(ICategoryRepository categoryReponsitory, IUnitOfWork unitOfWork)
         {
-            categoryReponsitory = _categoryReponsitory;
-            unitOfWork = _unitOfWork;
+            _categoryReponsitory = categoryReponsitory;
+            _unitOfWork = unitOfWork;
         }
+
         public Category Create(Category category)
         {
             try
             {
-                categoryReponsitory.Add(category);
-                unitOfWork.Commit();
+                _categoryReponsitory.Add(category);
+                _unitOfWork.Commit();
                 return category;
             }
             catch (Exception ex)
@@ -44,18 +45,47 @@ namespace Dayboi_Service.Admin
             }
         }
 
-        public Category GetById(int categoryId)
+        public IEnumerable<Category> GetAll()
         {
-            var toReturn = categoryReponsitory.GetMany(x => x.Id == categoryId && !x.IsDeleted)
+            try
+            {
+                var toReturn = _categoryReponsitory.GetMany(x => !x.IsDeleted).ToList();
+                return toReturn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Category GetById(int id)
+        {
+            try
+            {
+                var toReturn = _categoryReponsitory.GetMany(x => x.Id == id && !x.IsDeleted)
                                                 .Include(x => x.Products)
                                                 .FirstOrDefault();
 
-            return toReturn;
+                return toReturn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public IEnumerable<Category> GetCategories()
+        public bool Update(Category entity)
         {
-            return categoryReponsitory.GetMulti(x => !x.IsDeleted);
+            try
+            {
+                _categoryReponsitory.Update(entity);
+                _unitOfWork.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

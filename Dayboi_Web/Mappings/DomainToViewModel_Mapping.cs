@@ -2,9 +2,7 @@
 using Dayboi_Infrastructure.Models;
 using Dayboi_Web.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Dayboi_Web.Mappings
 {
@@ -14,9 +12,16 @@ namespace Dayboi_Web.Mappings
         {
             get { return "DomainToViewModelMapping"; }
         }
+
         protected override void Configure()
         {
-            base.CreateMap<Category, CategoryModel>();
+            base.CreateMap<Category, CategoryModel>()
+                .ForMember(s => s.Products, t => t.MapFrom(src => src.Products != null ? src.Products.Where(x => !x.IsDeleted && x.IsActive).ToList() : null));
+
+            base.CreateMap<Product, ProductModel>()
+                .ForMember(s => s.CategoryName, t => t.MapFrom(src => src.Category != null ? src.Category.Name : string.Empty))
+                .ForMember(s => s.ImageList, t => t.MapFrom(src => string.IsNullOrEmpty(src.Images) ? null : src.Images.Split(',')));
+
         }
     }
 }

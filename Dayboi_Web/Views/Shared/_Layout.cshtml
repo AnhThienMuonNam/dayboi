@@ -13,15 +13,20 @@
     <link href="~/assets/css/normalize.css" type="text/css" rel="stylesheet" />
     <link href="~/assets/css/animate.css" type="text/css" rel="stylesheet" />
 
-
+    <link href="~/assets/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/assets/css/owl.theme.css" rel="stylesheet" />
     <!-- Main CSS -->
     <link href="~/assets/css/style.css" type="text/css" rel="stylesheet" />
     <link href="~/assets/css/responsive.css" type="text/css" rel="stylesheet" />
 
-   
+
+    <link href="~/assets/alertifyjs/css/alertify.min.css" rel="stylesheet" />
     <!-- icons -->
     <link href="~/assets/css/iline-icons.css" type="text/css" rel="stylesheet" />
     <link href="~/assets/css/magnific-popup.css" type="text/css" rel="stylesheet" />
+
+    @RenderSection("Styles", required: false)
+
     <!-- Shortcut icon -->
     <link rel="shortcut icon" href="~/assets/images/favicon.ico" type="image/x-icon" />
 </head>
@@ -49,10 +54,13 @@
     <script src="~/assets/js/libs/jquery-1.11.2.min.js"></script>
     <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/assets/js/libs/jqBootstrapValidation.js"></script>
+    <script src="~/assets/js/knockout-3.4.2.js"></script>
+    <script src="~/assets/js/knockout.mapping-latest.js"></script>
     <script src="~/assets/js/libs/imagesloaded.pkgd.min.js"></script>
     <script src="~/assets/js/libs/imagesloaded.js"></script>
     <script src="~/assets/js/libs/jquery.magnific-popup.min.js"></script>
     <script src="~/assets/js/libs/isotope.pkgd.min.js"></script>
+    <script src="~/assets/alertifyjs/alertify.min.js"></script>
     <script src="~/assets/js/libs/ParallaxScrolling.js"></script>
     <script src="~/assets/js/libs/jquery.mailchimp.js"></script>
     <script src="~/assets/js/libs/wow.min.js"></script>
@@ -61,6 +69,18 @@
     <script src="~/assets/js/libs/jquery.textillate.js"></script>
     <!-- Main JS -->
     <script src="~/assets/js/main.js"></script>
+    <script src="~/Scripts/Client/header.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            options.GetCartLength = '@Url.Action("GetCartLength", "Cart")';
+            data.API_URLs = options;
+            var builder = new Header_MainModel(data);
+            ko.applyBindings(builder, document.getElementById("default-navbar"));
+        });
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

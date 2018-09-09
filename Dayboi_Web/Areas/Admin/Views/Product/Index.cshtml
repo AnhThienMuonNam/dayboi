@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Dayboi_Web.ViewModels.ProductModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section footerJS{
+    <script src="~/Scripts/Client/product_index.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            data.Products = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            options.EditProductUrl = '@Url.Action("Edit", "Product")';
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<section class="content" id="main-page">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Tìm kiếm</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="number" class="form-control" placeholder="ID">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select class="form-control select2" style="width: 100%;">
+                            <option selected="selected">Alabama</option>
+                            <option>Alaska</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+                    </div>
+
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tên/Mô tả</label>
+                        <input type="tel" class="form-control" placeholder="Tên/Mô tả">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Is Active
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="button" class="btn btn-info pull-right">Tìm kiếm</button>
+        </div>
+    </div>
+    <!-- /.box -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Sản phẩm</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Danh mục</th>
+                            <th>Giá</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                        <!-- ko foreach: Products-->
+                        <tr>
+                            <td data-bind="text: Id"></td>
+                            <td data-bind="text: Name"></td>
+                            <td data-bind="text: Description"></td>
+                            <td data-bind="text: CategoryName"></td>
+                            <td data-bind="text: Price"></td>
+                            <td data-bind="text: IsActive"></td>
+                            <td><a class="label label-warning" data-bind="attr: {href: EditProductUrl() +'/' + Id}">Edit</a></td>
+
+                        </tr>
+                        <!-- /ko -->
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="#">&laquo;</a></li>
+
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>
+
+

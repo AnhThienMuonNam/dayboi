@@ -24,6 +24,12 @@ namespace Dayboi_Infrastructure
         public DbSet<ApplicationRole> ApplicationRoles { set; get; }
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
         public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
+
+        public DbSet<Order> Orders { set; get; }
+        public DbSet<OrderDetail> OrderDetails { set; get; }
+        public DbSet<PaymentMethod> PaymentMethods { set; get; }
+        public DbSet<OrderStatus> OrderStatuses { set; get; }
+
         public static DayboiDbContext Create()
         {
             return new DayboiDbContext();

@@ -3,6 +3,7 @@ using Dayboi_Infrastructure.Models;
 using Dayboi_Service;
 using Dayboi_Service.Admin;
 using Dayboi_Web.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,13 @@ namespace Dayboi_Web.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryService categoryService;
-        private readonly ICommonService commonService;
+        private readonly ICategoryService _categoryService;
+        private readonly ICommonService _commonService;
 
-        public CategoryController(ICategoryService _categoryService, ICommonService _commonService)
+        public CategoryController(ICategoryService categoryService, ICommonService commonService)
         {
-            categoryService = _categoryService;
-            commonService = _commonService;
+            _categoryService = categoryService;
+            _commonService = commonService;
         }
 
         // GET: Admin/Category
@@ -30,7 +31,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            commonService.CheckIfFileDeleted();
+            _commonService.CheckIfFileDeleted();
             return View();
         }
 
@@ -38,16 +39,17 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         public JsonResult CreateCategory(CategoryModel model)
         {
             var category = Mapper.Map<CategoryModel, Category>(model);
-            var toReturn = categoryService.Create(category);
+            var toReturn = _categoryService.Create(category);
             return Json(new
             {
-                data = toReturn
+                IsSuccess = true,
+                Data = toReturn
             });
         }
 
         private IEnumerable<CategoryModel> GetCategories()
         {
-            var categories = categoryService.GetCategories();
+            var categories = _categoryService.GetAll();
 
             var toReturn = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(categories);
             return toReturn;
@@ -58,8 +60,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         {
             if (id > 0)
             {
-                var category = categoryService.GetById(id);
-
+                var category = _categoryService.GetById(id);
                 if (category != null)
                 {
                     var toReturn = Mapper.Map<Category, CategoryModel>(category);
@@ -69,6 +70,31 @@ namespace Dayboi_Web.Areas.Admin.Controllers
                     return null;
             }
             return null;
+        }
+
+        [HttpPost]
+        public JsonResult UpdateCategory(CategoryModel model)
+        {
+            var category = _categoryService.GetById(model.Id);
+            var toReturn = false;
+            if (category != null)
+            {
+                category.Name = model.Name;
+                category.Alias = model.Alias;
+                category.MetaKeyword = model.MetaKeyword;
+                category.Description = model.Description;
+                category.Image = model.Image;
+                category.IsActive = model.IsActive;
+                if (User.Identity.IsAuthenticated)
+                {
+                    category.UpdatedBy = User.Identity.GetUserId();
+                }
+                toReturn = _categoryService.Update(category);
+            }
+            return Json(new
+            {
+                IsSuccess = toReturn
+            });
         }
     }
 }

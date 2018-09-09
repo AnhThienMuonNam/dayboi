@@ -1,10 +1,24 @@
-﻿
+﻿@model Dayboi_Web.ViewModels.CategoryModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Scripts{
+    <script src="~/Scripts/page-shop.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            data.Category = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
- <!-- HEADER TREE -->
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<!-- HEADER TREE -->
 <section class="header-tree" data-speed="8" data-type="background">
     <h2 class="hidden">Header tree</h2>
     <!-- parallax background -->
@@ -16,9 +30,8 @@
             <!-- .col-md-12 -->
             <div class="col-md-12">
                 <ul class="breadcrumb clearfix mar-top-3x">
-                    <li><a class="link text-success" href="/">Fallone</a></li>
-                    <li><a class="link" href="#">Blog</a></li>
-                    <li><a class="link" href="#">Mansory</a></li>
+                    <li><a class="link text-success" href="/">Trang chủ</a></li>
+                    <li><a class="link" href="#">@Model.Name</a></li>
                 </ul>
             </div>
             <!-- /.col-md-12 -->
@@ -28,9 +41,8 @@
     <!-- /.container -->
 </section>
 <!-- HEADER TREE END -->
-
 <!-- BLOG BODY SECTION -->
-<section class="pattern-3 no-padding-right">
+<section class="pattern-3 no-padding-right" id="main-page">
     <!-- .container -->
     <div class="container">
         <!-- .row -->
@@ -39,106 +51,34 @@
             <div class="col-md-12">
                 <!-- All blog posts -->
                 <div class="row">
+
+                    <!-- ko foreach: Products-->
                     <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
                         <div class="panel panel-default text-center mar-bottom-sm">
                             <div class="blog-body">
                                 <img src="~/assets/images/blog/post-4.jpg" alt="post 4" class="img-responsive img-full" />
-                                <h4 class="text-primary text-center text-uppercase">Marketing #2 </h4>
-                                <p style="text-align:center;">
-                                    800.000 vnd
-                                </p>
-                                <hr style="border-top: 1px solid #333333;margin-top: 0px;margin-bottom: 0px; "/>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do [...]
-                                </p>
-                                <a class="btn btn-primary" href="blog-post.html" role="button" title="continue reading"> Read more</a>
+                                <h5 class="text-primary text-center text-uppercase" data-bind="html: Name.length > 38 ? Name.substring(0, 33)+' ...' : Name, attr:{title: Name}"> </h5>
+                                <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price)"></i>
+                                @*<p style="text-align:center;" data-bind="text: Price">
+                                </p>*@
+                                <span class="line-sep-blue" style="width:100%;margin-top: 10px;margin-bottom: 10px;"></span>
+                                @*<p data-bind="text: Description && Description.length > 50 ? Description.substring(0, 49) + '[...]' : Description">
+                                </p>*@
+                                <a class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
-                        <div class="panel panel-default text-center mar-bottom-sm">
-                            <div class="blog-body">
-                                <img src="~/assets/images/blog/post-1.jpg" alt="post 1" class="img-responsive img-full" />
-                                <h4 class="text-primary text-center text-uppercase">Work</h4>
-                                <p style="text-align:center;">
-                                    800.000 vnd
-                                </p>
-                                <hr style="border-top: 1px solid #333333;margin-top: 0px;margin-bottom: 0px; " />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do [...]
-                                </p>
-                                <a class="btn btn-primary" href="blog-post.html" role="button" title="continue reading"> Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".9s">
-                        <div class="panel panel-default text-center mar-bottom-sm">
-                            <div class="blog-body">
-                                <img src="~/assets/images/blog/post-5.jpg" alt="post 5" class="img-responsive img-full" />
-                                <h4 class="text-primary text-center text-uppercase">Place</h4>
-                                <p style="text-align:center;">
-                                    800.000 vnd
-                                </p>
-                                <hr style="border-top: 1px solid #333333;margin-top: 0px;margin-bottom: 0px; " />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do [...]
-                                </p>
-                                <a class="btn btn-primary" href="blog-post.html" role="button" title="continue reading"> Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.1s">
-                        <div class="panel panel-default text-center mar-bottom-sm">
-                            <div class="blog-body">
-                                <!-- embed vimeo 4:3 aspect ratio -->
-                                <div class="embed-responsive embed-responsive-4by3">
-                                    <iframe src="https://player.vimeo.com/video/87701971" allowfullscreen></iframe>
-                                </div>
-                                <h4 class="text-primary text-center text-uppercase">Vimeo embed</h4>
-                                <p style="text-align:center;">
-                                    800.000 vnd
-                                </p>
-                                <hr style="border-top: 1px solid #333333;margin-top: 0px;margin-bottom: 0px; " />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do [...]
-                                </p>
-                                <a class="btn btn-primary" href="blog-post.html" role="button" title="continue reading"> Read more</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.1s">
-                        <div class="panel panel-default text-center mar-bottom-sm">
-                            <div class="blog-body">
-                                <!-- embed vimeo 4:3 aspect ratio -->
-                                <div class="embed-responsive embed-responsive-4by3">
-                                    <iframe src="https://player.vimeo.com/video/87701971" allowfullscreen></iframe>
-                                </div>
-                                <h4 class="text-primary text-center text-uppercase">Vimeo embed</h4>
-                                <p style="text-align:center;">
-                                    800.000 vnd
-                                </p>
-                                <hr style="border-top: 1px solid #333333;margin-top: 0px;margin-bottom: 0px; " />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do [...]
-                                </p>
-                                <a class="btn btn-primary" href="blog-post.html" role="button" title="continue reading"> Read more</a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /ko -->
 
 
                 </div>
-                    <!-- .navigation -->
-                    <nav class="navigation paging-navigation">
-                        <ul class="page-numbers pagination">
-                            <li><span class="page-numbers pagination current">1</span></li>
-                            <li><a class="page-numbers pagination" href="#">2</a></li>
-                            <li><a class="page-numbers pagination" href="#">3</a></li>
-                            <li><a class="next page-numbers pagination" href="#">Next →</a></li>
-                        </ul>
-                    </nav><!-- /.navigation -->
-              
+                <!-- .navigation -->
+                <nav class="navigation paging-navigation">
+                    <ul class="page-numbers pagination">
+                       
+                        <li><a class="next page-numbers pagination" href="#">Xem tiếp →</a></li>
+                    </ul>
+                </nav><!-- /.navigation -->
                 <!-- /All blog posts -->
             </div>
             <!-- /.col-md-12 -->
@@ -149,4 +89,3 @@
     <!-- /.container -->
 </section>
 <!-- BLOG BODY SECTION END -->
-

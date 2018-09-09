@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 1px;
+            border-color: black;
+            width: 100%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .tdHotel {
+            width: 40%;
+        }
+
+        .tdRoomType {
+            width: 13%;
+        }
+
+        .tdPrice {
+            width: 15%;
+        }
+
+        .tdQuantity {
+            width: 10%;
+        }
+
+        .tdCheckIn {
+            width: 11%;
+        }
+
+        .tdCheckOut {
+            width: 11%;
+        }
+
+        .p-center {
+            text-align: center;
+        }
+
+        .p-right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">Thông tin đơn đặt phòng</h1>
+    <h4 class="p-center">Mã đơn đặt phòng: {{orderId}}</h4>
+    <p>Khách hàng: {{customerName}}</p>
+    <p>Thời gian đặt: {{createdDate}}</p>
+    <h3>Chi tiết đơn đặt phòng</h3>
+   
+    <h4>Tổng tiền thanh toán: {{totalMoney}}</h4>
+    <!--<h4>Tình trạng thanh toán: {{status}}</h4>-->
+    <h5 class="p-right">Cảm ơn quý khách!</h5>
+</body>
+</html>

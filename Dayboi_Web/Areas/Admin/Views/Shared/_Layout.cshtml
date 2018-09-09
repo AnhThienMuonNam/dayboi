@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/assets_admin/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/assets_admin/dist/css/AdminLTE.min.css">
+    <link href="~/assets/alertifyjs/css/alertify.min.css" rel="stylesheet" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/assets_admin/dist/css/skins/_all-skins.min.css">
@@ -24,6 +25,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Google Font -->
+
+    @RenderSection("headerStyles", required: false)
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -53,7 +57,7 @@
     <script src="~/assets_admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="~/assets_admin/bower_components/fastclick/lib/fastclick.js"></script>
-
+    <script src="~/assets/alertifyjs/alertify.min.js"></script>
     <script src="~/assets/js/knockout-3.4.2.js"></script>
     <script src="~/assets/js/knockout.mapping-latest.js"></script>
     <!-- AdminLTE App -->
