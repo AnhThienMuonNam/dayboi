@@ -5,14 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts{
-    <script src="~/Scripts/page-shop.js"></script>
+    <script src="~/Scripts/Client/page-shop.js"></script>
     <script>
         $(document).ready(function () {
             var data = {};
             var options = {};
-            data.Category = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            var apis = {};
 
-            data.API_URLs = options;
+            data.Category = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            options.Categories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.Categories));
+            options.NewestProducts = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.NewestProducts));
+
+            data.Options = options;
+            data.Apis = apis;
 
             ko.applyBindings(MainModel(data), document.getElementById("main-page"));
         });
@@ -42,46 +47,85 @@
 </section>
 <!-- HEADER TREE END -->
 <!-- BLOG BODY SECTION -->
-<section class="pattern-3 no-padding-right" id="main-page">
+<section class="pattern-3 no-padding-right" id="main-page" style="padding-top:30px;">
     <!-- .container -->
     <div class="container">
         <!-- .row -->
         <div class="row">
             <!-- .col-md-12 -->
             <div class="col-md-12">
-                <!-- All blog posts -->
-                <div class="row">
+                    <!-- .navigation -->
+                    <div class="col-md-9 blog-main">
+                        <!-- All blog posts -->
+                        <div class="row">
+                            <!-- ko foreach: Products-->
+                            <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                <div class="panel panel-default text-center mar-bottom-sm">
+                                    <div class="blog-body" style="cursor:pointer;">
+                                        <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
+                                            <img src="~/assets/images/blog/post-4.jpg" alt="post 4" class="img-responsive img-full" />
+                                            <h6 class="text-primary text-center text-uppercase" data-bind="html: Name.length > 38 ? Name.substring(0, 33)+' ...' : Name, attr:{title: Name}"> </h6>
+                                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price)"></i>
+                                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span style="text-decoration: line-through;" data-bind="text: formatMoney(Price)"></span></i>
+                                        </a>
+                                        @*<p style="text-align:center;" data-bind="text: Price">
+                                            </p>*@
+                                        @*<span class="line-sep-blue" style="width:100%;margin-top: 10px;margin-bottom: 10px;"></span>*@
+                                        @*<p data-bind="text: Description && Description.length > 50 ? Description.substring(0, 49) + '[...]' : Description">
+                                            </p>*@
+                                        @*<a class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /ko -->
 
-                    <!-- ko foreach: Products-->
-                    <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                        <div class="panel panel-default text-center mar-bottom-sm">
-                            <div class="blog-body">
-                                <img src="~/assets/images/blog/post-4.jpg" alt="post 4" class="img-responsive img-full" />
-                                <h5 class="text-primary text-center text-uppercase" data-bind="html: Name.length > 38 ? Name.substring(0, 33)+' ...' : Name, attr:{title: Name}"> </h5>
-                                <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price)"></i>
-                                @*<p style="text-align:center;" data-bind="text: Price">
-                                </p>*@
-                                <span class="line-sep-blue" style="width:100%;margin-top: 10px;margin-bottom: 10px;"></span>
-                                @*<p data-bind="text: Description && Description.length > 50 ? Description.substring(0, 49) + '[...]' : Description">
-                                </p>*@
-                                <a class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>
+
+                        </div>
+                        <!-- .navigation -->
+                        <nav class="navigation paging-navigation">
+                            <ul class="page-numbers pagination">
+                                <li><a class="next page-numbers pagination" href="#">Xem tiếp →</a></li>
+                            </ul>
+                        </nav><!-- /.navigation -->
+                        <!-- /All blog posts -->
+                    </div>
+                    <div class="col-md-3 blog-sidebar">
+                        <!-- Categories List -->
+                        <div class="post-detail">
+                            <div class="post-detail-body sep-xs">
+                                <h4 class="text-primary text-uppercase text-center">Danh mục</h4>
+                                <ul class="text-capitalize sidebar">
+                                    <!-- ko foreach: Categories-->
+                                    <li style="padding: 0px 0;"><a class="iline1-spiral4" data-bind="text: Name, attr:{href: '/shop/'+Id+'/'+Alias}"></a></li>
+                                    <!-- /ko -->
+                                </ul>
                             </div>
                         </div>
+                        <!-- Categories List End -->
+                        <!-- Popular Posts -->
+                        <div class="post-detail mar-top-md">
+                            <div class="post-detail-body sep-xs">
+                                <h4 class="text-primary text-uppercase text-center">Sản phẩm mới</h4>
+                                <ul class="text-capitalize sidebar">
+                                    <!-- ko foreach: NewestProducts-->
+                                    <li>
+                                        <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
+                                            <span class="post-img">
+                                                <img data-bind="attr:{src: ImageList[0]}" alt="" class="img-responsive" />
+                                            </span>
+                                            <h5 class="text-uppercase text-success" data-bind="text: Name"></h5>
+                                            <i class="text-muted small" data-bind="text: formatMoney(Price)"></i>
+                                        </a>
+                                    </li>
+                                    <!-- /ko -->
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Popular Posts End -->
                     </div>
-                    <!-- /ko -->
-
-
-                </div>
-                <!-- .navigation -->
-                <nav class="navigation paging-navigation">
-                    <ul class="page-numbers pagination">
-                       
-                        <li><a class="next page-numbers pagination" href="#">Xem tiếp →</a></li>
-                    </ul>
-                </nav><!-- /.navigation -->
-                <!-- /All blog posts -->
+                <!-- /.col-md-12 -->
             </div>
-            <!-- /.col-md-12 -->
         </div>
         <!-- /.row -->
 
