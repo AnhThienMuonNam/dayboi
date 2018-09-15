@@ -1,0 +1,154 @@
+﻿@model Dayboi_Web.ViewModels.CheckoutModel
+@{
+    ViewBag.Title = "Xác nhận đặt hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/Scripts/Client/page_checkout.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var apis = {};
+            var options = {};
+            data.Checkout = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            apis.CreateOrder = '@Url.Action("CreateOrder", "Checkout")';
+
+            data.API_URLs = apis;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<div id="main-page">
+    <section style="padding: 30px 0;">
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="text-uppercase text-primary wow fadeInDown text-center" data-wow-duration=".8s" data-wow-delay=".2s">Xác nhận đơn đặt hàng</h1>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="white" style="padding: 10px 0;">
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="text-success text-uppercase">Thông tin Khách hàng</h3>
+                            <span class="line-sep-gray"></span>
+                            <table class="table">
+                                <tbody>
+
+                                    <tr>
+                                        <td class="type-info">Khách hàng</td>
+                                        <td><h5 data-bind="text: Order().Name"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="type-info">Số điện thoại</td>
+                                        <td><h5 data-bind="text: Order().Phone"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="type-info">Email</td>
+                                        <td><h5 data-bind="text: Order().Email"></h5></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="text-success text-uppercase">Thông tin Đơn hàng</h3>
+                            <span class="line-sep-gray"></span>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td style="text-align:center;" class="type-info" colspan="2">Sản phẩm</td>
+                                        <td class="type-info">Đơn giá</td>
+                                        <td class="type-info">Số lượng</td>
+                                        <td class="type-info">Tổng tiền</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko foreach: Carts -->
+                                    <tr>
+                                        <td class="type-info">
+                                            <img data-bind="attr:{src: Image}" alt="" class="img-responsive" style="width:80px;" />
+                                        </td>
+                                        <td class="type-info" data-bind="text: ProductName"></td>
+                                        <td class="type-info" data-bind="text: formatMoney(Price)"></td>
+                                        <td class="type-info" data-bind="text: Quantity"></td>
+                                        <td data-bind="text: formatMoney(SumPrice)"></td>
+                                    </tr>
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-8">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="type-info">Tạm tính</td>
+                                            <td><h5 data-bind="text: Order().TotalPrice"></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type-info">Phí vận chuyển (nếu có)</td>
+                                            <td><h5>---</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type-info">Tổng tiền</td>
+                                            <td><h5 data-bind="text: Order().TotalPrice"></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type-info">Phương thức thanh toán</td>
+                                            <td><h5 data-bind="text: Order().PaymentMethodName"></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type-info">Nơi nhận</td>
+                                            <td><h5 data-bind="text: Order().Address +', '+Order().WardName+', '+Order().DistrictName+', '+Order().ProvinceName"></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="type-info">Ghi chú</td>
+                                            <td><h5 data-bind="text: Order().Note"></h5></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="submit btn btn-primary pull-right" data-bind="click: createOrder">Đặt hàng</button>
+                            <button type="button" class="submit btn btn-default pull-right" data-bind="click: back">Trở lại</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Headings End -->
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+</div>
+<!-- MAIN CONTAINER END -->

@@ -4,7 +4,7 @@
 }
 @section Scripts{
     <script src="~/assets/js/libs/owl.carousel.min.js"></script>
-    <script src="~/Scripts/page_product.js"></script>
+    <script src="~/Scripts/Client/page_product.js"></script>
     <script>
         $(document).ready(function () {
             var data = {};
@@ -61,40 +61,39 @@
                                         <li data-target="#carousel-product-1" data-slide-to="2" class=""></li>
                                     </ol>*@
                                 <div class="carousel-inner" role="listbox">
-
                                     @{bool isFirstImage = true;}
                                     @foreach (var item in Model.ImageList)
                                     {
                                         if (isFirstImage)
                                         {
                                             isFirstImage = false;
-                                            <div class="item active">
-                                                <figure>
-                                                    <img alt="First slide" src="@item" data-holder-rendered="true">
-                                                    <div class="image-overlay">
-                                                        <p>
-                                                            <a href="@item" class="show-image">
-                                                                <i class="iline2-arrows55"></i>
-                                                            </a>
-                                                        </p>
-                                                    </div><!--image overlay-->
-                                                </figure><!--/figure-->
-                                            </div>
+                                    <div class="item active">
+                                        <figure>
+                                            <img alt="First slide" src="@item" data-holder-rendered="true">
+                                            <div class="image-overlay">
+                                                <p>
+                                                    <a href="@item" class="show-image">
+                                                        <i class="iline2-arrows55"></i>
+                                                    </a>
+                                                </p>
+                                            </div><!--image overlay-->
+                                        </figure><!--/figure-->
+                                    </div>
                                         }
                                         else
                                         {
-                                            <div class="item ">
-                                                <figure>
-                                                    <img alt="First slide" src="@item" data-holder-rendered="true">
-                                                    <div class="image-overlay">
-                                                        <p>
-                                                            <a href="@item" class="show-image">
-                                                                <i class="iline2-arrows55"></i>
-                                                            </a>
-                                                        </p>
-                                                    </div><!--image overlay-->
-                                                </figure><!--/figure-->
-                                            </div>
+                                    <div class="item ">
+                                        <figure>
+                                            <img alt="First slide" src="@item" data-holder-rendered="true">
+                                            <div class="image-overlay">
+                                                <p>
+                                                    <a href="@item" class="show-image">
+                                                        <i class="iline2-arrows55"></i>
+                                                    </a>
+                                                </p>
+                                            </div><!--image overlay-->
+                                        </figure><!--/figure-->
+                                    </div>
                                         }
                                     }
                                 </div>
@@ -108,19 +107,31 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="form-group hidden-xs hidden-sm">
+                            <div class="input-group">
+                                <span class="input-group-btn" style="width: 0%;">
+                                    <a class="btn btn-default btn-lg pull-left mar-top-md " data-bind="click: addToCart">
+                                        <i class="iline2-shopping60"></i>
+                                        Thêm vào giỏ
+                                    </a>
+                                </span>
+                                <span class="input-group-btn" style="width: 0%;">
+                                    <i class="iline2-subtract1" style="margin-right:20px;"></i>
+                                </span>
+                                <span class="input-group-btn" style="width: 0%;">
+                                    <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: '3'"></span></i>
+                                </span>
+                                <span class="input-group-btn" style="width: 0%;">
+                                    <i class="iline2-add63"></i>
+                                </span>
 
-                        <a class="btn btn-default btn-lg pull-left mar-top-md hidden-xs hidden-sm" data-bind="click: addToCart">
-                            <i class="iline2-shopping60"></i>
-                            Thêm vào giỏ hàng
-                        </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: Name"></h2>
                         <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price())"></i>
-                        <a class="btn btn-default btn-lg hidden-md hidden-lg" data-bind="click: addToCart">
-                            <i class="iline2-shopping60"></i>
-                            Thêm vào giỏ hàng
-                        </a>
+
                         <span class="line-sep-blue"></span>
                         <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" data-bind="text: Description">
                         </p>
@@ -132,6 +143,21 @@
                                 <i class="icon iline2-tag27"></i> TAGS
                             </li>
                         </ul>
+                        <ul class="ic-list wow bounceInRight hidden-md hidden-lg">
+                            <li style="padding-left: 0px;">
+                                <i class="iline2-subtract1" style="margin-right:20px;"></i>
+                                <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: '3'"></span></i>
+                                <i class="iline2-add63"></i>
+                            </li>
+                            <li style="padding-left: 0px;">
+                                <a class="btn btn-default btn-lg " data-bind="click: addToCart">
+                                    <i class="iline2-shopping60"></i>
+                                    Thêm vào giỏ
+                                </a>
+                            </li>
+
+                        </ul>
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -139,7 +165,7 @@
             <!-- /.col-md-12 -->
         </div>
         <!-- /.row -->
-     
+
     </div>
     <!-- /.container -->
     <!-- /Product item -->
@@ -148,7 +174,7 @@
 
 <section class="white" style="padding: 10px 0;">
     <!-- .container -->
-    <div class="container" >
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="post-detail mar-top-md mar-bottom-md">
@@ -172,11 +198,6 @@
                             </a>
                             <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
                                 <img src="~/assets/images/works/work-4.png" alt="" class="img-responsive" />
-                                <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
-                                <i class="text-center text-muted">April 17, 2015</i>
-                            </a>
-                            <a href="#" rel="" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
-                                <img src="~/assets/images/works/work-5.jpg" alt="" class="img-responsive" />
                                 <h5 class="text-center text-primary text-uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
                                 <i class="text-center text-muted">April 17, 2015</i>
                             </a>

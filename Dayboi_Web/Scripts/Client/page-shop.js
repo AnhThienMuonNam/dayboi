@@ -1,9 +1,10 @@
 ﻿var MainModel = function (data) {
-    //properties
     var self = this;
-    //self.EditCategoryUrl = ko.observable(data.API_URLs.EditCategoryUrl);
-    //self.categoryModel = new CategoryModel(data);
+
     self.Products = ko.observableArray(data.Category.Products || []);
+    self.Categories = ko.observableArray(data.Options.Categories || []);
+    self.NewestProducts = ko.observableArray(data.Options.NewestProducts || []);
+
     self.formatMoney = function (number) {
         var val = parseInt(number);
         return val.toFixed(0).replace(/./g, function (c, i, a) {

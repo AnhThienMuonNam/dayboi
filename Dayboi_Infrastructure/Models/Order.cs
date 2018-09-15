@@ -21,8 +21,25 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(50)]
         public string Phone { get; set; }
 
-        [StringLength(1000)]
+        [StringLength(500)]
         public string Address { get; set; }
+
+        [StringLength(50)]
+        public string ProvinceName { get; set; }
+
+        [StringLength(50)]
+        public string DistrictName { get; set; }
+
+        [StringLength(50)]
+        public string WardName { get; set; }
+
+        public int? ProvinceId { get; set; }
+        public int? DistrictId { get; set; }
+        public int? WardId { get; set; }
+        public decimal? ShippingFee { set; get; }
+
+        [StringLength(200)]
+        public string Note { get; set; }
 
         public decimal TotalPrice { set; get; }
         public int OrderStatusId { get; set; }

@@ -27,7 +27,6 @@ namespace Dayboi_Service
             try
             {
                 order.OrderStatusId = 1;
-                order.PaymentMethodId = 3;
                 _orderRepository.Add(order);
                 _unitOfWork.Commit();
                 return order;

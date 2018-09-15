@@ -713,10 +713,10 @@ header.expanded nav {
   visibility: visible;
 }
 .navbar-default:hover a:hover {
-  color: #ffffff;
+  /*color: #ffffff;*/
 }
 .navbar-default .subbrand-list {
-  list-style-type: none;
+  /*list-style-type: none;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -733,7 +733,7 @@ header.expanded nav {
   -webkit-transition: -webkit-transform translateY(-2em);
   -moz-transition: -moz-transform translateY(-2em);
   -o-transition: -o-transform translateY(-2em);
-  transition: transform translateY(-2em);
+  transition: transform translateY(-2em);*/
 }
 .navbar-default .subbrand-list a {
   padding: 0.5em 15%;
@@ -752,7 +752,7 @@ header.expanded nav {
   font-weight: 900;
 }
 .navbar-default ul li a:after {
-  background: rgba(255, 255, 255, 0.9);
+  /*background: rgba(255, 255, 255, 0.9);
   content: "";
   display: block;
   width: 100%;
@@ -766,15 +766,15 @@ header.expanded nav {
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all 0.3s;*/
 }
 .navbar-default ul li a:hover {
-  color: #ffffff !important;
-  background-color: #1fa3ff !important;
+  /*color: #ffffff !important;
+  background-color: #1fa3ff !important;*/
 }
 .navbar-default ul li a:hover:after {
-  left: 100%;
-  visibility: visible;
+  /*left: 100%;
+  visibility: visible;*/
 }
 .navbar-default ul li a {
   padding: 39px 20px;
@@ -782,7 +782,7 @@ header.expanded nav {
   font-weight: 400;
   text-transform: uppercase;
   font-size: 14px;
-  display: block;
+  /*display: block;*/
 }
 .navbar-default ul li.active a {
   background-color: #1fa3ff !important;
@@ -843,18 +843,18 @@ header.expanded nav {
   background-color: transparent;
 }
 .navbar-default .dropdown-menu {
-  top: 110%;
+  /*top: 110%;
   -webkit-transition: top 0.8s ease-in-out, opacity 0.8s ease-in-out, visibility 0.8s ease-in-out 0.4s;
   -moz-transition: top 0.8s ease-in-out, opacity 0.8s ease-in-out, visibility 0.8s ease-in-out 0.4s;
   -o-transition: top 0.8s ease-in-out, opacity 0.8s ease-in-out, visibility 0.8s ease-in-out 0.4s;
   transition: top 0.8s ease-in-out, opacity 0.8s ease-in-out, visibility 0.8s ease-in-out 0.4s;
-  border-bottom: 5px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 5px solid rgba(255, 255, 255, 0.1);*/
 }
 .navbar-default .dropdown-menu.fadetop {
-  top: 100%;
+  /*top: 100%;
   -webkit-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);*/
 }
 .navbar-default .dropdown-menu li a {
   padding: 15px !important;
@@ -922,7 +922,7 @@ header.expanded nav {
   background-image: none;
 }
 .fallone-navbar.header-stuck.do-animation {
-  -webkit-transition: all 0.4s ease-in-out;
+  /*-webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
@@ -930,7 +930,7 @@ header.expanded nav {
   opacity: 1;
   -webkit-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);*/
 }
 .navbar {
   border-radius: 0;
@@ -975,7 +975,7 @@ a.inline-link {
 .open a:focus,
 .dropdown-menu a:hover,
 .open a:hover {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 .dropdown-menu {
   background-color: #222;
@@ -989,14 +989,14 @@ a.inline-link {
   color: inherit !important;
 }
 .dropdown-menu li a:hover {
-  color: #ffffff !important;
-  background-color: transparent;
+  /*color: #ffffff !important;*/
+  /*background-color: transparent;*/
 }
 .dropdown-menu .active a {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 .dropdown-menu .active a:hover {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 /********************
  * 3.1 - Social Navigation

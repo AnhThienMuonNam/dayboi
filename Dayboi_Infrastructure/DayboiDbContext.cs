@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dayboi_Infrastructure
 {
-    public class DayboiDbContext: IdentityDbContext<ApplicationUser>
+    public class DayboiDbContext : IdentityDbContext<ApplicationUser>
     {
         public DayboiDbContext() : base("DB_DayboiConnection")
         {
@@ -29,6 +29,9 @@ namespace Dayboi_Infrastructure
         public DbSet<OrderDetail> OrderDetails { set; get; }
         public DbSet<PaymentMethod> PaymentMethods { set; get; }
         public DbSet<OrderStatus> OrderStatuses { set; get; }
+        public DbSet<Province> Provinces { set; get; }
+        public DbSet<District> Districts { set; get; }
+        public DbSet<Ward> Wards { set; get; }
 
         public static DayboiDbContext Create()
         {

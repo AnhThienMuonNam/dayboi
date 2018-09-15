@@ -263,6 +263,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoaHocController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -393,6 +394,7 @@
     <Content Include="assets\js\knockout-3.4.2.js" />
     <Content Include="assets\js\knockout-3.5.0rc.js" />
     <Content Include="assets\js\knockout.mapping-latest.js" />
+    <Content Include="assets\js\knockout.validation.min.js" />
     <Content Include="assets\js\libs\dd_beladpng.js" />
     <Content Include="assets\js\libs\dd_belatedpng.min.js" />
     <Content Include="assets\js\libs\imagesloaded.js" />
@@ -5715,11 +5717,12 @@
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Client\category_create-edit.js" />
-    <Content Include="Scripts\Client\category_index.js" />
+    <Content Include="Scripts\Admin\category_create-edit.js" />
+    <Content Include="Scripts\Admin\category_index.js" />
     <Content Include="Scripts\Client\header.js" />
-    <Content Include="Scripts\Client\product_create-edit.js" />
-    <Content Include="Scripts\Client\product_index.js" />
+    <Content Include="Scripts\Admin\product_create-edit.js" />
+    <Content Include="Scripts\Admin\product_index.js" />
+    <Content Include="Scripts\Client\page_checkout.js" />
     <Content Include="Scripts\Common\common_functions.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5729,9 +5732,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\page-shop.js" />
-    <Content Include="Scripts\page_cart.js" />
-    <Content Include="Scripts\page_product.js" />
+    <Content Include="Scripts\Client\page-shop.js" />
+    <Content Include="Scripts\Client\page_cart.js" />
+    <Content Include="Scripts\Client\page_product.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Template\order_detail.html" />
@@ -5779,6 +5782,7 @@
     <Content Include="Template\Client\fallone.zip" />
     <Content Include="Views\KhoaHoc\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

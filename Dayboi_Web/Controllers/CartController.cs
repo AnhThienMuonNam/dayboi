@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using Dayboi_Infrastructure.Models;
+﻿using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service;
-using Dayboi_Web.Helper;
 using Dayboi_Web.ViewModels;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -12,11 +9,20 @@ namespace Dayboi_Web.Controllers
 {
     public class CartController : Controller
     {
-        private readonly IOrderService _orderService;
+        private readonly IProvinceRepository _provinceRepository;
+        private readonly IDistrictRepository _districtRepository;
+        private readonly IWardRepository _wardRepository;
+        private readonly IPaymentMethodRepository _paymentMethodRepository;
 
-        public CartController(IOrderService orderService)
+        public CartController(IProvinceRepository provinceRepository,
+                                IDistrictRepository districtRepository,
+                                IWardRepository wardRepository,
+                                IPaymentMethodRepository paymentMethodRepository)
         {
-            _orderService = orderService;
+            _provinceRepository = provinceRepository;
+            _districtRepository = districtRepository;
+            _wardRepository = wardRepository;
+            _paymentMethodRepository = paymentMethodRepository;
         }
 
         // GET: Cart
@@ -27,6 +33,17 @@ namespace Dayboi_Web.Controllers
             {
                 cart = new List<CartModel>();
             }
+            var provinces = _provinceRepository.GetMany(x => !x.IsDeleted)
+                                                        .OrderBy(x => x.DisplayOrder)
+                                                        .ToList();
+
+            var paymentMethods = _paymentMethodRepository.GetMany(x => !x.IsDeleted && x.IsActive)
+                                                            .OrderBy(x => x.DisplayOrder)
+                                                            .ToList();
+
+            ViewBag.Provinces = provinces;
+            ViewBag.PaymentMethods = paymentMethods;
+
             return View(cart);
         }
 
@@ -52,7 +69,7 @@ namespace Dayboi_Web.Controllers
                 newItem.ProductId = product.Id;
                 newItem.ProductName = product.Name;
                 newItem.Alias = product.Alias;
-                newItem.Image = product.Images;
+                newItem.Image = product.Images.Split(',').ToList<string>().FirstOrDefault();
                 newItem.Quantity = 1;
                 newItem.Price = product.Price.Value;
                 newItem.SumPrice = product.Price.Value;
@@ -65,6 +82,67 @@ namespace Dayboi_Web.Controllers
             {
                 IsSuccess = true,
                 CartLength = cart.Count()
+            });
+        }
+
+        [HttpPost]
+        public JsonResult PlusorMinusItem(int productId, bool isPlus)
+        {
+            var carts = (List<CartModel>)Session["MyCart"];
+
+            var existingItem = carts.Where(x => x.ProductId == productId).FirstOrDefault();
+
+            if (existingItem != null)
+            {
+                if (isPlus)
+                {
+                    existingItem.Quantity++;
+                }
+                else
+                {
+                    if (existingItem.Quantity > 1)
+                    {
+                        existingItem.Quantity--;
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            IsSuccess = false,
+                        });
+                    }
+                }
+                existingItem.SumPrice = existingItem.Quantity * existingItem.Price;
+            }
+
+            Session["MyCart"] = carts;
+
+            return Json(new
+            {
+                IsSuccess = true,
+            });
+        }
+
+        [HttpPost]
+        public JsonResult RemoveProduct(int productId)
+        {
+            var carts = (List<CartModel>)Session["MyCart"];
+
+            if (productId > 0)
+            {
+                var existingItem = carts.Where(x => x.ProductId == productId).FirstOrDefault();
+                if (existingItem != null)
+                {
+                    carts.Remove(existingItem);
+                }
+            }
+
+            Session["MyCart"] = carts;
+
+            return Json(new
+            {
+                IsSuccess = true,
+                CartLength = carts.Count()
             });
         }
 
@@ -85,22 +163,34 @@ namespace Dayboi_Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateOrder(OrderModel orderModel)
+        public JsonResult GetDistrictsByProvinceId(int provinceId)
         {
-            var order = Mapper.Map<OrderModel, Order>(orderModel);
-
-            var cart = (List<CartModel>)Session["MyCart"];
-            if (cart == null)
+            var districts = _districtRepository.GetMany(x => !x.IsDeleted
+                                                        && x.ProvinceId == provinceId)
+                                                        .OrderBy(x => x.Name)
+                                                        .ToList();
+            return Json(new
             {
-                cart = new List<CartModel>();
-            }
+                IsSuccess = true,
+                Districts = districts,
+            });
+        }
 
-            var orderDetails = Mapper.Map<IEnumerable<CartModel>, IEnumerable<OrderDetail>>(cart);
-            order.TotalPrice = orderDetails.Select(x => x.SumPrice).Sum();
-            order.OrderDetails = orderDetails.ToList();
+        [HttpPost]
+        public JsonResult GetWardsByDistrictId(int districtId)
+        {
+            var wards = _wardRepository.GetMany(x => !x.IsDeleted
+                                                        && x.DistrictId == districtId)
+                                                        .OrderBy(x => x.Name)
+                                                        .ToList();
+            return Json(new
+            {
+                IsSuccess = true,
+                Wards = wards,
+            });
+        }
 
-            var orderCreated = _orderService.Add(order);
-
+<<<<<<< HEAD
             //send mail
             string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_detail.html"));
             content = content.Replace("{{orderId}}", orderCreated.Id.ToString());
@@ -110,13 +200,19 @@ namespace Dayboi_Web.Controllers
 
             //content = content.Replace("{{createdDate}}", orderCreated.CreatedOn.ToString());
             //content = content.Replace("{{totalMoney}}", orderCreated.TotalPrice.ToString());
+=======
+        [HttpPost]
+        public JsonResult AddCartOrderToSession(OrderModel orderModel)
+        {
+            TempData["MyCart_Order"] = orderModel;
+>>>>>>> 364b8195e95d0bc896e17a280a4987df381043dd
 
-            MailHelper.SendMail(orderCreated.Email, "Đặt hàng thành công", content);
+            //Session["MyCart_Order"] = orderModel;
 
             return Json(new
             {
                 IsSuccess = true,
-            }, JsonRequestBehavior.AllowGet);
+            });
         }
     }
 }

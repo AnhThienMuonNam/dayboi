@@ -3,16 +3,35 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Styles{
+    <style>
+        .validationMessage {
+            color: #A8351C;
+        }
+    </style>
+}
 @section Scripts{
-    <script src="~/Scripts/page_cart.js"></script>
+    <script src="~/Scripts/Client/page_cart.js"></script>
     <script>
         $(document).ready(function () {
             var data = {};
+            var apis = {};
             var options = {};
             data.Carts = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
-            options.CreateOrder = '@Url.Action("CreateOrder", "Cart")';
-            data.API_URLs = options;
+            options.Provinces = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.Provinces));
+            options.PaymentMethods = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.PaymentMethods));
+
+          
+            apis.PlusorMinusItem = '@Url.Action("PlusorMinusItem", "Cart")';
+            apis.RemoveProduct = '@Url.Action("RemoveProduct", "Cart")';
+            apis.GetDistrictsByProvinceId = '@Url.Action("GetDistrictsByProvinceId", "Cart")';
+            apis.GetWardsByDistrictId = '@Url.Action("GetWardsByDistrictId", "Cart")';
+            apis.AddCartOrderToSession = '@Url.Action("AddCartOrderToSession", "Cart")';
+            apis.Checkout = '@Url.Action("Index", "Checkout")';
+
+            data.API_URLs = apis;
+            data.Options = options;
 
             ko.applyBindings(MainModel(data), document.getElementById("main-page"));
         });
@@ -53,22 +72,25 @@
                     <!-- ko foreach: Carts -->
                     <div class="row">
                         <div class="col-md-2">
-                            <img src="~/assets/images/works/work-1.jpg" class="img-responsive" alt="" />
+                            <img data-bind="attr: {src: Image }" class="img-responsive" alt="" />
                         </div>
                         <div class="col-md-6">
-                            <h4 class="text-primary text-uppercase" data-bind="text: ProductName"></h4>
-                            Đơn giá: <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price)"></i>
+                            <a data-bind="attr:{href: '/product/'+ProductId()+'/'+Alias()}"> <h4 class="text-primary text-uppercase" data-bind="text: ProductName"></h4></a>
+                            Đơn giá: <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price())"></i>
                         </div>
-                        <div class="col-md-3" style="text-align:right;">
+                        <div class="col-md-4" style="text-align:right;">
                             Số lượng:
-                            <i class="iline2-subtract1" style="margin-right:20px;"></i>
+                            <a href="#" data-bind="click: minusItem">
+                                <i class="iline2-subtract1" style="margin-right:20px;"></i>
+                            </a>
                             <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: Quantity"></span></i>
-                            <i class="iline2-add63"></i>
+                            <a href="#" data-bind="click: plusItem">
+                                <i class="iline2-add63"></i>
+                            </a>
                             <hr />
-                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: formatMoney(SumPrice)"></span></i>
-                        </div>
-                        <div class="col-md-1" style="text-align:center;">
-                            <a class="text-danger text-uppercase" style="cursor:pointer;">Xoá</a>
+                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: formatMoney(SumPrice())"></span></i>
+                            &nbsp;
+                            <a class="text-danger text-uppercase" href="#" data-bind="click:removeProduct">(Xoá)</a>
                         </div>
                     </div>
                     <br />
@@ -76,6 +98,27 @@
                     <!-- /.row -->
                 </div>
                 <!-- /.col-md-12 -->
+            </div>
+            <div class="row" style="padding-top:20px;">
+                <div class="col-md-6" style="background:#eee;">
+                    <h4 class="text-primary text-uppercase" style="text-align: center;">Tạm tính </h4>
+                    <table class="table" style="margin-bottom:0px;">
+                        <tbody>
+                            <tr>
+                                <td class="type-info">Tổng tiền</td>
+                                <td><h4 id="h4.-bootstrap-heading" data-bind="text: formatMoney(TempPriceOfOrder())"> </h4></td>
+                            </tr>
+                            <tr>
+                                <td class="type-info">Phí giao hàng (nếu có)</td>
+                                <td><h4 id="h4.-bootstrap-heading">---</h4></td>
+                            </tr>
+                            <tr>
+                                <td class="type-info">Tổng cộng</td>
+                                <td><h4 id="h4.-bootstrap-heading" data-bind="text: formatMoney(TempPriceOfOrder())"> </h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- /.row -->
             <div class="row" data-bind="with: orderModel">
@@ -90,24 +133,59 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group control-group">
-                                                <input type="text" class="form-control input-lg" data-bind="value: Name" name="customername" placeholder="Họ tên* :" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
-                                                <p class="help-block"></p>
+                                                <p class="help-block">Họ tên</p>
+                                                <input type="text" class="form-control input-lg" data-bind="value: Name" name="customername" placeholder="Họ tên*" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
                                             </div>
                                             <div class="form-group control-group">
-                                                <input type="number" class="form-control input-lg" data-bind="value: Phone" name="customerphone" placeholder="Số điện thoại* :" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
-                                                <p class="help-block"></p>
+                                                <p class="help-block">Số điện thoại</p>
+                                                <input type="number" class="form-control input-lg" data-bind="value: Phone" name="customerphone" placeholder="Số điện thoại*" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
                                             </div>
                                             <div class="form-group control-group">
-                                                <input type="email" class="form-control input-lg" data-bind="value: Email" name="customeremail" placeholder="E-mail* :" required="" data-validation-required-message="Bạn chưa nhập e-mail" />
-                                                <p class="help-block"></p>
+                                                <p class="help-block">Email</p>
+                                                <input type="email" class="form-control input-lg" data-bind="value: Email" name="customeremail" placeholder="E-mail*" />
+                                            </div>
+                                            <div class="form-group control-group">
+                                                <p class="help-block">Hình thức thanh toán</p>
+                                                <select style="line-height: normal;" class="form-control input-lg" data-bind="options: PaymentMethods,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: PaymentMethodId,
+                                                                    optionsCaption: '-- Chọn hình thức thanh toán --'"></select>
+                                            </div>
+                                            <div class="form-group control-group">
+                                                <p class="help-block">Ghi chú</p>
+                                                <input type="text" class="form-control input-lg" data-bind="value: Note" placeholder="Ghi chú" />
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group control-group">
-                                                <textarea class="form-control" name="customeraddress" data-bind="text: Address" placeholder="Địa chỉ nhận hàng*" required="" data-validation-required-message="Bạn chưa nhập địa chỉ nhận hàng"></textarea>
+                                                <p class="help-block">Địa chỉ nhận hàng</p>
+                                                <textarea class="form-control" name="customeraddress" data-bind="value: Address" placeholder="Địa chỉ nhận hàng*" required="" data-validation-required-message="Bạn chưa nhập địa chỉ nhận hàng"></textarea>
                                                 <p class="help-block"></p>
                                             </div>
-                                            <button type="button" class="submit btn btn-primary pull-right" data-bind="click: createOrder">Đặt hàng</button>
+
+                                            <div class="form-group control-group">
+                                                <select style="line-height: normal;" class="form-control input-lg" data-bind="options: Provinces,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: ProvinceId,
+                                                                    optionsCaption: '-- Chọn tỉnh/thành phố --'"></select>
+
+                                                <select style="line-height: normal;" class="form-control input-lg" data-bind="options: Districts,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: DistrictId,
+                                                                    optionsCaption: '-- Chọn quận/huyện--'"></select>
+
+                                                <select style="line-height: normal;" class="form-control input-lg" data-bind="options: Wards,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: WardId,
+                                                                    optionsCaption: '-- Chọn phường/xã --'"></select>
+                                            </div>
+
+
+                                            <button type="button" class="submit btn btn-primary pull-right" data-bind="click: createOrder">Tiến hành đặt hàng</button>
                                         </div>
                                     </div>
                                     <!-- /.row -->

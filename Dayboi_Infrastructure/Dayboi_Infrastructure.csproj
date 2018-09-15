@@ -70,6 +70,30 @@
     <Compile Include="Migrations\201808311142021_addTableOrder.Designer.cs">
       <DependentUpon>201808311142021_addTableOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809141814058_addTableAddress.cs" />
+    <Compile Include="Migrations\201809141814058_addTableAddress.Designer.cs">
+      <DependentUpon>201809141814058_addTableAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809141823470_updateProvince.cs" />
+    <Compile Include="Migrations\201809141823470_updateProvince.Designer.cs">
+      <DependentUpon>201809141823470_updateProvince.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809141828435_updateDistrict.cs" />
+    <Compile Include="Migrations\201809141828435_updateDistrict.Designer.cs">
+      <DependentUpon>201809141828435_updateDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809141831574_updateWard.cs" />
+    <Compile Include="Migrations\201809141831574_updateWard.Designer.cs">
+      <DependentUpon>201809141831574_updateWard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809150349376_updateOrderV2.cs" />
+    <Compile Include="Migrations\201809150349376_updateOrderV2.Designer.cs">
+      <DependentUpon>201809150349376_updateOrderV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809150732072_updateOrderV3.cs" />
+    <Compile Include="Migrations\201809150732072_updateOrderV3.Designer.cs">
+      <DependentUpon>201809150732072_updateOrderV3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -77,19 +101,25 @@
     <Compile Include="Models\ApplicationRoleGroup.cs" />
     <Compile Include="Models\ApplicationUserGroup.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\District.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Ward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AspNetUsersRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\DistrictRepository.cs" />
     <Compile Include="Repositories\OrderDetailRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\OrderStatusRepository.cs" />
     <Compile Include="Repositories\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProvinceRepository.cs" />
+    <Compile Include="Repositories\WardRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -103,6 +133,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808311142021_addTableOrder.resx">
       <DependentUpon>201808311142021_addTableOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809141814058_addTableAddress.resx">
+      <DependentUpon>201809141814058_addTableAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809141823470_updateProvince.resx">
+      <DependentUpon>201809141823470_updateProvince.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809141828435_updateDistrict.resx">
+      <DependentUpon>201809141828435_updateDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809141831574_updateWard.resx">
+      <DependentUpon>201809141831574_updateWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809150349376_updateOrderV2.resx">
+      <DependentUpon>201809150349376_updateOrderV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809150732072_updateOrderV3.resx">
+      <DependentUpon>201809150732072_updateOrderV3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
