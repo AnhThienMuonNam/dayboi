@@ -102,11 +102,14 @@ namespace Dayboi_Web.Controllers
             var orderCreated = _orderService.Add(order);
 
             //send mail
-            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_info.html"));
+            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_detail.html"));
             content = content.Replace("{{orderId}}", orderCreated.Id.ToString());
             content = content.Replace("{{customerName}}", orderCreated.Name);
-            content = content.Replace("{{createdDate}}", orderCreated.CreatedOn.ToString());
-            content = content.Replace("{{totalMoney}}", orderCreated.TotalPrice.ToString());
+            content = content.Replace("{{customerAddress}}", orderCreated.Address);
+            content = content.Replace("{{customerPhone}}", orderCreated.Phone);
+
+            //content = content.Replace("{{createdDate}}", orderCreated.CreatedOn.ToString());
+            //content = content.Replace("{{totalMoney}}", orderCreated.TotalPrice.ToString());
 
             MailHelper.SendMail(orderCreated.Email, "Đặt hàng thành công", content);
 
