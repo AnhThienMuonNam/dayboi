@@ -190,22 +190,21 @@ namespace Dayboi_Web.Controllers
             });
         }
 
-<<<<<<< HEAD
+
             //send mail
-            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_detail.html"));
-            content = content.Replace("{{orderId}}", orderCreated.Id.ToString());
-            content = content.Replace("{{customerName}}", orderCreated.Name);
-            content = content.Replace("{{customerAddress}}", orderCreated.Address);
-            content = content.Replace("{{customerPhone}}", orderCreated.Phone);
+            //string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_detail.html"));
+            //content = content.Replace("{{orderId}}", orderCreated.Id.ToString());
+            //content = content.Replace("{{customerName}}", orderCreated.Name);
+            //content = content.Replace("{{customerAddress}}", orderCreated.Address);
+            //content = content.Replace("{{customerPhone}}", orderCreated.Phone);
 
             //content = content.Replace("{{createdDate}}", orderCreated.CreatedOn.ToString());
             //content = content.Replace("{{totalMoney}}", orderCreated.TotalPrice.ToString());
-=======
+
         [HttpPost]
         public JsonResult AddCartOrderToSession(OrderModel orderModel)
         {
             TempData["MyCart_Order"] = orderModel;
->>>>>>> 364b8195e95d0bc896e17a280a4987df381043dd
 
             //Session["MyCart_Order"] = orderModel;
 

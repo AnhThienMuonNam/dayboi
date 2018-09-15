@@ -48,21 +48,21 @@
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>*@
             }
-        @*</section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>*@
+@*</section>
+        </div>
+        <div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>*@
 
 
 <!-- HEADER TREE -->
 <section class="header-tree" data-speed="8" data-type="background">
     <h2 class="hidden">Header tree</h2>
     <!-- parallax background -->
-    <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+    <div class="cover-1" data-type="sprite" data-offsety="-700" data-xposition="50%" data-speed="-2"></div>
     <!-- .container -->
     <div class="container">
         <!-- .row -->
@@ -71,7 +71,7 @@
             <div class="col-md-12">
                 <ul class="breadcrumb clearfix mar-top-3x">
                     <li><a class="link text-success" href="/">Fallone</a></li>
-                    <li><a class="link" href="#">Login</a></li>
+                    <li><a class="link" href="#">Đăng nhập</a></li>
                 </ul>
             </div>
             <!-- /.col-md-12 -->
@@ -94,47 +94,43 @@
                 <!-- .row -->
                 <div class="row">
                     <div class="col-md-4 col-md-offset-8 col-lg-offset-8 mar-bottom-md">
-                        <h1 class="text-uppercase text-primary wow fadeInDown text-center" data-wow-duration=".8s" data-wow-delay=".2s">Take a tour</h1>
-                        <p class="text-center">
-                            <i class="text-muted text-capitalize">Security is the degree of resistance.</i>
-                        </p>
-                        <div class="text-center">
-                            <span class="separator">
-                                <i class="icon icon-small iline2-lock22 text-primary no-margin"></i>
-                            </span>
-                        </div>
-                        <p class="wow fadeInUp text-center" data-wow-duration="1s" data-wow-delay=".3s">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                            sed do eiusmod tempor incididunt ut labore.
-                        </p>
-                        <form action="/" method="post" class="mar-top-lg error wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s" novalidate="" name="loginForm">
-                            <div class="form-group control-group">
-                                <input type="email" class="form-control input-lg" id="email-address" placeholder="E-mail* :" required="" data-validation-required-message="Please enter your email address." />
-                                <p class="help-block"></p>
-                            </div>
-                            <div class="form-group control-group">
-                                <input type="password" class="form-control input-lg" id="password" placeholder="Password* :" required="" data-validation-required-message="Please enter your password." />
-                                <p class="help-block"></p>
-                            </div>
-                            <div class="checkbox control-group">
-                                <label>
-                                    <input type="checkbox" name="rememberme" id="rememberme" /> Remember me.
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-full btn-lg">Submit</button>
-                        </form>
+                        <h1 class="text-uppercase text-primary wow fadeInDown text-center"
+                            data-wow-duration=".8s" data-wow-delay=".2s">
+                            Đăng nhập
+                        </h1>
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                          {
+                            @Html.AntiForgeryToken()
+                          
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <form action="/" method="post" class="mar-top-lg error wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s" novalidate="" name="loginForm">
+                                <div class="form-group control-group">
+                                   
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    <p class="help-block"></p>
+                                </div>
+                                <div class="form-group control-group">
+                                  
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    <p class="help-block"></p>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-full btn-lg">Đăng nhập</button>
+                            </form>
+                
+                        }
                     </div>
-                </div>
                 <!-- /.row -->
-            </div>
+                        </div>
             <!-- /.col-md-12 -->
-        </div>
+                        </div>
         <!-- /.row -->
-    </div>
+                        </div>
     <!-- /.container -->
     <!--/ Login area -->
 </section>
 <!-- LOGIN FORM SECTION END -->
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
