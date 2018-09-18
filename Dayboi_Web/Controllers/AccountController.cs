@@ -150,6 +150,10 @@ namespace Dayboi_Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (Request.IsAuthenticated)
+            {
+              return  Redirect("/");
+            }
             return View();
         }
 
@@ -213,17 +217,18 @@ namespace Dayboi_Web.Controllers
                     Email = model.Email,
                     EmailConfirmed = true,
                     BirthDay = DateTime.Now,
-                    FullName = "Thien",
-                    PhoneNumber = "0893123",
-                    Address = "03182302",
+                    FullName = model.FullName,
+                    PhoneNumber = model.PhoneNumber,
+                    Address = string.Empty,
                     PhoneNumberConfirmed = false,
                     TwoFactorEnabled = false,
                     LockoutEnabled = false,
                     AccessFailedCount = 0,
-                    UserName="xuan0123"
+                    UserName = model.Email
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded) {
+                if (result.Succeeded)
+                {
                     //after created successfully. login user. use this method for login action
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                     authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
@@ -344,6 +349,10 @@ namespace Dayboi_Web.Controllers
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
+            if (Request.IsAuthenticated)
+            {
+                return Redirect("/");
+            }
             return View();
         }
 
@@ -465,9 +474,9 @@ namespace Dayboi_Web.Controllers
         }
 
         //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: /Account/LogOff
+        [HttpGet]
+       
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

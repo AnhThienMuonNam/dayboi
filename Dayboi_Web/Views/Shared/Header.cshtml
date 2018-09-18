@@ -138,8 +138,14 @@
 
                         <ul class="dropdown-menu">
                             <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                            <li><a class="text-primary" href="@Url.Action("Login","Account")">Login</a></li>
-                            <li><a class="text-success" href="@Url.Action("Register","Account")">Sign Up</a></li>
+                            @if (!Request.IsAuthenticated)
+                            {
+                                <li><a class="text-primary" href="@Url.Action("Login","Account")">Đăng nhập</a></li>
+                            }
+                            @if (!Request.IsAuthenticated)
+                            {
+                            <li><a class="text-success" href="@Url.Action("Register","Account")">Đăng ký</a></li>
+                            }
                             <li><a href="about.html">About</a></li>
                             <li><a href="terms.html">Terms</a></li>
                             <li><a href="contact.html">Contact</a></li>
@@ -150,12 +156,14 @@
                             {
 
                                 <li><a href="typography.html">@User.Identity.Name</a></li>
+                                <li><a href="@Url.Action("LogOff", "Account")">Thoát</a></li>
 
                             }
                             else
                             {
                                 <li><a href="typography.html">Typography</a></li>
                             }
+                           
                         </ul>
                     </li>
                 </ul>
