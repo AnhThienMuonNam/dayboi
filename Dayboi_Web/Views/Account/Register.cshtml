@@ -75,9 +75,6 @@
                         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                         @Html.AntiForgeryToken()
-                            <div class="alert alert-warning">
-                             Bạn nhập sai tên tài khoản
-                            </div>
                         <form action="/" method="post" class="mar-top-lg error wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s" novalidate="" name="signupForm">
                             <!-- .form-group -->
                             

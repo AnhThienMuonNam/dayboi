@@ -68,6 +68,14 @@ namespace Dayboi_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            Boolean flag = true;
+
+            if(flag)
+            {
+                TempData["LoginFaild"] = "Tài khoản không tồn tại";
+                return View();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
