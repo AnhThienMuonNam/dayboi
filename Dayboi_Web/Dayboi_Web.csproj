@@ -259,8 +259,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Models\BlogModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -282,6 +284,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\CategoryModel.cs" />
     <Compile Include="ViewModels\HeaderModel.cs" />
@@ -5474,6 +5477,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Admin\blog_create-edit.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -5716,10 +5720,14 @@
     <Content Include="AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\BlogAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogAdmin\Partial\BlogEditor.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />
     <Content Include="Scripts\Admin\category_index.js" />
+    <Content Include="Scripts\Client\blog_detail.js" />
     <Content Include="Scripts\Client\header.js" />
     <Content Include="Scripts\Admin\product_create-edit.js" />
     <Content Include="Scripts\Admin\product_index.js" />
@@ -5785,11 +5793,10 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Blog\Detail.cshtml" />
+    <Content Include="Views\Blog\BlogDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="ckfinder\userfiles\files\" />

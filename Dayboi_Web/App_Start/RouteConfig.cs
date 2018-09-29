@@ -25,11 +25,24 @@ namespace Dayboi_Web
            namespaces: new string[] { "Dayboi_Web.Controllers" }
            );
 
+
+            routes.MapRoute(
+        name: "Blog",
+        url: "blog/{blogId}/{alias}",
+        defaults: new { controller = "Blog", action = "BlogDetail", blogId = UrlParameter.Optional },
+        namespaces: new string[] { "Dayboi_Web.Controllers" }
+        );
+
+
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+          
         }
     }
 }

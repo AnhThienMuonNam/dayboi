@@ -94,12 +94,30 @@
     <Compile Include="Migrations\201809150732072_updateOrderV3.Designer.cs">
       <DependentUpon>201809150732072_updateOrderV3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809151041192_addtableBlog.cs" />
+    <Compile Include="Migrations\201809151041192_addtableBlog.Designer.cs">
+      <DependentUpon>201809151041192_addtableBlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809151146207_updateTableBlogV1.cs" />
+    <Compile Include="Migrations\201809151146207_updateTableBlogV1.Designer.cs">
+      <DependentUpon>201809151146207_updateTableBlogV1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290526172_addOtherPrice.cs" />
+    <Compile Include="Migrations\201809290526172_addOtherPrice.Designer.cs">
+      <DependentUpon>201809290526172_addOtherPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290603466_updateBlogv3.cs" />
+    <Compile Include="Migrations\201809290603466_updateBlogv3.Designer.cs">
+      <DependentUpon>201809290603466_updateBlogv3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ApplicationRoleGroup.cs" />
     <Compile Include="Models\ApplicationUserGroup.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogCategory.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Order.cs" />
@@ -111,6 +129,8 @@
     <Compile Include="Models\Ward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AspNetUsersRepository.cs" />
+    <Compile Include="Repositories\BlogCategoryRepository.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\DistrictRepository.cs" />
     <Compile Include="Repositories\OrderDetailRepository.cs" />
@@ -151,6 +171,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809150732072_updateOrderV3.resx">
       <DependentUpon>201809150732072_updateOrderV3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151041192_addtableBlog.resx">
+      <DependentUpon>201809151041192_addtableBlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151146207_updateTableBlogV1.resx">
+      <DependentUpon>201809151146207_updateTableBlogV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290526172_addOtherPrice.resx">
+      <DependentUpon>201809290526172_addOtherPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290603466_updateBlogv3.resx">
+      <DependentUpon>201809290603466_updateBlogv3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

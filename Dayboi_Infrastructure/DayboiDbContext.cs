@@ -32,6 +32,8 @@ namespace Dayboi_Infrastructure
         public DbSet<Province> Provinces { set; get; }
         public DbSet<District> Districts { set; get; }
         public DbSet<Ward> Wards { set; get; }
+        public DbSet<Blog> Blogs { set; get; }
+        public DbSet<BlogCategory> BlogCategories { set; get; }
 
         public static DayboiDbContext Create()
         {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dayboi_Infrastructure.Models;
+using Dayboi_Web.Areas.Admin.Models;
 using Dayboi_Web.ViewModels;
 
 namespace Dayboi_Web.Mappings
@@ -18,6 +19,7 @@ namespace Dayboi_Web.Mappings
             base.CreateMap<OrderModel, Order>();
             base.CreateMap<OrderDetailModel, OrderDetail>();
             base.CreateMap<CartModel, OrderDetail>();
+            base.CreateMap<BlogModel, Blog>();
 
         }
     }

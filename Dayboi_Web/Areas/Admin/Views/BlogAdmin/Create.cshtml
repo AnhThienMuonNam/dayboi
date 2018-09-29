@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section headerStyles{
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/assets_admin/bower_components/select2/dist/css/select2.min.css">
+}
+
+@section footerJS{
+    <!-- ckeditor -->
+    <script src="~/assets_admin/bower_components/ckeditor/ckeditor.js"></script>
+    <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
+    <!-- Select2 -->
+    <script src="~/assets_admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+    <script src="~/Scripts/Admin/blog_create-edit.js"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('editor1')
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                tags: true,
+                selectOnBlur: true,
+                multiple: true
+            });
+
+            var data = {};
+            var urls = {};
+            var options = {};
+
+            options.BlogCategories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.BlogCategories));
+
+            urls.CreateBlog = "@Url.Action("CreateBlog", "BlogAdmin")";
+            urls.EditProductPage = "@Url.Action("Edit", "Product")";
+
+            data.API_URLs = urls;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+
+<section class="content" id="main-page">
+    <div class="row" data-bind="with: blogModel">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tạo Sản Phẩm</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @Html.Partial("~/Areas/Admin/Views/BlogAdmin/Partial/BlogEditor.cshtml")
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" data-bind="click: create" class="btn btn-primary">Tạo bài viết</button>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

@@ -17,6 +17,7 @@ namespace Dayboi_Web.ViewModels
         public string Images { set; get; }
 
         public decimal? Price { set; get; }
+        public decimal? OtherPrice { set; get; }
 
         public bool IsPromotion { get; set; }
 

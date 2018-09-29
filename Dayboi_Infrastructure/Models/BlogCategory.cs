@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dayboi_Infrastructure.Models
 {
-    [Table("Products")]
-    public class Product
+    [Table("BlogCategories")]
+    public class BlogCategory
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [StringLength(50)]
+        [StringLength(200)]
         public string Name { get; set; }
 
         [StringLength(200)]
@@ -23,21 +20,9 @@ namespace Dayboi_Infrastructure.Models
 
         [StringLength(250)]
         public string MetaKeyword { get; set; }
+        public int? ViewCount { get; set; }
 
-        [StringLength(1000)]
-        public string Description { get; set; }
-
-        [StringLength(1000)]
-        public string Images { set; get; }
-
-        public decimal? Price { set; get; }
-        public decimal? OtherPrice { set; get; }
-
-        public bool IsPromotion { get; set; }
-
-        [StringLength(250)]
-        public string Tags { set; get; }
-
+        public ICollection<Blog> Blogs { get; set; }
 
         //default columns
         public DateTime CreatedOn { get; set; }
@@ -47,19 +32,5 @@ namespace Dayboi_Infrastructure.Models
         public bool IsDeleted { get; set; }
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }
-
-        [ForeignKey("CreatedBy")]
-        public ApplicationUser CreatedUser { get; set; }
-
-        [ForeignKey("UpdatedBy")]
-        public ApplicationUser UpdatedUser { get; set; }
-
-
-        //reference tables
-        public int? CategoryId { get; set; }
-
-        [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
-
     }
 }

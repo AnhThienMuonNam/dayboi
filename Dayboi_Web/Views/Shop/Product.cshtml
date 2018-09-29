@@ -130,6 +130,7 @@
                     </div>
                     <div class="col-md-6">
                         <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: Name"></h2>
+                        <i class="wow fadeInDown text-muted h4" data-wow-duration=".8s" data-wow-delay=".2s"><span style="text-decoration: line-through;" data-bind="text: formatMoney(OtherPrice())"></span></i>
                         <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price())"></i>
 
                         <span class="line-sep-blue"></span>
@@ -140,7 +141,11 @@
                                 <i class="icon iline2-bullet3"></i> <span data-bind="text: CategoryName"></span>
                             </li>
                             <li>
-                                <i class="icon iline2-tag27"></i> TAGS
+
+                                <i class="icon iline2-tag27"></i>
+                                <!-- ko foreach: Tags -->
+                                <a href="#" data-bind="text: '#' + $data"></a>
+                                <!-- /ko -->
                             </li>
                         </ul>
                         <ul class="ic-list wow bounceInRight hidden-md hidden-lg">

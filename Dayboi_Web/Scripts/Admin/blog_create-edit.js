@@ -1,67 +1,59 @@
 ﻿var MainModel = function (data) {
     //properties
     var self = this;
-    self.productModel = new ProductModel(data);
+    self.blogModel = new BlogModel(data);
 
-    self.Categories = ko.observableArray(data.Options.Categories || []);
-
-
-
+    self.BlogCategories = ko.observableArray(data.Options.BlogCategories || []);
 }
 
-var ProductModel = function (data, parent) {
+var BlogModel = function (data, parent) {
     //properties
     var self = this;
     self.Id = ko.observable(null);
-    self.Name = ko.observable('');
+    self.Title = ko.observable('');
     self.Alias = ko.observable('');
-    self.Description = ko.observable('');
+    self.BlogCategoryId = ko.observable(null);
+    self.Image = ko.observable(null);
+    self.SortDescription = ko.observable('');
     self.MetaKeyword = ko.observable('');
     self.IsActive = ko.observable(true);
-    self.Price = ko.observable('');
-    self.OtherPrice = ko.observable('');
-    self.CategoryId = ko.observable(null);
+    self.Content = ko.observable('');
 
-    self.Name.subscribe(function (value) {
+    self.Title.subscribe(function (value) {
         self.Alias(getAlias(value));
     });
 
-    if (data && data.Product) {
-        ko.mapping.fromJS(data.Product, {}, self);
+    if (data && data.Blog) {
+        ko.mapping.fromJS(data.Blog, {}, self);
     }
 
-    self.Tags = ko.observableArray(data.Product && data.Product.Tags ? data.Product.Tags.split(",") : []);
-
+    self.Tags = ko.observableArray(data.Blog && data.Blog.Tags ? data.Blog.Tags.split(",") : []);
 
     self.changeTag = function () {
-        self.Tags($('#productTag').val());
+        self.Tags($('#blogTag').val());
     };
-
-    self.Images = ko.observableArray(data.Product && data.Product.Images ? data.Product.Images.split(",") : []);
 
     self.uploadImage = function () {
         var finder = new CKFinder();
         finder.selectActionFunction = function (url) {
-            self.Images.push(url);
+            self.Image(url);
         }
         finder.popup();
     };
 
-    self.removeImage = function (image) {
-        self.Images.remove(image);
-    };
-
     self.create = function () {
-        var product = self.toJSON();
+        var content = CKEDITOR.instances['editor1'].getData();
+        self.Content(escape(content));
+        var blog = self.toJSON();
         $.ajax({
-            url: data.API_URLs.CreateProduct,
+            url: data.API_URLs.CreateBlog,
             type: "POST",
-            data: { model: product },
+            data: { model: blog },
             success: function (response) {
                 if (response.IsSuccess == true) {
                     alertify.success('Tạo sản phẩm thành công');
                     setTimeout(function () {
-                        window.location.replace(data.API_URLs.EditProductPage + '/' + response.Data.Id);
+                        //window.location.replace(data.API_URLs.EditBlogPage + '/' + response.Data.Id);
                     }, 200);
                 }
             },
@@ -91,12 +83,11 @@ var ProductModel = function (data, parent) {
         for (var i = 0; i < self.Tags().length; i++) {
             var data = self.Tags()[i];
             var newOption = new Option(data, data, true, true);
-            $('#productTag').append(newOption).trigger('change');
+            $('#blogTag').append(newOption).trigger('change');
         }
     };
 
     Init();
-
 
     function getAlias(input) {
         if (input == undefined || input == '')
@@ -129,18 +120,17 @@ var ProductModel = function (data, parent) {
         return slug;
     }
 
-    ProductModel.prototype.toJSON = function () {
+    BlogModel.prototype.toJSON = function () {
         var model = {
             Id: ko.utils.unwrapObservable(this.Id),
-            Name: ko.utils.unwrapObservable(this.Name),
+            Title: ko.utils.unwrapObservable(this.Title),
             Alias: ko.utils.unwrapObservable(this.Alias),
-            CategoryId: ko.utils.unwrapObservable(this.CategoryId),
-            Price: ko.utils.unwrapObservable(this.Price),
-            OtherPrice: ko.utils.unwrapObservable(this.OtherPrice),
-            Images: ko.utils.unwrapObservable(this.Images() ? this.Images().toString() : ''),
-            Description: ko.utils.unwrapObservable(this.Description),
+            BlogCategoryId: ko.utils.unwrapObservable(this.BlogCategoryId),
+            Image: ko.utils.unwrapObservable(this.Image),
+            SortDescription: ko.utils.unwrapObservable(this.SortDescription),
             MetaKeyword: ko.utils.unwrapObservable(this.MetaKeyword),
             IsActive: ko.utils.unwrapObservable(this.IsActive),
+            Content: ko.utils.unwrapObservable(this.Content),
             Tags: ko.utils.unwrapObservable(this.Tags().length > 0 ? this.Tags().toString() : ''),
         };
 

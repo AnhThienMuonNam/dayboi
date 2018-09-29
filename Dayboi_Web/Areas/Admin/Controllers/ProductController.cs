@@ -83,6 +83,8 @@ namespace Dayboi_Web.Areas.Admin.Controllers
                 product.IsActive = model.IsActive;
                 product.CategoryId = model.CategoryId;
                 product.Price = model.Price;
+                product.OtherPrice = model.OtherPrice;
+                product.Tags = model.Tags;
 
                 if (User.Identity.IsAuthenticated)
                 {

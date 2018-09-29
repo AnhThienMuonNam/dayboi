@@ -13,7 +13,9 @@ var ProductModel = function (data, parent) {
     self.Description = ko.observable('');
     self.MetaKeyword = ko.observable('');
     self.IsActive = ko.observable(true);
-    self.Price = ko.observable(true);
+    self.Price = ko.observable(0);
+    self.OtherPrice = ko.observable(0);
+
     self.CategoryId = ko.observable(null);
     self.CategoryName = ko.observable('');
     self.Images = ko.observable([]);
@@ -21,6 +23,7 @@ var ProductModel = function (data, parent) {
     if (data && data.Product) {
         ko.mapping.fromJS(data.Product, {}, self);
     }
+    self.Tags = ko.observableArray(data.Product && data.Product.Tags ? data.Product.Tags.split(",") : []);
 
     self.addToCart = function () {
 

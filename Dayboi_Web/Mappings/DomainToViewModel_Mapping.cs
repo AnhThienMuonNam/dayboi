@@ -22,6 +22,9 @@ namespace Dayboi_Web.Mappings
                 .ForMember(s => s.CategoryName, t => t.MapFrom(src => src.Category != null ? src.Category.Name : string.Empty))
                 .ForMember(s => s.ImageList, t => t.MapFrom(src => string.IsNullOrEmpty(src.Images) ? null : src.Images.Split(',')));
 
+            base.CreateMap<Blog, BlogViewModel>();
+
+
         }
     }
 }
