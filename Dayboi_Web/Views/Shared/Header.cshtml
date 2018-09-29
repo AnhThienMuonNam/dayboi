@@ -29,18 +29,19 @@
             <div class="row">
                 <div class="col-sm-3 col-xs-3">
                     <div class="top-number">
-                        <p><i class="fa fa-phone-square" style="font-size:24px ; color: white"></i>
+                        <p>
+                            <i class="fa fa-phone-square" style="font-size:24px ; color: white"></i>
                             <strong style="color:white">
                                 HOTLINE: 0947.808.297
                             </strong>
-                           
+
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-5 col-xs-5">
                     <div class="top-number">
                         <p>
-                          <strong style="color:white">
+                            <strong style="color:white">
                                 FREE SHIP TOÀN QUỐC CHO ĐƠN HÀNG TRÊN 1 TRIỆU
                             </strong>
 
@@ -58,9 +59,9 @@
                     </div>
                 </div>
             </div>
-           
-                
-                    
+
+
+
         </div><!--/.container-->
     </div><!--/.top-bar-->
 
@@ -99,7 +100,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Khóa học <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="@Url.Action(" product","shop")">
+                                <a href="@Url.Action("product","shop")">
                                     Kỹ thuật bơi công cộng
                                 </a>
                             </li>
@@ -166,7 +167,7 @@
 
                         </ul>
                     </li>
-                    <li><a href="@Url.Action(" index","blog")">Tin tức</a></li>
+                    <li><a href="@Url.Action("index","blog")">Tin tức</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
@@ -183,11 +184,11 @@
                             <li><a href="pricing-tables.html">Pricing Tables</a></li>
                             @if (!Request.IsAuthenticated)
                             {
-                                <li><a class="text-primary" href="@Url.Action(" login","account")">Đăng nhập</a></li>
+                                <li><a class="text-primary" href="@Url.Action("login","account")">Đăng nhập</a></li>
                             }
                             @if (!Request.IsAuthenticated)
                             {
-                                <li><a class="text-success" href="@Url.Action(" register","account")">Đăng ký</a></li>
+                                <li><a class="text-success" href="@Url.Action("register","account")">Đăng ký</a></li>
                             }
                             <li><a href="about.html">About</a></li>
                             <li><a href="terms.html">Terms</a></li>
@@ -199,7 +200,7 @@
                             {
 
                                 <li><a href="typography.html">@User.Identity.Name</a></li>
-                                <li><a href="@Url.Action(" logoff", "Account" )">Thoát</a></li>
+                                <li><a href="@Url.Action("logoff", "Account" )">Thoát</a></li>
 
                             }
                             else
