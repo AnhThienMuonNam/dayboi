@@ -932,6 +932,19 @@ header.expanded nav {
   -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);*/
 }
+
+.top-bar {
+  padding: 5px 0;
+  background: #005782;
+ /* border-bottom: 1px solid #222; */
+  line-height: 22px;
+}
+
+.social {
+    text-align: right;
+}
+
+
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
