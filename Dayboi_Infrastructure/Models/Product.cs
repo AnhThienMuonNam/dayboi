@@ -35,10 +35,6 @@ namespace Dayboi_Infrastructure.Models
 
         public bool IsPromotion { get; set; }
 
-        [StringLength(250)]
-        public string Tags { set; get; }
-
-
         //default columns
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
@@ -60,6 +56,8 @@ namespace Dayboi_Infrastructure.Models
 
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+
+        public ICollection<ProductTag> ProductTags { get; set; }
 
     }
 }

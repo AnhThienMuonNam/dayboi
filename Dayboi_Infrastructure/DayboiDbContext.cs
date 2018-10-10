@@ -1,11 +1,6 @@
 ﻿using Dayboi_Infrastructure.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dayboi_Infrastructure
 {
@@ -33,19 +28,20 @@ namespace Dayboi_Infrastructure
         public DbSet<District> Districts { set; get; }
         public DbSet<Ward> Wards { set; get; }
         public DbSet<Blog> Blogs { set; get; }
-        public DbSet<BlogCategory> BlogCategories { set; get; }
+        public DbSet<BlogTag> BlogTags { set; get; }
+        public DbSet<ProductTag> ProductTags { set; get; }
 
         public static DayboiDbContext Create()
         {
             return new DayboiDbContext();
         }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
             builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
             builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
             builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
-
         }
     }
 }

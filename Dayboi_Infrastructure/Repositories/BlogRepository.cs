@@ -13,4 +13,15 @@ namespace Dayboi_Infrastructure.Repositories
         {
         }
     }
+
+    public interface IBlogTagRepository : IRepository<BlogTag>
+    {
+    }
+
+    public class BlogTagRepository : RepositoryBase<BlogTag>, IBlogTagRepository
+    {
+        public BlogTagRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
+    }
 }

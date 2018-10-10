@@ -1,6 +1,7 @@
-﻿
+﻿@model Dayboi_Web.Areas.Admin.Models.BlogModel
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,6 +17,7 @@
     <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
     <!-- Select2 -->
     <script src="~/assets_admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+
     <script src="~/Scripts/Admin/blog_create-edit.js"></script>
     <script>
         $(document).ready(function () {
@@ -31,7 +33,10 @@
             var urls = {};
             var options = {};
 
+            data.Blog = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
             urls.CreateBlog = "@Url.Action("CreateBlog", "BlogAdmin")";
+            urls.UpdateBlog = "@Url.Action("UpdateBlog", "BlogAdmin")";
             urls.EditProductPage = "@Url.Action("Edit", "Product")";
 
             data.API_URLs = urls;
@@ -49,14 +54,15 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tạo bài viết</h3>
+                    <h3 class="box-title">Cập nhật Bài viết</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 @Html.Partial("~/Areas/Admin/Views/BlogAdmin/Partial/BlogEditor.cshtml")
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" data-bind="click: create" class="btn btn-primary">Tạo bài viết</button>
+                    <button type="button" data-bind="click: update" class="btn btn-danger pull-right">Xoá</button>
+                    <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhập</button>
                 </div>
             </div>
             <!-- /.box -->
@@ -65,4 +71,4 @@
     </div>
     <!-- /.row -->
 </section>
-<!-- /.content -->
+

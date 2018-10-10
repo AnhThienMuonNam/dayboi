@@ -58,6 +58,8 @@ namespace Dayboi_Web
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 
+            builder.RegisterFilterProvider();
+
             Autofac.IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 

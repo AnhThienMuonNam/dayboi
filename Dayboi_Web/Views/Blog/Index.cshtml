@@ -48,25 +48,14 @@
                                     <!-- .blog-post -->
                                         <article class="blog-post wow fadeInUp" data-wow-duration="1s">
                                             <span class="blog-date">
-                                                18
-                                                <small class="blog-month">jul</small>
+                                                @item.CreatedOn.Month
+                                                <small class="blog-month">@item.CreatedOn.Year</small>
                                             </span>
-                                            <span class="post-likes">
-                                                <a class="iline2-heart64"></a>
-                                                <small class="post-count">500</small>
-                                            </span>
-                                            <span class="post-views">
-                                                <a class="iline2-eye45"></a>
-                                                <small class="post-count">3K</small>
-                                            </span>
-                                            <span class="post-comments">
-                                                <a class="iline2-rectangular22"></a>
-                                                <small class="post-count">2K</small>
-                                            </span>
+                                          
                                             <div class="blog-body">
                                                 <header class="entry-header">
                                                     <a href="blog-post.html">
-                                                        <img src="~/assets/images/blog/post-3.jpg" alt="post 3" class="img-responsive img-full" />
+                                                        <img src="@item.Image" alt="post 3" class="img-responsive img-full" />
                                                         <div class="image-overlay">
                                                             <p>
                                                                 <span class="show-image">

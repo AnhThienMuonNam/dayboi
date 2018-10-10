@@ -21,7 +21,7 @@ namespace Dayboi_Web.ViewModels
 
         public bool IsPromotion { get; set; }
 
-        public string Tags { set; get; }
+        public List<string> Tags { set; get; }
 
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }

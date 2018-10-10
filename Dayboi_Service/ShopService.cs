@@ -44,6 +44,7 @@ namespace Dayboi_Service
         {
             var toReturn = _productReponsitory.GetMany(x => !x.IsDeleted && x.IsActive && x.Id == id)
                                                .Include(x => x.Category)
+                                               .Include(x => x.ProductTags)
                                                .FirstOrDefault();
             return toReturn;
         }

@@ -19,21 +19,21 @@ var ProductModel = function (data, parent) {
     self.CategoryId = ko.observable(null);
     self.CategoryName = ko.observable('');
     self.Images = ko.observable([]);
+    self.Tags = ko.observableArray([]);
 
     if (data && data.Product) {
         ko.mapping.fromJS(data.Product, {}, self);
     }
-    self.Tags = ko.observableArray(data.Product && data.Product.Tags ? data.Product.Tags.split(",") : []);
+    self.RelatedProducts = ko.observableArray([]);
 
     self.addToCart = function () {
-
         var product = self.toJSON();
         $.ajax({
             url: data.API_URLs.AddToCart,
             type: "POST",
             data: { product: product },
             success: function (response) {
-                if (response.IsSuccess == true) {
+                if (response.IsSuccess === true) {
                     alertify.success('Đã thêm ' + self.Name() + ' vào giỏ hàng!');
 
                     var koNode = document.getElementById('default-navbar');
@@ -45,14 +45,35 @@ var ProductModel = function (data, parent) {
             error: function (xhr, error) {
             },
         });
-
-
-
     };
+
     self.formatMoney = function (number) {
         var val = parseInt(number);
         return val.toFixed(0).replace(/./g, function (c, i, a) {
             return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "." + c : c;
+        });
+    };
+
+    self.getFirstImage = function (images) {
+        if (images) {
+            return images.split(",")[0];
+        }
+        return null;
+    }
+
+    function getRelatedProducts() {
+        $.ajax({
+            url: data.API_URLs.GetRelatedProducts,
+            type: "POST",
+            data: { productTags: self.Tags(), productId: self.Id() },
+            success: function (response) {
+                if (response.IsSuccess === true) {
+                    self.RelatedProducts(response.RelatedProducts);
+                }
+
+            },
+            error: function (xhr, error) {
+            },
         });
     };
 
@@ -72,5 +93,12 @@ var ProductModel = function (data, parent) {
         return model;
     };
 
+
+    function init() {
+        getRelatedProducts();
+    }
+
+
+    init();
 
 }

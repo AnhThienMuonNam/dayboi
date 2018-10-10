@@ -21,6 +21,7 @@ var ProductModel = function (data, parent) {
     self.Price = ko.observable('');
     self.OtherPrice = ko.observable('');
     self.CategoryId = ko.observable(null);
+    self.Tags = ko.observableArray([]);
 
     self.Name.subscribe(function (value) {
         self.Alias(getAlias(value));
@@ -30,7 +31,6 @@ var ProductModel = function (data, parent) {
         ko.mapping.fromJS(data.Product, {}, self);
     }
 
-    self.Tags = ko.observableArray(data.Product && data.Product.Tags ? data.Product.Tags.split(",") : []);
 
 
     self.changeTag = function () {
@@ -141,7 +141,7 @@ var ProductModel = function (data, parent) {
             Description: ko.utils.unwrapObservable(this.Description),
             MetaKeyword: ko.utils.unwrapObservable(this.MetaKeyword),
             IsActive: ko.utils.unwrapObservable(this.IsActive),
-            Tags: ko.utils.unwrapObservable(this.Tags().length > 0 ? this.Tags().toString() : ''),
+            Tags: ko.utils.unwrapObservable(this.Tags),
         };
 
         return model;

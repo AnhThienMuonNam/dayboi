@@ -12,16 +12,13 @@ namespace Dayboi_Service.Admin
 
     public class BlogAdminService : IBlogAdminService
     {
-        private readonly IBlogCategoryRepository _blogCategoryRepository;
         private readonly IBlogRepository _blogRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public BlogAdminService(IBlogCategoryRepository blogCategoryRepositoy,
-            IBlogRepository blogRepository,
+        public BlogAdminService(IBlogRepository blogRepository,
                                     IUnitOfWork unitOfWork)
         {
-            _blogCategoryRepository = blogCategoryRepositoy;
             _blogRepository = blogRepository;
             _unitOfWork = unitOfWork;
         }

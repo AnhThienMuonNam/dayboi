@@ -62,5 +62,39 @@ namespace Dayboi_Web.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        public JsonResult GetRelatedProducts(List<string> productTags, int productId)
+        {
+            if (productTags != null && productTags.Count() > 0)
+            {
+                var relatedProducts = _productRepository.GetMany(x => !x.IsDeleted &&
+                                                                        x.IsActive &&
+                                                                        x.Id != productId &&
+                                                                        x.ProductTags.Where(c => productTags.Contains(c.Tag)).Any())
+                                                                        .Select(x => new
+                                                                        {
+                                                                            Id = x.Id,
+                                                                            Name = x.Name,
+                                                                            Price = x.Price,
+                                                                            OtherPrice = x.OtherPrice,
+                                                                            Alias = x.Alias,
+                                                                            Images = x.Images
+                                                                        }).ToList();
+
+                return Json(new
+                {
+                    IsSuccess = true,
+                    RelatedProducts = relatedProducts
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    IsSuccess = false
+                });
+            }
+        }
     }
 }

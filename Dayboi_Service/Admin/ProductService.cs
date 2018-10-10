@@ -56,6 +56,7 @@ namespace Dayboi_Service.Admin
         {
             var toReturn = _productReponsitory.GetMany(x => x.Id == id && !x.IsDeleted)
                                                 .Include(x => x.Category)
+                                                .Include(x => x.ProductTags)
                                                 .FirstOrDefault();
 
             return toReturn;

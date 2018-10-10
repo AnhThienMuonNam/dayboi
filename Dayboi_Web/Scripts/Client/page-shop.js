@@ -11,6 +11,11 @@
             return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "." + c : c;
         });
     };
-   
+    self.getFirstImage = function (images) {
+        if (images) {
+            return images.split(",")[0];
+        }
+        return null;
+    }
 }
 

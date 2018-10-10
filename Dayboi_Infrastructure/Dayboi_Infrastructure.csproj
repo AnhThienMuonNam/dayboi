@@ -110,6 +110,14 @@
     <Compile Include="Migrations\201809290603466_updateBlogv3.Designer.cs">
       <DependentUpon>201809290603466_updateBlogv3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810041409552_updateDBv4.cs" />
+    <Compile Include="Migrations\201810041409552_updateDBv4.Designer.cs">
+      <DependentUpon>201810041409552_updateDBv4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810091459357_updateDBv41.cs" />
+    <Compile Include="Migrations\201810091459357_updateDBv41.Designer.cs">
+      <DependentUpon>201810091459357_updateDBv41.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -117,7 +125,7 @@
     <Compile Include="Models\ApplicationRoleGroup.cs" />
     <Compile Include="Models\ApplicationUserGroup.cs" />
     <Compile Include="Models\Blog.cs" />
-    <Compile Include="Models\BlogCategory.cs" />
+    <Compile Include="Models\BlogTag.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Order.cs" />
@@ -125,11 +133,11 @@
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\Ward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AspNetUsersRepository.cs" />
-    <Compile Include="Repositories\BlogCategoryRepository.cs" />
     <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\DistrictRepository.cs" />
@@ -183,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809290603466_updateBlogv3.resx">
       <DependentUpon>201809290603466_updateBlogv3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810041409552_updateDBv4.resx">
+      <DependentUpon>201810041409552_updateDBv4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810091459357_updateDBv41.resx">
+      <DependentUpon>201810091459357_updateDBv41.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

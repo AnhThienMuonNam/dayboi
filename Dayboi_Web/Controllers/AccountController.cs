@@ -70,7 +70,7 @@ namespace Dayboi_Web.Controllers
         {
             Boolean flag = true;
 
-            if(flag)
+            if (flag)
             {
                 TempData["LoginFaild"] = "Tài khoản không tồn tại";
                 return View();
@@ -160,7 +160,7 @@ namespace Dayboi_Web.Controllers
         {
             if (Request.IsAuthenticated)
             {
-              return  Redirect("/");
+                return Redirect("/");
             }
             return View();
         }
@@ -247,16 +247,16 @@ namespace Dayboi_Web.Controllers
 
                     //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
 
-
+                    var findUser = await _userManager.FindByEmailAsync(model.Email);
+                    if (findUser != null)
+                    {
+                        await _userManager.AddToRolesAsync(findUser.Id, new string[] { "client" });
+                    }
+                    ViewData["SuccessMessage"] = "Đăng Kí Thành Công";
                     //var result1 = await SignInManager.PasswordSignInAsync(model.Email, model.Password, true, shouldLockout: false);
                     return RedirectToLocal("");
                 }
-                var findUser = await _userManager.FindByEmailAsync(model.Email);
-                if (findUser != null)
-                {
-                    await _userManager.AddToRolesAsync(findUser.Id, new string[] { "client" });
-                }
-                ViewData["SuccessMessage"] = "Đăng Kí Thành Công";
+
             }
             return View();
         }
@@ -484,7 +484,7 @@ namespace Dayboi_Web.Controllers
         //
         // GET: /Account/LogOff
         [HttpGet]
-       
+
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

@@ -2,8 +2,6 @@
     //properties
     var self = this;
     self.blogModel = new BlogModel(data);
-
-    self.BlogCategories = ko.observableArray(data.Options.BlogCategories || []);
 }
 
 var BlogModel = function (data, parent) {
@@ -12,7 +10,6 @@ var BlogModel = function (data, parent) {
     self.Id = ko.observable(null);
     self.Title = ko.observable('');
     self.Alias = ko.observable('');
-    self.BlogCategoryId = ko.observable(null);
     self.Image = ko.observable(null);
     self.SortDescription = ko.observable('');
     self.MetaKeyword = ko.observable('');
@@ -22,12 +19,12 @@ var BlogModel = function (data, parent) {
     self.Title.subscribe(function (value) {
         self.Alias(getAlias(value));
     });
+    self.Tags = ko.observableArray([]);
 
     if (data && data.Blog) {
         ko.mapping.fromJS(data.Blog, {}, self);
     }
 
-    self.Tags = ko.observableArray(data.Blog && data.Blog.Tags ? data.Blog.Tags.split(",") : []);
 
     self.changeTag = function () {
         self.Tags($('#blogTag').val());
@@ -64,11 +61,13 @@ var BlogModel = function (data, parent) {
     };
 
     self.update = function () {
-        var product = self.toJSON();
+        var content = CKEDITOR.instances['editor1'].getData();
+        self.Content(escape(content));
+        var blog = self.toJSON();
         $.ajax({
-            url: data.API_URLs.UpdateProduct,
+            url: data.API_URLs.UpdateBlog,
             type: "POST",
-            data: { model: product },
+            data: { model: blog },
             success: function (response) {
                 if (response.IsSuccess == true)
                     alertify.success('Cập nhật thành công');
@@ -80,6 +79,7 @@ var BlogModel = function (data, parent) {
     };
 
     function Init() {
+        CKEDITOR.instances['editor1'].setData(unescape(self.Content()));
         for (var i = 0; i < self.Tags().length; i++) {
             var data = self.Tags()[i];
             var newOption = new Option(data, data, true, true);
@@ -125,13 +125,12 @@ var BlogModel = function (data, parent) {
             Id: ko.utils.unwrapObservable(this.Id),
             Title: ko.utils.unwrapObservable(this.Title),
             Alias: ko.utils.unwrapObservable(this.Alias),
-            BlogCategoryId: ko.utils.unwrapObservable(this.BlogCategoryId),
             Image: ko.utils.unwrapObservable(this.Image),
             SortDescription: ko.utils.unwrapObservable(this.SortDescription),
             MetaKeyword: ko.utils.unwrapObservable(this.MetaKeyword),
             IsActive: ko.utils.unwrapObservable(this.IsActive),
             Content: ko.utils.unwrapObservable(this.Content),
-            Tags: ko.utils.unwrapObservable(this.Tags().length > 0 ? this.Tags().toString() : ''),
+            Tags: ko.utils.unwrapObservable(this.Tags),
         };
 
         return model;

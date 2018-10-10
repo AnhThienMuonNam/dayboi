@@ -59,22 +59,18 @@
                         <!-- All blog posts -->
                         <div class="row">
                             <!-- ko foreach: Products-->
-                            <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div class="col-sm-4 wow fadeInUp" >
                                 <div class="panel panel-default text-center mar-bottom-sm">
                                     <div class="blog-body" style="cursor:pointer;">
                                         <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
-                                            <img src="~/assets/images/blog/post-4.jpg" alt="post 4" class="img-responsive img-full" />
+                                            <img data-bind="attr:{src: getFirstImage(Images)}" alt="post 4" class="img-responsive img-full" />
                                             <h6 class="text-primary text-center text-uppercase" data-bind="html: Name.length > 38 ? Name.substring(0, 33)+' ...' : Name, attr:{title: Name}"> </h6>
-                                            <i class="wow fadeInDown text-muted h4" data-wow-duration=".8s" data-wow-delay=".2s"><span style="text-decoration: line-through;" data-bind="text: formatMoney(OtherPrice)"></span></i>
-                                            <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s" data-bind="text: formatMoney(Price)"></i>
+                                            <i style="letter-spacing: 1px;" class="wow fadeInDown text-muted h6" ><span style="text-decoration: line-through;" data-bind="text: formatMoney(OtherPrice)"></span></i>
+                                            <br />
+                                            <i style="letter-spacing: 1px;" class="wow fadeInDown text-muted h4"  data-bind="text: formatMoney(Price)"></i>
                                         </a>
-                                        @*<p style="text-align:center;" data-bind="text: Price">
-                                            </p>*@
-                                        @*<span class="line-sep-blue" style="width:100%;margin-top: 10px;margin-bottom: 10px;"></span>*@
-                                        @*<p data-bind="text: Description && Description.length > 50 ? Description.substring(0, 49) + '[...]' : Description">
-                                            </p>*@
-                                        <br />
-                                        <a class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>
+                                       
+                                        <a style="width: 100%;" class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +111,7 @@
                                                 <img data-bind="attr:{src: ImageList[0]}" alt="" class="img-responsive" />
                                             </span>
                                             <h5 class="text-uppercase text-success" data-bind="text: Name"></h5>
-                                            <i class="text-muted small" data-bind="text: formatMoney(Price)"></i>
+                                            <i style="letter-spacing: 1px;" class="text-muted h4" data-bind="text: formatMoney(Price)"></i>
                                         </a>
                                     </li>
                                     <!-- /ko -->
@@ -129,7 +125,6 @@
             </div>
         </div>
         <!-- /.row -->
-
     </div>
     <!-- /.container -->
 </section>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dayboi_Infrastructure.Models;
+using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service;
 using Dayboi_Service.Admin;
 using Dayboi_Web.Controllers.Models;
@@ -16,13 +17,16 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly ICommonService _commonService;
+        private readonly IProductTagRepository _productTagRepository;
 
         public ProductController(ICategoryService categoryService, ICommonService commonService,
-            IProductService productService)
+            IProductService productService,
+            IProductTagRepository productTagRepository)
         {
             _categoryService = categoryService;
             _commonService = commonService;
             _productService = productService;
+            _productTagRepository = productTagRepository;
         }
 
         // GET: Admin/Product
@@ -60,6 +64,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         public JsonResult CreateProduct(ProductModel model)
         {
             var product = Mapper.Map<ProductModel, Product>(model);
+            AddProductTag(product, model.Tags);
             var toReturn = _productService.Create(product);
             return Json(new
             {
@@ -84,8 +89,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
                 product.CategoryId = model.CategoryId;
                 product.Price = model.Price;
                 product.OtherPrice = model.OtherPrice;
-                product.Tags = model.Tags;
-
+                AddProductTag(product, model.Tags);
                 if (User.Identity.IsAuthenticated)
                 {
                     product.UpdatedBy = User.Identity.GetUserId();
@@ -96,6 +100,27 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             {
                 IsSuccess = toReturn
             });
+        }
+
+        private void AddProductTag(Product product, List<string> tags)
+        {
+            if (product.Id > 0)
+            {
+                _productTagRepository.DeleteMulti(x => x.ProductId == product.Id);
+            }
+            else
+            {
+                product.ProductTags = new List<ProductTag>();
+            }
+            if (tags.Count() > 0)
+            {
+                foreach (var newTag in tags)
+                {
+                    var tag = new ProductTag();
+                    tag.Tag = newTag;
+                    product.ProductTags.Add(tag);
+                }
+            }
         }
 
         private IEnumerable<ProductModel> GetProducts()

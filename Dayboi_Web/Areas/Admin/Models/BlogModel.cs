@@ -21,11 +21,11 @@ namespace Dayboi_Web.Areas.Admin.Models
 
         public string Image { get; set; }
 
-        public int BlogCategoryId { get; set; }
-
         //default columns
         public int? DisplayOrder { get; set; }
 
         public bool IsActive { get; set; }
+
+        public List<string> Tags { get; set; }
     }
 }

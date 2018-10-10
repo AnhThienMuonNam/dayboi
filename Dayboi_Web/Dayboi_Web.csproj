@@ -5480,6 +5480,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Admin\blog_create-edit.js" />
+    <Content Include="Scripts\Admin\blog_index.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -5725,6 +5726,7 @@
     <Content Include="Areas\Admin\Views\BlogAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BlogAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BlogAdmin\Partial\BlogEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogAdmin\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />
