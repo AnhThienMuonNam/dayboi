@@ -1,6 +1,16 @@
 ﻿@model Dayboi_Web.ViewModels.HeaderModel
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+    var header = document.querySelector('.header');
+    var origOffsetY = header.offsetTop;
+
+    function onScroll(e) {
+        window.scrollY >= origOffsetY ? header.classList.add('sticky') :
+                                      header.classList.remove('sticky');
+    }
+
+    document.addEventListener('scroll', onScroll);
+</script>
 
 <style>
     .icon-cart {
@@ -20,11 +30,21 @@
             display: none !important;
         }
     }
+    .sticky {
+	position: fixed;
+	top: 0;
+    }
+
+    .header {
+	width: 100%;
+	background: #F6D565;
+	padding: 15px 0;
+    }
 </style>
 
 <header class="fallone-navbar" id="default-navbar">
 
-    <div class="top-bar" style="background: #1a3e84">
+    <div class="top-bar" style="background: #1a3e84" id="header">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 col-xs-3">

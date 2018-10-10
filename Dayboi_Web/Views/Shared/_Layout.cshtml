@@ -25,6 +25,10 @@
     <link href="~/assets/css/iline-icons.css" type="text/css" rel="stylesheet" />
     <link href="~/assets/css/magnific-popup.css" type="text/css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
     @RenderSection("Styles", required: false)
 
     <!-- Shortcut icon -->
@@ -81,6 +85,21 @@
             var builder = new Header_MainModel(data);
             ko.applyBindings(builder, document.getElementById("default-navbar"));
         });
+
+        window.onscroll = function () {
+            myFunction()
+        };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
     </script>
 
     @RenderSection("Scripts", required: false)

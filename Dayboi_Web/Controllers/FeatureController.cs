@@ -13,7 +13,27 @@ namespace Dayboi_Web.Controllers
         {
             return View();
         }
-           public ActionResult KinhDoanh()
+        public ActionResult Storykid()
+        {
+            return View();
+        }
+
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public ActionResult Tamnhin()
+        {
+            return View();
+        }
+
+        public ActionResult Trietly()
+        {
+            return View();
+        }
+
+        public ActionResult Congdong()
         {
             return View();
         }
