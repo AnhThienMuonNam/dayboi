@@ -37,7 +37,7 @@ namespace Dayboi_Web.Controllers
             return PartialView(headerModel);
         }
 
-        [Authorize (Roles ="client")]
+        
         public ActionResult Index()
         {
             //testdayboi

@@ -1,16 +1,6 @@
 ﻿@model Dayboi_Web.ViewModels.HeaderModel
 
-<script>
-    var header = document.querySelector('.header');
-    var origOffsetY = header.offsetTop;
 
-    function onScroll(e) {
-        window.scrollY >= origOffsetY ? header.classList.add('sticky') :
-                                      header.classList.remove('sticky');
-    }
-
-    document.addEventListener('scroll', onScroll);
-</script>
 
 <style>
     .icon-cart {
@@ -44,7 +34,7 @@
 
 <header class="fallone-navbar" id="default-navbar">
 
-    <div class="top-bar" style="background: #1a3e84" id="header">
+    <div class="top-bar" style="background: #1a3e84" id="header-top">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 col-xs-3">
@@ -237,3 +227,14 @@
 </header>
 
 <!-- NAVIGATION END -->
+@*<script>
+    var header = document.getElementById('header-top');
+    var origOffsetY = header.offsetTop;
+
+    function onScroll(e) {
+        window.scrollY >= origOffsetY ? header.classList.add('sticky') :
+                                      header.classList.remove('sticky');
+    }
+
+    document.addEventListener('scroll', onScroll);
+</script>*@
