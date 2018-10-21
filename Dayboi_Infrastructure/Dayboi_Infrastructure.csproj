@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201810091459357_updateDBv41.Designer.cs">
       <DependentUpon>201810091459357_updateDBv41.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810211529026_AddCourse.cs" />
+    <Compile Include="Migrations\201810211529026_AddCourse.Designer.cs">
+      <DependentUpon>201810211529026_AddCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -127,6 +131,8 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\BlogTag.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseTag.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
@@ -140,10 +146,9 @@
     <Compile Include="Repositories\AspNetUsersRepository.cs" />
     <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\DistrictRepository.cs" />
-    <Compile Include="Repositories\OrderDetailRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\OrderStatusRepository.cs" />
     <Compile Include="Repositories\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ProvinceRepository.cs" />
@@ -197,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810091459357_updateDBv41.resx">
       <DependentUpon>201810091459357_updateDBv41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810211529026_AddCourse.resx">
+      <DependentUpon>201810211529026_AddCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -261,6 +261,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\BlogModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -290,6 +291,7 @@
     <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\CategoryModel.cs" />
     <Compile Include="ViewModels\HeaderModel.cs" />
+    <Compile Include="ViewModels\HomeModel.cs" />
     <Compile Include="ViewModels\OrderDetailModel.cs" />
     <Compile Include="ViewModels\OrderModel.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
@@ -5800,8 +5802,6 @@
     <Content Include="Views\Blog\BlogDetail.cshtml" />
     <Content Include="Views\Feature\Congdong.cshtml" />
     <Content Include="Views\Feature\Index.cshtml" />
-    <Content Include="Views\Feature\Kinhdoanh.cshtml" />
-    <Content Include="Views\Feature\Vechungtoi.cshtml" />
     <Content Include="Views\Feature\AboutUs.cshtml" />
     <Content Include="Views\Feature\StoryKid.cshtml" />
     <Content Include="Views\Feature\Tamnhin.cshtml" />
@@ -5810,6 +5810,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Admin\" />
+    <Folder Include="Areas\Admin\Views\CourseAdmin\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="ckfinder\userfiles\files\" />
     <Folder Include="Upload_Images\" />

@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dayboi_Infrastructure.Models
 {
-    [Table("Blogs")]
-    public class Blog
+    [Table("Courses")]
+    public class Course
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(200)]
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         [StringLength(200)]
         public string Alias { get; set; }
@@ -22,7 +22,7 @@ namespace Dayboi_Infrastructure.Models
         public string MetaKeyword { get; set; }
 
         [StringLength(500)]
-        public string SortDescription { get; set; }
+        public string Description { get; set; }
 
         [StringLength(5000)]
         public string Content { get; set; }
@@ -31,6 +31,7 @@ namespace Dayboi_Infrastructure.Models
 
         [StringLength(200)]
         public string Image { get; set; }
+
 
         //default columns
         public DateTime CreatedOn { get; set; }
@@ -42,6 +43,6 @@ namespace Dayboi_Infrastructure.Models
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }
 
-        public ICollection<BlogTag> BlogTags { get; set; }
+        public ICollection<CourseTag> CourseTags { get; set; }
     }
 }

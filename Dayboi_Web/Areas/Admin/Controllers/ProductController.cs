@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Dayboi_Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ProductController : Controller
     {
         private readonly ICategoryService _categoryService;

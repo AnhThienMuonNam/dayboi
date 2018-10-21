@@ -22,4 +22,29 @@ namespace Dayboi_Infrastructure.Repositories
             return base.Add(entity);
         }
     }
+
+
+    //Order details
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
+    {
+    }
+
+    public class OrderDetailRepository : RepositoryBase<OrderDetail>, IOrderDetailRepository
+    {
+        public OrderDetailRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
+    }
+
+    //order statues
+    public interface IOrderStatusRepository : IRepository<OrderStatus>
+    {
+    }
+
+    public class OrderStatusRepository : RepositoryBase<OrderStatus>, IOrderStatusRepository
+    {
+        public OrderStatusRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
+    }
 }

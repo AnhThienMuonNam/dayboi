@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using Dayboi_Infrastructure.Models;
-using Dayboi_Service;
+using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service.Admin;
 using Dayboi_Web.ViewModels;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Dayboi_Web.Controllers
@@ -16,9 +12,12 @@ namespace Dayboi_Web.Controllers
     public class HomeController : Controller
     {
         private readonly ICategoryService _categoryService;
-        public HomeController(ICategoryService categoryService)
+        private readonly IBlogRepository _blogRepository;
+
+        public HomeController(ICategoryService categoryService, IBlogRepository blogRepository)
         {
             _categoryService = categoryService;
+            _blogRepository = blogRepository;
         }
 
         [ChildActionOnly]
@@ -37,12 +36,18 @@ namespace Dayboi_Web.Controllers
             return PartialView(headerModel);
         }
 
-        
         public ActionResult Index()
         {
-            //testdayboi
-            var user = User.Identity;
-            return View();
+            var homeModel = new HomeModel();
+            var blogs = _blogRepository.GetMany(x => !x.IsDeleted &&
+                                                x.IsActive)
+                                                .OrderByDescending(x => x.CreatedOn)
+                                                .Take(4)
+                                                .ToList();
+
+            var blogModels = Mapper.Map<IEnumerable<Blog>, IEnumerable<BlogViewModel>>(blogs);
+            homeModel.Blogs = blogModels;
+            return View(homeModel);
         }
 
         public ActionResult About()

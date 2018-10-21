@@ -68,42 +68,27 @@ namespace Dayboi_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            Boolean flag = true;
-
-            if (flag)
-            {
-                TempData["LoginFaild"] = "Tài khoản không tồn tại";
-                return View();
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-
-            //goi service check user - password co trung vs DB. neu ok thif chay tiep ham duoi. || bao lỗi
-            //return user
             //Neu ham duoi ko xai được thì thay PasswordSignInAsync bang //loginFunction
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
 
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
+                //case SignInStatus.LockedOut:
+                //    return View("Lockout");
 
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                //case SignInStatus.RequiresVerification:
+                //    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Sai tên tài khoản hoặc mật khẩu");
                     return View(model);
             }
         }
@@ -172,54 +157,26 @@ namespace Dayboi_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDay = DateTime.Now };
-            //    //gọi serivce tạo user. nếu trả về thành công chạy tiếp hàm dưới + return user. || return error
-
-            //    var isSuccess = true;
-            //    if (isSuccess)
-            //    {
-            //        var result = await _userManager.CreateAsync(user, model.Password);
-            //        if (result.Succeeded)
-            //        {
-            //            //loginFunction
-            //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-            //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-            //            // Send an email with this link
-            //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-            //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-            //            return RedirectToAction("Index", "Home");
-            //        }
-            //        AddErrors(result);
-            //    }
-            //    else
-            //    {
-            //        //do something
-            //    }
-            //}
-
-            //// If we got this far, something failed, redisplay form
-            //return View(model);
             if (ModelState.IsValid)
             {
                 var userByEmail = await _userManager.FindByEmailAsync(model.Email);
-                //if (userByEmail != null)
-                //{
-                //    ModelState.AddModelError("email", "Email đã tồn tại");
-                //    return View(model);
-                //}
-                //var userByUserName = await _userManager.FindByNameAsync(model.UserName);
-                //if (userByUserName != null)
-                //{
-                //    ModelState.AddModelError("username", "Tài khoản đã tồn tại");
-                //    return View(model);
-                //}
+                if (userByEmail != null)
+                {
+                    ModelState.AddModelError("email", "Email đã tồn tại");
+                    return View(model);
+                }
+                if (model.Password != model.ConfirmPassword)
+                {
+                    ModelState.AddModelError("password", "Mật khẩu không trùng nhau");
+                    return View(model);
+                }
 
-                //testdayboi
+                if (model.Password.Length < 6)
+                {
+                    ModelState.AddModelError("password", "Mật khẩu phải nhiều hơn 5 ký tự");
+                    return View(model);
+                }
+
                 var user = new ApplicationUser()
                 {
                     Email = model.Email,
@@ -237,26 +194,13 @@ namespace Dayboi_Web.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //after created successfully. login user. use this method for login action
-                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
-                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                    ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationProperties props = new AuthenticationProperties();
-                    props.IsPersistent = true;
-                    authenticationManager.SignIn(props, identity);
-
-                    //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
-
                     var findUser = await _userManager.FindByEmailAsync(model.Email);
                     if (findUser != null)
                     {
                         await _userManager.AddToRolesAsync(findUser.Id, new string[] { "client" });
                     }
-                    ViewData["SuccessMessage"] = "Đăng Kí Thành Công";
-                    //var result1 = await SignInManager.PasswordSignInAsync(model.Email, model.Password, true, shouldLockout: false);
-                    return RedirectToLocal("");
+                    TempData["SuccessRegister"] = "Bạn đã đăng ký thành công";
                 }
-
             }
             return View();
         }
