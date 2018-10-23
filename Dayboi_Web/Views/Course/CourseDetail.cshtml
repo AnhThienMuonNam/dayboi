@@ -1,0 +1,253 @@
+﻿@model Dayboi_Web.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "CourseDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/Scripts/Client/course_detail.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var apis = {};
+            var options = {};
+            data.Course = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            data.API_URLs = apis;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<div id="main-page">
+    <!-- HEADER TREE -->
+    <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <ul class="breadcrumb clearfix mar-top-3x">
+                        <li><a class="link text-success" href="/">Trang chủ</a></li>
+                        <li><a class="link" href="#">@Model.Name</a></li>
+                    </ul>
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- HEADER TREE END -->
+    <!-- POST BODY SECTION -->
+    <section class="pattern-3 no-padding-right">
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- All posts -->
+                    <div class="mar-top-lg row">
+                        <!-- Left part -->
+                        <div class="col-md-8 blog-main">
+                            <div class="post-detail sep-bottom-lg">
+                                <figure class="no-margin">
+                                    <img data-bind="attr:{src: Course().Image}" alt="" class="img-responsive" />
+                                </figure>
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-uppercase" data-bind="text: Course().Name"></h3>
+                                    <span class="line-sep-gray"></span>
+                                    <div class="content" data-bind="html: showContent(Course().Content)">
+
+                                    </div>
+                                    <div class="post-detail-bottom mar-top-sm">
+                                        <p class="cat-links">
+                                            <a class="text-capitalize" title="Tags"><i class="iline2-tag27 no-margin"></i></a>
+                                            <!-- ko foreach: Tags -->
+                                            <a href="#" data-bind="text: $data"></a>
+                                            <!-- /ko -->
+                                        </p>
+                                    </div>
+                                    <ul class="post-info pull-left">
+                                        <li><i class="iline2-round27 text-primary"></i> <a href="#">April 17, 2015</a></li>
+                                        <li><i class="iline2-rectangular22 text-success"></i> <a href="#">30 Comments</a></li>
+                                        <li><i class="iline2-heart64"></i> <a href="#">2754</a></li>
+                                    </ul>
+                                    <span class="clearboth">
+                                    </span>
+                                    <div class="text-center share-menu">
+                                        <h4 class="text-center clearboth mar-top-xs">SHARE THIS ARTICLE</h4>
+                                        <ul class="social">
+                                            <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-iline-3google27" data-original-title="Share on Google Plus"></a></li>
+                                            <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-3facebook27" data-original-title="Share on Facebook"></a></li>
+                                            <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-3pinterest14" data-original-title="Share on Pinterest"></a></li>
+                                            <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-3twitter19" data-original-title="Share on Twitter"></a></li>
+                                            <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-3linked3" data-original-title="Share on Linkedin"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-detail mar-top-xs">
+                                <div class="post-detail-body sep-xs">
+                                    <h3>Comments</h3>
+                                    <span class="line-sep-gray"></span>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                    <ul class="media-list">
+                                        <li class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-1.jpg" data-holder-rendered="true" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading text-primary">John Doe <span class="pull-right small text-muted"><i>1h ago</i></span></h4>
+                                                <p>
+                                                    Cras sit amet nibh libero, in gravida nulla.
+                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
+                                                    Cras purus odio, vestibulum in vulputate at, tempus
+                                                    viverra turpis.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <!-- Nested media object -->
+                                        <li class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-2.jpg" data-holder-rendered="true" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading text-primary">Jule Doe <span class="pull-right small text-muted"><i>2h ago</i></span></h4>
+                                                <p>
+                                                    Cras sit amet nibh libero, in gravida nulla.
+                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
+                                                    Cras purus odio, vestibulum in vulputate at, tempus
+                                                    viverra turpis.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <!-- Nested media object -->
+                                        <li class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-3.jpg" data-holder-rendered="true" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading text-primary">Jihn Doe <span class="pull-right small text-muted"><i>3h ago</i></span></h4>
+                                                <p>
+                                                    Cras sit amet nibh libero, in gravida nulla.
+                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
+                                                    Cras purus odio, vestibulum in vulputate at, tempus
+                                                    viverra turpis.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <!-- Nested media object -->
+                                        <li class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-4.jpg" data-holder-rendered="true" />
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading text-primary">Jane Doe <span class="pull-right small text-muted"><i>4h ago</i></span></h4>
+                                                <p>
+                                                    Cras sit amet nibh libero, in gravida nulla.
+                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
+                                                    Cras purus odio, vestibulum in vulputate at,
+                                                    tempus viverra turpis.
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <h4 class="mar-top-md">Add a comment.</h4>
+                                    <span class="line-sep-gray"></span>
+                                    <p>All the inputs are required.</p>
+                                    <form class="form-horizontal mar-top-sm wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s" method="post" action="/" name="commentForm" novalidate="">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group control-group">
+                                                    <input type="text" class="form-control input-lg" id="firstname" name="firstname" placeholder="First Name* :" required="" data-validation-required-message="Please enter your first name." />
+                                                    <p class="help-block"></p>
+                                                </div>
+                                                <div class="form-group control-group">
+                                                    <input type="text" class="form-control input-lg" id="lastname" name="lastname" placeholder="Last Name* :" required="" data-validation-required-message="Please enter your last name." />
+                                                    <p class="help-block"></p>
+                                                </div>
+                                                <div class="form-group control-group">
+                                                    <input type="email" class="form-control input-lg" id="email" name="email" placeholder="E-mail* :" required="" data-validation-required-message="Please enter your email address." />
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group control-group">
+                                                    <textarea class="form-control" name="comment" placeholder="Comment* :" required="" data-validation-required-message="Please enter a Text."></textarea>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                                <button type="submit" class="submit btn btn-primary pull-right">Post</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="nav-links mar-top-md">
+                                <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i> Preview Post</a>
+                                <a href="blog-post-carousel.html" class="text-uppercase pull-right">Next Post <i class="iline1-chevron15"></i></a>
+                            </div>
+
+                        </div>
+                        <!-- /Left part -->
+                        <!-- Right part -->
+                        <div class="col-md-4 blog-sidebar">
+                            <!-- Popular Posts -->
+                            <div class="post-detail mar-top-md">
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-primary text-uppercase text-center">Khoá học khác</h3>
+                                    <ul class="text-capitalize sidebar">
+                                        @foreach (var item in Model.OtherCourses)
+                                        {
+                                            <li>
+                                                <a href="#">
+                                                    <span class="post-img">
+                                                        <img src="@item.Image" alt="" class="img-responsive" />
+                                                    </span>
+                                                    <h4 class="text-uppercase text-success">@item.Name</h4>
+                                                    <i class="text-muted small">34 Comments</i>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Popular Posts End -->
+                            <!-- Tags -->
+                            <div class="post-detail mar-top-md">
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-primary text-uppercase text-center">TAGS</h3>
+                                    <p>
+                                        <a class="label label-default" href="#">OK</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Tags End -->
+
+                        </div>
+                        <!-- /Right part -->
+                    </div>
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- POST BODY SECTION END -->
+</div>

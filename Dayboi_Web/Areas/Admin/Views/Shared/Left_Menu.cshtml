@@ -30,6 +30,18 @@
                     <li><a href="@Url.Action("Create", "BlogAdmin")"><i class="fa fa-circle-o"></i> Tạo Bài viết</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Khoá học</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="@Url.Action("Index", "CourseAdmin")"><i class="fa fa-circle-o"></i> Danh sách Khoá học</a></li>
+                    <li><a href="@Url.Action("Create", "CourseAdmin")"><i class="fa fa-circle-o"></i> Tạo Khoá học</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

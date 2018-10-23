@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Admin\BlogAdminService.cs" />
     <Compile Include="Admin\CategoryService.cs" />
+    <Compile Include="Admin\CourseAdminService.cs" />
     <Compile Include="Admin\ProductService.cs" />
     <Compile Include="BlogService.cs" />
     <Compile Include="OrderService.cs" />

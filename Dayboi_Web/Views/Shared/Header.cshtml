@@ -1,7 +1,4 @@
-﻿@model Dayboi_Web.ViewModels.HeaderModel
-
-
-
+﻿@model Dayboi_Web.ViewModels.HeaderViewModel
 <style>
     .icon-cart {
         font-size: 18px;
@@ -20,15 +17,16 @@
             display: none !important;
         }
     }
+
     .sticky {
-	position: fixed;
-	top: 0;
+        position: fixed;
+        top: 0;
     }
 
     .header {
-	width: 100%;
-	background: #F6D565;
-	padding: 15px 0;
+        width: 100%;
+        background: #F6D565;
+        padding: 15px 0;
     }
 </style>
 
@@ -109,41 +107,14 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Khóa học <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="@Url.Action("product","shop")">
-                                    Kỹ thuật bơi công cộng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-standard-lsidebar.html">
-                                    Kỹ thuật đứng nước
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-standard.html">
-                                    Kỹ thuật thở
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog.html">
-                                    Bơi sải trườn thấp
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">
-                                    Bơi bướm
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post-gallery.html">
-                                    Bơi ngửa
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post-carousel.html">
-                                    Bơi ếch
-                                </a>
-                            </li>
+                            @foreach (var course in Model.Courses)
+                            {
+                                <li>
+                                    <a href="~/khoa-hoc/@course.Id/@course.Alias">
+                                        @course.Name
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -211,13 +182,13 @@
 
 <!-- NAVIGATION END -->
 @*<script>
-    var header = document.getElementById('header-top');
-    var origOffsetY = header.offsetTop;
+        var header = document.getElementById('header-top');
+        var origOffsetY = header.offsetTop;
 
-    function onScroll(e) {
-        window.scrollY >= origOffsetY ? header.classList.add('sticky') :
-                                      header.classList.remove('sticky');
-    }
+        function onScroll(e) {
+            window.scrollY >= origOffsetY ? header.classList.add('sticky') :
+                                          header.classList.remove('sticky');
+        }
 
-    document.addEventListener('scroll', onScroll);
-</script>*@
+        document.addEventListener('scroll', onScroll);
+    </script>*@

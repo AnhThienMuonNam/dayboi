@@ -1,4 +1,4 @@
-﻿@model Dayboi_Web.ViewModels.HomeModel
+﻿@model Dayboi_Web.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -121,69 +121,50 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel-group panel-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                                <!-- panel 1 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <div class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
-                                            <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Khóa bơi người cao tuổi
-                                                </a>
-                                            </h4>
+                                @{bool IsFirstTabCourse = true;}
+                                @foreach (var item in Model.Courses)
+                                {
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading-@item.Id">
+                                            <div class="side-tab" data-target="#tab-@item.Id" data-toggle="tab" role="tab" aria-expanded="false">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
+                                                        @item.Name
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <i class="icon iline2-arrow407"></i>
                                         </div>
-                                        <i class="icon iline2-arrow407"></i>
+                                        @if (IsFirstTabCourse)
+                                        {
+                                            <div id="collapse-@item.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                                <p class="panel-body no-margin-bottom">
+                                                    @item.Description
+                                                    <br />
+                                                    <a href="#" style="float:right;">> Xem chi tiết</a>
+                                                </p>
+                                            </div>
+                                            IsFirstTabCourse = false;
+                                        }
+                                        else
+                                        {
+                                            <div id="collapse-@item.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                                <p class="panel-body no-margin-bottom">
+                                                    @item.Description
+                                                   <br />
+                                                    <a href="#" style="float:right;">> Xem chi tiết</a>
+                                                </p>
+                                            </div>
+                                        }
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                        <p class="panel-body no-margin-bottom">
-                                            Chương trình bơi cơ bản cho người lớn, ko có thời gian đi bơi ban ngày, có thể bơi ban đêm
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- /panel 1 -->
-                                <!-- panel 2 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <div class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Khóa bơi người lớn
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <i class="icon iline2-arrow407"></i>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                        <p class="panel-body no-margin-bottom">
-                                            hương trình bơi cơ bản cho người lớn, ko có thời gian đi bơi ban ngày, có thể bơi ban đêm
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- /panel 2 -->
-                                <!-- panel 3 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <div class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    Khóa bơi trẻ em
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <i class="icon iline2-arrow407"></i>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                        <p class="panel-body no-margin-bottom">
-                                            hương trình bơi cơ bản cho người lớn, ko có thời gian đi bơi ban ngày, có thể bơi ban đêm
-                                        </p>
-                                    </div>
-                                </div>
+                                }
                                 <div>
-                                    <a style="width: 30%; border-radius: 8px; margin:23px" class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Đăng ký">Đăng ký</a>
+                                    <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Đăng ký">Đăng ký</a>
                                 </div>
                                 <!-- /panel 3 -->
                             </div><!-- /.panel-group -->
-                        </div> <!-- /.col-md-6 -->
-                        <div class="col-md-6 hidden-xs">
+                        </div><!-- /.col-md-6 --><div class="col-md-6 hidden-xs">
                             <!-- begin notebook mockup -->
                             <div class="md-notebook md-glare">
                                 <div class="md-lid">
@@ -192,20 +173,27 @@
                                         <!-- content goes here -->
                                         <div class="tab-featured-image">
                                             <div class="tab-content">
-                                                <div class="tab-pane  in active" id="tab1">
-                                                    <img src="~/assets/images/media/light-2.jpg" alt="" class="img img-responsive" />
-                                                </div>
-                                                <div class="tab-pane " id="tab2">
-                                                    <img src="~/assets/images/media/light-3.jpg" alt="" class="img img-responsive" />
-                                                </div>
-
+                                                @{bool IsFirstImageCourse = true;}
+                                                @foreach (var item in Model.Courses)
+                                                {
+                                                    if (IsFirstImageCourse)
+                                                    {
+                                                        <div class="tab-pane in active" id="tab-@item.Id">
+                                                            <img src="@item.Image" alt="" class="img img-responsive" />
+                                                        </div>
+                                                        IsFirstImageCourse = false;
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="tab-pane in" id="tab-@item.Id">
+                                                            <img src="@item.Image" alt="" class="img img-responsive" />
+                                                        </div>
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
-
                             </div> <!-- end notebook mockup -->
                         </div> <!-- /.col-md-6 -->
                     </div> <!--/ .row -->

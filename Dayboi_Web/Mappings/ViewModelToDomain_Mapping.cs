@@ -20,7 +20,7 @@ namespace Dayboi_Web.Mappings
             base.CreateMap<OrderDetailModel, OrderDetail>();
             base.CreateMap<CartModel, OrderDetail>();
             base.CreateMap<BlogModel, Blog>();
-
+            base.CreateMap<CourseModel, Course>();
         }
     }
 }

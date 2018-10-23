@@ -13,11 +13,26 @@ namespace Dayboi_Web.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IBlogRepository _blogRepository;
+        private readonly ICourseRepository _courseRepository;
 
-        public HomeController(ICategoryService categoryService, IBlogRepository blogRepository)
+        private List<CourseViewModel> _courses;
+        public HomeController(ICategoryService categoryService, IBlogRepository blogRepository, ICourseRepository courseRepository)
         {
             _categoryService = categoryService;
             _blogRepository = blogRepository;
+            _courseRepository = courseRepository;
+            _courses = _courseRepository.GetMany(x => x.IsActive &&
+                                                          !x.IsDeleted)
+                                                        .OrderBy(x => x.DisplayOrder)
+                                                        .Select(x => new CourseViewModel
+                                                        {
+                                                            Id = x.Id,
+                                                            Name = x.Name,
+                                                            Alias = x.Alias,
+                                                            Image = x.Image,
+                                                            Description = x.Description
+                                                        })
+                                                        .ToList();
         }
 
         [ChildActionOnly]
@@ -29,24 +44,27 @@ namespace Dayboi_Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-            var headerModel = new HeaderModel();
+            var headerModel = new HeaderViewModel();
             var categories = _categoryService.GetAll();
             var categoryModels = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(categories);
             headerModel.Categories = categoryModels;
+
+            headerModel.Courses = _courses;
             return PartialView(headerModel);
         }
 
         public ActionResult Index()
         {
-            var homeModel = new HomeModel();
+            var homeModel = new HomeViewModel();
             var blogs = _blogRepository.GetMany(x => !x.IsDeleted &&
                                                 x.IsActive)
                                                 .OrderByDescending(x => x.CreatedOn)
                                                 .Take(4)
                                                 .ToList();
 
-            var blogModels = Mapper.Map<IEnumerable<Blog>, IEnumerable<BlogViewModel>>(blogs);
+            var blogModels = Mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             homeModel.Blogs = blogModels;
+            homeModel.Courses = _courses;
             return View(homeModel);
         }
 

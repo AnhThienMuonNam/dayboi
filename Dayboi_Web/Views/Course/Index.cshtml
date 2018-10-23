@@ -1,6 +1,6 @@
-﻿@model IEnumerable<Dayboi_Web.ViewModels.BlogViewModel>
+﻿@model Dayboi_Web.ViewModels.CourseViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Khoá học - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +18,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb clearfix mar-top-3x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
-                        <li><a class="link" href="#">Tin tức</a></li>
+                        <li><a class="link" href="#">Khoá học</a></li>
                     </ul>
                 </div>
                 <!-- /.col-md-12 -->
@@ -44,7 +44,7 @@
                             <section class="blog-post-list no-padding">
                                 <h2 class="hidden">Last Posts</h2>
                                 @foreach (var item in Model)
-                                    {
+                                {
                                     <!-- .blog-post -->
                                     <article class="blog-post wow fadeInUp" data-wow-duration="1s">
                                         <span class="blog-date">
@@ -65,25 +65,17 @@
                                                     </div>
                                                 </a>
                                             </header>
-                                            <h4 class="text-primary text-center text-uppercase mar-top-sm">@item.Title</h4>
+                                            <h4 class="text-primary text-center text-uppercase mar-top-sm">@item.Name</h4>
                                             <p>
-                                                @item.SortDescription
+                                                @item.Description
                                             </p>
-                                            <a class="btn btn-primary text-uppercase" href="/blog/@item.Id/@item.Alias" role="button" title="continue reading"> Xem</a>
+                                            <a class="btn btn-primary text-uppercase" href="/course/@item.Id/@item.Alias" role="button" title="continue reading">Xem</a>
                                         </div>
                                     </article>
                                     <!-- /.blog-post -->
-                                    }
+                                }
                             </section>
                             <!-- .navigation -->
-                            <nav class="navigation paging-navigation">
-                                <ul class="page-numbers pagination">
-                                    <li><span class="page-numbers pagination current">1</span></li>
-                                    <li><a class="page-numbers pagination" href="#">2</a></li>
-                                    <li><a class="page-numbers pagination" href="#">3</a></li>
-                                    <li><a class="next page-numbers pagination" href="#">Next →</a></li>
-                                </ul>
-                            </nav><!-- /.navigation -->
                         </div>
                         <!-- /Left part -->
                         <!-- Right part -->
