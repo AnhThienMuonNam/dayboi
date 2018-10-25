@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dayboi_Infrastructure.Models
 {
-    [Table("Categories")]
-    public class Category
+    [Table("Pools")]
+    public class Pool
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [StringLength(50)]
+        [StringLength(200)]
         public string Name { get; set; }
 
         [StringLength(200)]
@@ -22,10 +22,19 @@ namespace Dayboi_Infrastructure.Models
         public string MetaKeyword { get; set; }
 
         [StringLength(500)]
-        public string Description { get; set; }
+        public string Address { get; set; }
 
-        [StringLength(500)]
-        public string Image { set; get; }
+        [StringLength(5000)]
+        public string Content { get; set; }
+
+        public int? ViewCount { get; set; }
+
+        [StringLength(200)]
+        public string Image { get; set; }
+
+        public int PoolCategoryId { get; set; }
+        [ForeignKey("PoolCategoryId")]
+        public PoolCategory PoolCategory { get; set; }
 
         //default columns
         public DateTime CreatedOn { get; set; }
@@ -37,13 +46,6 @@ namespace Dayboi_Infrastructure.Models
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }
 
-        [ForeignKey("CreatedBy")]
-        public ApplicationUser CreatedUser { get; set; }
-
-        [ForeignKey("UpdatedBy")]
-        public ApplicationUser UpdatedUser { get; set; }
-
-        //references
-        public ICollection<Product> Products { get; set; }
+        public ICollection<PoolTag> PoolTags { get; set; }
     }
 }

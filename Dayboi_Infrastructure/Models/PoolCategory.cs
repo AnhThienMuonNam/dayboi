@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dayboi_Infrastructure.Models
 {
-    [Table("Categories")]
-    public class Category
+    [Table("PoolCategories")]
+    public class PoolCategory
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,9 +22,6 @@ namespace Dayboi_Infrastructure.Models
         public string MetaKeyword { get; set; }
 
         [StringLength(500)]
-        public string Description { get; set; }
-
-        [StringLength(500)]
         public string Image { set; get; }
 
         //default columns
@@ -37,13 +34,7 @@ namespace Dayboi_Infrastructure.Models
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }
 
-        [ForeignKey("CreatedBy")]
-        public ApplicationUser CreatedUser { get; set; }
-
-        [ForeignKey("UpdatedBy")]
-        public ApplicationUser UpdatedUser { get; set; }
-
         //references
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Pool> Pools { get; set; }
     }
 }

@@ -34,6 +34,9 @@ namespace Dayboi_Web.Mappings
             base.CreateMap<Course, CourseViewModel>()
                .ForMember(s => s.Tags, t => t.MapFrom(src => src.CourseTags != null ? src.CourseTags.Select(x => x.Tag) : null));
 
+            base.CreateMap<Pool, PoolModel>()
+              .ForMember(s => s.Tags, t => t.MapFrom(src => src.PoolTags != null ? src.PoolTags.Select(x => x.Tag) : null));
+
         }
     }
 }

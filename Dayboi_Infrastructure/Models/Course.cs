@@ -32,7 +32,6 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(200)]
         public string Image { get; set; }
 
-
         //default columns
         public DateTime CreatedOn { get; set; }
 

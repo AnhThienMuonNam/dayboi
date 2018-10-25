@@ -262,9 +262,13 @@
     <Compile Include="Areas\Admin\Controllers\BlogAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourseAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PoolAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PoolCategoryAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\BlogModel.cs" />
     <Compile Include="Areas\Admin\Models\CourseModel.cs" />
+    <Compile Include="Areas\Admin\Models\PoolCategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\PoolModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -296,6 +300,8 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailModel.cs" />
     <Compile Include="ViewModels\OrderModel.cs" />
+    <Compile Include="ViewModels\PoolCategoryViewModel.cs" />
+    <Compile Include="ViewModels\PoolViewModel.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5487,6 +5493,7 @@
     <Content Include="Scripts\Admin\blog_index.js" />
     <Content Include="Scripts\Admin\course_create-edit.js" />
     <Content Include="Scripts\Admin\course_index.js" />
+    <Content Include="Scripts\Admin\pool_create-edit.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -5737,6 +5744,10 @@
     <Content Include="Areas\Admin\Views\CourseAdmin\Partial\CourseEditor.cshtml" />
     <Content Include="Areas\Admin\Views\CourseAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CourseAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolCategoryAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolAdmin\Partial\PoolEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolAdmin\Create.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />

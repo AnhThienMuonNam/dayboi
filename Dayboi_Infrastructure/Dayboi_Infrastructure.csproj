@@ -122,6 +122,14 @@
     <Compile Include="Migrations\201810211529026_AddCourse.Designer.cs">
       <DependentUpon>201810211529026_AddCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810241610325_addPoolTabl.cs" />
+    <Compile Include="Migrations\201810241610325_addPoolTabl.Designer.cs">
+      <DependentUpon>201810241610325_addPoolTabl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810251617389_UpdateDBv12.cs" />
+    <Compile Include="Migrations\201810251617389_UpdateDBv12.Designer.cs">
+      <DependentUpon>201810251617389_UpdateDBv12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -138,6 +146,9 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\Pool.cs" />
+    <Compile Include="Models\PoolCategory.cs" />
+    <Compile Include="Models\PoolTag.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Models\Province.cs" />
@@ -150,6 +161,7 @@
     <Compile Include="Repositories\DistrictRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PaymentMethodRepository.cs" />
+    <Compile Include="Repositories\PoolRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ProvinceRepository.cs" />
     <Compile Include="Repositories\WardRepository.cs" />
@@ -205,6 +217,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810211529026_AddCourse.resx">
       <DependentUpon>201810211529026_AddCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810241610325_addPoolTabl.resx">
+      <DependentUpon>201810241610325_addPoolTabl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251617389_UpdateDBv12.resx">
+      <DependentUpon>201810251617389_UpdateDBv12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

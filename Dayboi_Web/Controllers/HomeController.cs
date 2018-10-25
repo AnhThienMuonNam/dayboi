@@ -14,9 +14,14 @@ namespace Dayboi_Web.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IBlogRepository _blogRepository;
         private readonly ICourseRepository _courseRepository;
+        private readonly IPoolCategoryRepository _poolCategoryRepository;
 
         private List<CourseViewModel> _courses;
-        public HomeController(ICategoryService categoryService, IBlogRepository blogRepository, ICourseRepository courseRepository)
+
+        public HomeController(ICategoryService categoryService,
+                            IBlogRepository blogRepository,
+                            IPoolCategoryRepository poolCategoryRepository,
+                            ICourseRepository courseRepository)
         {
             _categoryService = categoryService;
             _blogRepository = blogRepository;
@@ -33,6 +38,7 @@ namespace Dayboi_Web.Controllers
                                                             Description = x.Description
                                                         })
                                                         .ToList();
+            _poolCategoryRepository = poolCategoryRepository;
         }
 
         [ChildActionOnly]
@@ -50,6 +56,18 @@ namespace Dayboi_Web.Controllers
             headerModel.Categories = categoryModels;
 
             headerModel.Courses = _courses;
+
+            var poolCategoryModels = _poolCategoryRepository.GetMany(x => x.IsActive &&
+                                                                        !x.IsDeleted)
+                                                                        .Select(x => new PoolCategoryViewModel
+                                                                        {
+                                                                            Id = x.Id,
+                                                                            Name = x.Name,
+                                                                            Alias = x.Alias,
+                                                                            Image = x.Image
+                                                                        }).ToList();
+            headerModel.PoolCategories = poolCategoryModels;
+
             return PartialView(headerModel);
         }
 
@@ -65,7 +83,24 @@ namespace Dayboi_Web.Controllers
             var blogModels = Mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             homeModel.Blogs = blogModels;
             homeModel.Courses = _courses;
+            homeModel.PoolCategories = GetPoolCategories();
             return View(homeModel);
+        }
+
+        private List<PoolCategoryViewModel> GetPoolCategories()
+        {
+            var poolCategoryModels = _poolCategoryRepository.GetMany(x => x.IsActive &&
+                                                                      !x.IsDeleted)
+                                                                      .Select(x => new PoolCategoryViewModel
+                                                                      {
+                                                                          Id = x.Id,
+                                                                          Name = x.Name,
+                                                                          Alias = x.Alias,
+                                                                          Image = x.Image,
+                                                                          Pools = x.Pools.Select(c => new PoolViewModel { Id = c.Id, Name = c.Name, Image = c.Image, Alias = c.Alias, Address = c.Address })
+                                                                      }).ToList();
+
+            return poolCategoryModels;
         }
 
         public ActionResult About()
