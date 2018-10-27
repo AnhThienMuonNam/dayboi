@@ -5800,8 +5800,6 @@
     <Content Include="Views\Blog\BlogDetail.cshtml" />
     <Content Include="Views\Feature\Congdong.cshtml" />
     <Content Include="Views\Feature\Index.cshtml" />
-    <Content Include="Views\Feature\Kinhdoanh.cshtml" />
-    <Content Include="Views\Feature\Vechungtoi.cshtml" />
     <Content Include="Views\Feature\AboutUs.cshtml" />
     <Content Include="Views\Feature\StoryKid.cshtml" />
     <Content Include="Views\Feature\Tamnhin.cshtml" />
