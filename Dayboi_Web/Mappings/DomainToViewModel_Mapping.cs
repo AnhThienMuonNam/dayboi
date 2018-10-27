@@ -24,8 +24,19 @@ namespace Dayboi_Web.Mappings
                 .ForMember(s => s.Tags, t => t.MapFrom(src => src.ProductTags != null ? src.ProductTags.Select(x => x.Tag) : null));
 
             base.CreateMap<Blog, BlogViewModel>();
+
             base.CreateMap<Blog, BlogModel>()
                 .ForMember(s => s.Tags, t => t.MapFrom(src => src.BlogTags != null ? src.BlogTags.Select(x => x.Tag) : null));
+
+            base.CreateMap<Course, CourseModel>()
+               .ForMember(s => s.Tags, t => t.MapFrom(src => src.CourseTags != null ? src.CourseTags.Select(x => x.Tag) : null));
+
+            base.CreateMap<Course, CourseViewModel>()
+               .ForMember(s => s.Tags, t => t.MapFrom(src => src.CourseTags != null ? src.CourseTags.Select(x => x.Tag) : null));
+
+            base.CreateMap<Pool, PoolModel>()
+              .ForMember(s => s.Tags, t => t.MapFrom(src => src.PoolTags != null ? src.PoolTags.Select(x => x.Tag) : null));
+
         }
     }
 }

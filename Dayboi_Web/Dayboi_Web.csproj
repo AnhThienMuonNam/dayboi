@@ -261,16 +261,22 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PoolAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PoolCategoryAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\BlogModel.cs" />
+    <Compile Include="Areas\Admin\Models\CourseModel.cs" />
+    <Compile Include="Areas\Admin\Models\PoolCategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\PoolModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KhoaHocController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Helper\MailHelper.cs" />
     <Compile Include="Models\SelectItemModel.cs" />
@@ -289,9 +295,13 @@
     <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\CategoryModel.cs" />
-    <Compile Include="ViewModels\HeaderModel.cs" />
+    <Compile Include="ViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\HeaderViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailModel.cs" />
     <Compile Include="ViewModels\OrderModel.cs" />
+    <Compile Include="ViewModels\PoolCategoryViewModel.cs" />
+    <Compile Include="ViewModels\PoolViewModel.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5481,6 +5491,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Admin\blog_create-edit.js" />
     <Content Include="Scripts\Admin\blog_index.js" />
+    <Content Include="Scripts\Admin\course_create-edit.js" />
+    <Content Include="Scripts\Admin\course_index.js" />
+    <Content Include="Scripts\Admin\pool_create-edit.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -5727,11 +5740,20 @@
     <Content Include="Areas\Admin\Views\BlogAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BlogAdmin\Partial\BlogEditor.cshtml" />
     <Content Include="Areas\Admin\Views\BlogAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Partial\CourseEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolCategoryAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolAdmin\Partial\PoolEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolAdmin\Create.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />
     <Content Include="Scripts\Admin\category_index.js" />
     <Content Include="Scripts\Client\blog_detail.js" />
+    <Content Include="Scripts\Client\course_detail.js" />
     <Content Include="Scripts\Client\header.js" />
     <Content Include="Scripts\Admin\product_create-edit.js" />
     <Content Include="Scripts\Admin\product_index.js" />
@@ -5793,7 +5815,6 @@
     <Content Include="Views\Shop\Product.cshtml" />
     <Content Include="Template\Admin\AdminLTE-2.4.2.zip" />
     <Content Include="Template\Client\fallone.zip" />
-    <Content Include="Views\KhoaHoc\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
@@ -5804,6 +5825,8 @@
     <Content Include="Views\Feature\StoryKid.cshtml" />
     <Content Include="Views\Feature\Tamnhin.cshtml" />
     <Content Include="Views\Feature\Trietly.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\CourseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

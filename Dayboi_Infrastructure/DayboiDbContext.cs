@@ -30,6 +30,11 @@ namespace Dayboi_Infrastructure
         public DbSet<Blog> Blogs { set; get; }
         public DbSet<BlogTag> BlogTags { set; get; }
         public DbSet<ProductTag> ProductTags { set; get; }
+        public DbSet<Course> Courses { set; get; }
+        public DbSet<CourseTag> CourseTags { set; get; }
+        public DbSet<Pool> Pools { set; get; }
+        public DbSet<PoolTag> PoolTags { set; get; }
+        public DbSet<PoolCategory> PoolCategories { set; get; }
 
         public static DayboiDbContext Create()
         {

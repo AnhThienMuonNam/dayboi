@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Dayboi_Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class BlogAdminController : Controller
     {
         private readonly IBlogRepository _blogRepository;
@@ -135,7 +136,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             {
                 blog.BlogTags = new List<BlogTag>();
             }
-            if (tags.Count() > 0)
+            if (tags.Count > 0)
             {
                 foreach (var newTag in tags)
                 {

@@ -33,7 +33,12 @@ namespace Dayboi_Web
         namespaces: new string[] { "Dayboi_Web.Controllers" }
         );
 
-
+            routes.MapRoute(
+       name: "Course",
+       url: "khoa-hoc/{courseId}/{alias}",
+       defaults: new { controller = "Course", action = "CourseDetail", courseId = UrlParameter.Optional },
+       namespaces: new string[] { "Dayboi_Web.Controllers" }
+       );
 
 
             routes.MapRoute(
@@ -42,7 +47,7 @@ namespace Dayboi_Web
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-          
+
         }
     }
 }

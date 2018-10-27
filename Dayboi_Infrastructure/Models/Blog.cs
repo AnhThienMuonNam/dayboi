@@ -32,10 +32,6 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(200)]
         public string Image { get; set; }
 
-       
-        [StringLength(500)]
-        public string RelatedProducts { get; set; }
-
         //default columns
         public DateTime CreatedOn { get; set; }
 

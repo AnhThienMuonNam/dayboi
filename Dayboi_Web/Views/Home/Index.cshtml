@@ -1,4 +1,4 @@
-﻿
+﻿@model Dayboi_Web.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -80,17 +80,13 @@
                     <!-- .row -->
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
-                            <h2 class="uppercase wow fadeInDown" data-wow-duration=".8s" data-wow-delay=".2s">Great Designers</h2>
+                            <h2 class="uppercase wow fadeInDown" data-wow-duration=".8s" data-wow-delay=".2s">Dạy bơi trẻ em </h2>
                             <span class="line-sep-blue"></span>
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                                Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
-                                Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                                nec luctus magna felis sollicitudin mauris. Integer in mauris eu
-                                nibh euismod gravida. Duis ac tellus et risus vulputate vehicula.
-                                Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper,
-                                ligula eu tempor congue, eros est euismod turpis,
-                                id tincidunt sapien risus a quam. Maecenas fermentum consequat mi.
-                                Donec fermentum. Pellentesque malesuada nulla a mi.
+                                Kid Swim hân hạnh mang đến bạn giải pháp dạy bơi trẻ em tốt nhât SG,
+                                Dịch vụ 24/24 , hồ bơi chuyên nghiệp, các thầy cô tận tâm, được đào tạo chuẩn bơi Olymic.
+                                Từng dạy cho vận động viên Ánh Viên giành huy chương vàng Olympic Việt Nam, thế vận hội Asiad.
+                                KidSwim có mặt ở hầu hết các quận huyện ở HCM, Đăng ký nhanh gọn lẹ
                             </p>
                         </div>
                         <div class="col-sm-6 col-xs-12">
@@ -125,75 +121,50 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel-group panel-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                                <!-- panel 1 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <div class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
-                                            <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Lamp Design #1
-                                                </a>
-                                            </h4>
+                                @{bool IsFirstTabCourse = true;}
+                                @foreach (var item in Model.Courses)
+                                {
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading-@item.Id">
+                                            <div class="side-tab" data-target="#tab-@item.Id" data-toggle="tab" role="tab" aria-expanded="false">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
+                                                        @item.Name
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <i class="icon iline2-arrow407"></i>
                                         </div>
-                                        <i class="icon iline2-arrow407"></i>
+                                        @if (IsFirstTabCourse)
+                                        {
+                                            <div id="collapse-@item.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                                <p class="panel-body no-margin-bottom">
+                                                    @item.Description
+                                                    <br />
+                                                    <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
+                                                </p>
+                                            </div>
+                                            IsFirstTabCourse = false;
+                                        }
+                                        else
+                                        {
+                                            <div id="collapse-@item.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                                <p class="panel-body no-margin-bottom">
+                                                    @item.Description
+                                                    <br />
+                                                    <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
+                                                </p>
+                                            </div>
+                                        }
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                        <p class="panel-body no-margin-bottom">
-                                            Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
-                                            Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                                            nec luctus magna felis sollicitudin mauris. Integer in mauris eu
-                                            nibh euismod gravida. Duis ac tellus et risus vulputate.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- /panel 1 -->
-                                <!-- panel 2 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <div class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Lamp Design #2
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <i class="icon iline2-arrow407"></i>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                        <p class="panel-body no-margin-bottom">
-                                            Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
-                                            Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                                            nec luctus magna felis sollicitudin mauris. Integer in mauris eu
-                                            nibh euismod gravida. Duis ac tellus et risus vulputate.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- /panel 2 -->
-                                <!-- panel 3 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <div class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    Lamp Design #3
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <i class="icon iline2-arrow407"></i>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                        <p class="panel-body no-margin-bottom">
-                                            Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
-                                            Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                                            nec luctus magna felis sollicitudin mauris. Integer in mauris eu
-                                            nibh euismod gravida. Duis ac tellus et risus vulputate.
-                                        </p>
-                                    </div>
+                                }
+                                <div>
+                                    <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Đăng ký">Đăng ký</a>
                                 </div>
                                 <!-- /panel 3 -->
                             </div><!-- /.panel-group -->
-                        </div> <!-- /.col-md-6 -->
-                        <div class="col-md-6 hidden-xs">
+                        </div><!-- /.col-md-6 --><div class="col-md-6 hidden-xs">
                             <!-- begin notebook mockup -->
                             <div class="md-notebook md-glare">
                                 <div class="md-lid">
@@ -202,20 +173,27 @@
                                         <!-- content goes here -->
                                         <div class="tab-featured-image">
                                             <div class="tab-content">
-                                                <div class="tab-pane  in active" id="tab1">
-                                                    <img src="~/assets/images/media/light-2.jpg" alt="" class="img img-responsive" />
-                                                </div>
-                                                <div class="tab-pane " id="tab2">
-                                                    <img src="~/assets/images/media/light-3.jpg" alt="" class="img img-responsive" />
-                                                </div>
-                                                <div class="tab-pane fade" id="tab3">
-                                                    <img src="~/assets/images/media/light.jpg" alt="" class="img img-responsive" />
-                                                </div>
+                                                @{bool IsFirstImageCourse = true;}
+                                                @foreach (var item in Model.Courses)
+                                                {
+                                                    if (IsFirstImageCourse)
+                                                    {
+                                                        <div class="tab-pane in active" id="tab-@item.Id">
+                                                            <img src="@item.Image" alt="" class="img img-responsive" />
+                                                        </div>
+                                                        IsFirstImageCourse = false;
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="tab-pane in" id="tab-@item.Id">
+                                                            <img src="@item.Image" alt="" class="img img-responsive" />
+                                                        </div>
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="md-base"></div>
                             </div> <!-- end notebook mockup -->
                         </div> <!-- /.col-md-6 -->
                     </div> <!--/ .row -->
@@ -235,63 +213,46 @@
                     <!-- .row -->
                     <div class="row">
                         <div class="col-md-6 mar-bottom-md">
-                            <span class="icon blue-icon iline2-codings1"></span>
-                            <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">Commented Code</h2>
+                            <img src="~/assets/images/works/gallery_8.jpg" />
+                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s">Chất lượng dịch vụ </h1>
                             <span class="line-sep-gray"></span>
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
                             </p>
                         </div>
                         <div class="col-md-6 mar-bottom-md">
-                            <span class="icon green-icon iline2-tablet42"></span>
-                            <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">Fully responsive</h2>
+                            <img src="~/assets/images/works/gallery_3.jpg" />
+                            <h1 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">Thời gian linh động</h1>
                             <span class="line-sep-gray"></span>
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.
+                                Bạn có thể tùy chọn lịch dạy bơi theo yêu cầu. Chúng tôi có thể linh động lịch học theo từng học viên.
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                        </div>
+                        <div class="col-md-6 mar-bottom-md">
+                            <img src="~/assets/images/works/gallery_4.jpg" />
+                            <h1 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">HLV tận tụy và đam mê</h1>
+                            <span class="line-sep-gray"></span>
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                HLV được chúng tôi kiểm tra và đánh giá thường xuyên, để đảm bảo mang đến chất lượng tốt nhất cho bạn!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
                             </p>
                         </div>
                         <div class="col-md-6 mar-bottom-md">
-                            <span class="icon blue-icon iline2-newspaper7"></span>
-                            <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">Blog post</h2>
+                            <img src="~/assets/images/works/gallery_5.jpg" />
+                            <h1 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">Huấn luyện viên kèm riêng</h1>
                             <span class="line-sep-gray"></span>
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <span class="icon blue-icon iline2-dollar77"></span>
-                            <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">Low prices</h2>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.
+                                Chúng tôi chỉ hướng dẫn học viên bạn đăng ký, và trực tiếp xuống nước hướng dẫn học viên!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
                             </p>
                         </div>
                     </div>
@@ -305,22 +266,39 @@
     </section>
     <!-- /Features -->
     <section class="background-1">
-        <h2 class="hidden">700 icons included</h2>
-        <!-- .container -->
         <div class="container">
             <!-- .row -->
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
-                    <div class="highlight green">
-                        More than <br />700 icons included.
+                    <!-- Pricing Table -->
+                    <div class="row">
+                        @foreach (var item in Model.Blogs)
+                        {
+                            <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                <div class="panel panel-default text-center mar-bottom-sm">
+                                    <div class="panel-body">
+                                        <img src="@item.Image" />
+                                    </div>
+                                    <div class="panel-heading p15">
+                                        <h6 class="uppercase no-margin">@item.Title</h6>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            @item.SortDescription
+                                        </li>
+                                        <li class="list-group-item"><a href="/blog/@item.Id/@item.Alias" class="btn btn-default">Xem chi tiết</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
                     </div>
+                    <!-- /Pricing Table -->
                 </div>
                 <!-- /.col-md-12 -->
             </div>
             <!-- /.row -->
         </div>
-        <!-- /.container -->
     </section>
     <!-- Portfolio -->
     <section class="pattern-3">
@@ -334,20 +312,20 @@
                     <div class="row">
                         <!-- .col-md-12 -->
                         <div class="col-md-12">
-                            <h2 class="wow fadeInDown text-uppercase" data-wow-duration=".8s" data-wow-delay=".2s">PORTFOLIO</h2>
+                            <h2 class="wow fadeInDown text-uppercase">HỒ BƠI</h2>
                             <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <p class="wow fadeInUp">
                                 Cung cấp các khóa học bơi
                                 chuyên sâu dành cho trẻ em
                                 mọi lứa tuổi.
                                 HỌC ĐÚNG-BƠI KHỎE-KỸ NĂNG TỐT
                             </p>
                             <ul class="filter list-inline text-center mar-top-lg">
-                                <li><a class="active" href="#" data-filter="*">Show All</a></li>
-                                <li><a href="#" data-filter=".photography" class="">Photography</a></li>
-                                <li><a href="#" data-filter=".illustration" class="">illustration</a></li>
-                                <li><a href="#" data-filter=".branding" class="">branding</a></li>
-                                <li><a href="#" data-filter=".web-design" class="">web design</a></li>
+                                <li><a class="active" href="#" data-filter="*">Tất cả</a></li>
+                                @foreach (var item in Model.PoolCategories)
+                                {
+                                    <li><a href="#" data-filter=".@item.Id" class="">@item.Name</a></li>
+                                }
                             </ul>
                         </div>
                         <!-- /.col-md-12 -->
@@ -359,186 +337,29 @@
                         <div class="col-md-12">
                             <!-- All works -->
                             <ul class="isotope-gallery col-3-gallery">
-                                <!-- .gallery-item -->
-                                <li class="gallery-item branding">
-                                    <div class="work-body text-center">
-                                        <div class="thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-1.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-1.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item photography">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-2.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-2.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item web-design">
-                                    <div class="work-body text-center">
-                                        <div class="thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-3.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-3.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item illustration">
-                                    <div class="work-body text-center">
-                                        <div class="thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-4.png" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-4.png" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item photography">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-5.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-5.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item branding">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-6.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-6.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item web-design">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-7.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-7.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-8.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-8.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item branding">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-9.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/assets/images/works/work-9.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
-                                <!-- .gallery-item -->
-                                <li class="gallery-item branding">
-                                    <div class="work-body text-center">
-                                        <div class=" thumbnail">
-                                            <figure>
-                                                <img src="~/assets/images/works/work-10.jpg" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="~/~/assets/images/works/work-10.jpg" class="show-image">
-                                                            <i class="iline2-arrows55"></i>
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- /.gallery-item -->
+                                @foreach (var poolCategory in Model.PoolCategories)
+                                {
+                                    foreach (var pool in poolCategory.Pools)
+                                    {
+                                        <li class="gallery-item @poolCategory.Id">
+                                            <div class="work-body text-center">
+                                                <div class="thumbnail">
+                                                    <figure>
+                                                        <img src="@pool.Image" class="img-responsive" alt="" />
+                                                        <div class="image-overlay" >
+                                                            <p>
+                                                                <a href="@pool.Image" style="width:100%;height:auto;">
+                                                                    @pool.Name
+                                                                </a>
+                                                            </p>
+                                                        </div><!--image overlay-->
+
+                                                    </figure><!--/figure-->
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
                             </ul>
                             <!-- /All works -->
                         </div>

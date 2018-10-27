@@ -54,8 +54,7 @@ namespace Dayboi_Web.Controllers
                                                 .FirstOrDefault();
 
             var returnBlog = Mapper.Map<Blog, BlogViewModel>(blog);
-            var aa = WebUtility.HtmlDecode(returnBlog.Content);
-            var bb = HttpUtility.HtmlDecode(returnBlog.Content);
+            
             return returnBlog;
         }
     }

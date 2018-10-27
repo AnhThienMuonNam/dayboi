@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Dayboi_Web.Areas.Admin.Models.CourseModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section footerJS{
+    <script src="~/Scripts/Admin/course_index.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var options = {};
+            data.Courses = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            options.EditCourseUrl = '@Url.Action("Edit", "CourseAdmin")';
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<section class="content" id="main-page">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Bài viết</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                        <!-- ko foreach: Courses -->
+                        <tr>
+                            <td data-bind="text: Id"></td>
+                            <td data-bind="text: Name"></td>
+                            <td data-bind="text: Description"></td>
+                            <td data-bind="text: IsActive"></td>
+                            <td>
+                                <a class="label label-warning" data-bind="attr: {href: EditCourseUrl() +'/' + Id}">Sửa</a>
+                                <a class="label label-danger" data-bind="attr: {href: EditCourseUrl() +'/' + Id}">Xoá</a>
+                            </td>
+
+                        </tr>
+                        <!-- /ko -->
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>

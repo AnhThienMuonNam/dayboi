@@ -1,0 +1,179 @@
+﻿@model Dayboi_Web.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "Khoá học - KidSwim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <!-- HEADER TREE -->
+    <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <ul class="breadcrumb clearfix mar-top-3x">
+                        <li><a class="link text-success" href="/">Trang chủ</a></li>
+                        <li><a class="link" href="#">Khoá học</a></li>
+                    </ul>
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- HEADER TREE END -->
+    <!-- BLOG POST BODY SECTION -->
+    <section class="pattern-3 no-padding-right">
+        <h2 class="hidden">blog posts</h2>
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- All blog posts -->
+                    <div class="mar-top-lg row">
+                        <!-- Left part -->
+                        <div class="col-md-8 blog-main">
+                            <section class="blog-post-list no-padding">
+                                <h2 class="hidden">Last Posts</h2>
+                                @foreach (var item in Model)
+                                {
+                                    <!-- .blog-post -->
+                                    <article class="blog-post wow fadeInUp" data-wow-duration="1s">
+                                        <span class="blog-date">
+                                            @item.CreatedOn.Month
+                                            <small class="blog-month">@item.CreatedOn.Year</small>
+                                        </span>
+
+                                        <div class="blog-body">
+                                            <header class="entry-header">
+                                                <a href="blog-post.html">
+                                                    <img src="@item.Image" alt="post 3" class="img-responsive img-full" />
+                                                    <div class="image-overlay">
+                                                        <p>
+                                                            <span class="show-image">
+                                                                <i class="iline2-arrow423"></i>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </header>
+                                            <h4 class="text-primary text-center text-uppercase mar-top-sm">@item.Name</h4>
+                                            <p>
+                                                @item.Description
+                                            </p>
+                                            <a class="btn btn-primary text-uppercase" href="/course/@item.Id/@item.Alias" role="button" title="continue reading">Xem</a>
+                                        </div>
+                                    </article>
+                                    <!-- /.blog-post -->
+                                }
+                            </section>
+                            <!-- .navigation -->
+                        </div>
+                        <!-- /Left part -->
+                        <!-- Right part -->
+                        <div class="col-md-4 blog-sidebar">
+                            <!-- Categories List -->
+                            <div class="post-detail">
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-primary text-uppercase text-center">Categories</h3>
+                                    <ul class="text-capitalize sidebar">
+                                        <li><a href="#" class="iline1-spiral4">Design</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Life Style</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Application</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Music</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Heath & Life</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Categories List End -->
+                            <!-- Popular Posts -->
+                            <div class="post-detail mar-top-md">
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-primary text-uppercase text-center">POPULAR POSTS</h3>
+                                    <ul class="text-capitalize sidebar">
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-success">MARKETING #1</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="assets/images/blog/post-3.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-primary">LOGO</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="assets/images/blog/post-4.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-primary">MARKETING #2</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="assets/images/blog/post-5.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-primary">PLACES</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Popular Posts End -->
+                            <!-- Tags -->
+                            <div class="post-detail mar-top-md">
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-primary text-uppercase text-center">TAGS</h3>
+                                    <p>
+                                        <a class="label label-default" href="#">design</a>
+                                        <a class="label label-default" href="#">marketing</a>
+                                        <a class="label label-default" href="#">application</a>
+                                        <a class="label label-default" href="#">products</a>
+                                        <a class="label label-default" href="#">blog</a>
+                                        <a class="label label-default" href="#">article</a>
+                                        <a class="label label-default" href="#">dollar</a>
+                                        <a class="label label-default" href="#">facebook</a>
+                                        <a class="label label-default" href="#">twitter</a>
+                                        <a class="label label-default" href="#">market</a>
+                                        <a class="label label-default" href="#">place</a>
+                                        <a class="label label-default" href="#">login</a>
+                                        <a class="label label-default" href="#">carousel</a>
+                                        <a class="label label-default" href="#">tweet</a>
+                                        <a class="label label-default" href="#">john</a>
+                                        <a class="label label-default" href="#">doe</a>
+                                        <a class="label label-default" href="#">comments</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Tags End -->
+                        </div>
+                        <!-- /Right part -->
+                    </div>
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- BLOG POST BODY SECTION END -->
+</div>

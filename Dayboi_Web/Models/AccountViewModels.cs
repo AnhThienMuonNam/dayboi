@@ -48,13 +48,15 @@ namespace Dayboi_Web.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Email")]
         [Display(Name = "Email")]
+        [StringLength(100)]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Mật khẩu")]
         [DataType(DataType.Password)]
+        [StringLength(50)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
@@ -64,20 +66,21 @@ namespace Dayboi_Web.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Email")]
+        [StringLength(100, ErrorMessage = "Email không được quá 100 ký tự")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Bạn chưa nhập Mật khẩu")]
+        [StringLength(100, ErrorMessage = "Mật khẩu phải nhiều hơn 5 ký tự và ít hơn 30 ký tự", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu không trùng nhau")]
         public string ConfirmPassword { get; set; }
 
         public string FullName { get; set; }

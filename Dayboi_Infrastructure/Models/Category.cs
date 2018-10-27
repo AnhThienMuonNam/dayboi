@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dayboi_Infrastructure.Models
 {
@@ -31,9 +27,9 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(500)]
         public string Image { set; get; }
 
-
         //default columns
         public DateTime CreatedOn { get; set; }
+
         public DateTime? UpdatedOn { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
@@ -46,7 +42,6 @@ namespace Dayboi_Infrastructure.Models
 
         [ForeignKey("UpdatedBy")]
         public ApplicationUser UpdatedUser { get; set; }
-
 
         //references
         public ICollection<Product> Products { get; set; }

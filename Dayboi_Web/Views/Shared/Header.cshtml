@@ -1,17 +1,4 @@
-﻿@model Dayboi_Web.ViewModels.HeaderModel
-
-<script>
-    var header = document.querySelector('.header');
-    var origOffsetY = header.offsetTop;
-
-    function onScroll(e) {
-        window.scrollY >= origOffsetY ? header.classList.add('sticky') :
-                                      header.classList.remove('sticky');
-    }
-
-    document.addEventListener('scroll', onScroll);
-</script>
-
+﻿@model Dayboi_Web.ViewModels.HeaderViewModel
 <style>
     .icon-cart {
         font-size: 18px;
@@ -30,21 +17,22 @@
             display: none !important;
         }
     }
+
     .sticky {
-	position: fixed;
-	top: 0;
+        position: fixed;
+        top: 0;
     }
 
     .header {
-	width: 100%;
-	background: #F6D565;
-	padding: 15px 0;
+        width: 100%;
+        background: #F6D565;
+        padding: 15px 0;
     }
 </style>
 
 <header class="fallone-navbar" id="default-navbar">
 
-    <div class="top-bar" style="background: #1a3e84" id="header">
+    <div class="top-bar" style="background: #1a3e84" id="header-top">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 col-xs-3">
@@ -119,72 +107,27 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Khóa học <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="@Url.Action("product","shop")">
-                                    Kỹ thuật bơi công cộng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-standard-lsidebar.html">
-                                    Kỹ thuật đứng nước
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-standard.html">
-                                    Kỹ thuật thở
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog.html">
-                                    Bơi sải trườn thấp
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">
-                                    Bơi bướm
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post-gallery.html">
-                                    Bơi ngửa
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post-carousel.html">
-                                    Bơi ếch
-                                </a>
-                            </li>
+                            @foreach (var course in Model.Courses)
+                            {
+                                <li>
+                                    <a href="~/khoa-hoc/@course.Id/@course.Alias">
+                                        @course.Name
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hồ bơi <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog-standard-rsidebar.html">
-                                    Hồ bơi công cộng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-standard-lsidebar.html">
-                                    Hồ bơi chung cư
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-standard.html">
-                                    Hồ bơi khách sạn
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog.html">
-                                    Hồ bơi trung tâm
-                                </a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">
-                                    Hồ bơi quận
-                                </a>
-                            </li>
-
+                            @foreach (var item in Model.PoolCategories)
+                            {
+                                <li>
+                                    <a href="#@item.Id/@item.Alias">
+                                        @item.Name
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </li>
                     <li><a href="@Url.Action("index","blog")">Tin tức</a></li>
@@ -192,42 +135,26 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="dropdown">
-                        <a href="#">
-                            @*<img src="~/assets/images/custom/cart.png" style="width: 100%" />*@
+
+                        <a href="@Url.Action("index","cart")">
+                            <img src="~/assets/images/custom/cart.png" style="width: 55%" />
                             <span data-bind="text: NumberCart"></span>
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tùy chọn <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="pricing-tables.html">Pricing Tables</a></li>
                             @if (!Request.IsAuthenticated)
                             {
                                 <li><a class="text-primary" href="@Url.Action("login","account")">Đăng nhập</a></li>
-                            }
-                            @if (!Request.IsAuthenticated)
-                            {
                                 <li><a class="text-success" href="@Url.Action("register","account")">Đăng ký</a></li>
-                            }
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="terms.html">Terms</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-
-                            @*//testdayboi*@
-                            @if (Request.IsAuthenticated)
-                            {
-
-                                <li><a href="typography.html">@User.Identity.Name</a></li>
-                                <li><a href="@Url.Action("logoff", "Account" )">Thoát</a></li>
-
                             }
                             else
                             {
-                                <li><a href="typography.html">Typography</a></li>
+                                <li><a href="typography.html">@User.Identity.Name</a></li>
+                                <li><a href="@Url.Action("logoff", "Account" )">Thoát</a></li>
                             }
-
                         </ul>
                     </li>
                 </ul>
@@ -237,3 +164,14 @@
 </header>
 
 <!-- NAVIGATION END -->
+@*<script>
+        var header = document.getElementById('header-top');
+        var origOffsetY = header.offsetTop;
+
+        function onScroll(e) {
+            window.scrollY >= origOffsetY ? header.classList.add('sticky') :
+                                          header.classList.remove('sticky');
+        }
+
+        document.addEventListener('scroll', onScroll);
+    </script>*@
