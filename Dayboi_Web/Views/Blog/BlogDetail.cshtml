@@ -17,6 +17,14 @@
 
             ko.applyBindings(MainModel(data), document.getElementById("main-page"));
         });
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=279038256257090&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 }
 <div id="main-page">
@@ -61,28 +69,29 @@
                                     <img data-bind="attr:{src: Blog().Image}" alt="" class="img-responsive" />
                                 </figure>
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-uppercase" data-bind="text: Blog().Title"></h3>
+                                    <h3 style="color: #40b7d2" data-bind="text: Blog().Title"></h3>
                                     <span class="line-sep-gray"></span>
                                     <div class="content" data-bind="html: showContent(Blog().Content)">
                                        
                                     </div>
                                     <div class="post-detail-bottom mar-top-sm">
                                         <p class="cat-links">
-                                            <a class="text-capitalize"><i class="iline2-tag27 no-margin"></i> Article Tags:</a>
+                                            <a class="text-capitalize"><i class="iline2-tag27 no-margin"></i>Hash tags:</a>
                                             <a href="#">design</a>
                                             <a href="#">marketing</a>
                                             <a href="#">products</a>
                                         </p>
                                     </div>
                                     <ul class="post-info pull-left">
-                                        <li><i class="iline2-round27 text-primary"></i> <a href="#">April 17, 2015</a></li>
+                                        <li><i class="iline2-round27 text-primary"></i> <a href="#">Tháng 10 17, 2018</a></li>
                                         <li><i class="iline2-rectangular22 text-success"></i> <a href="#">30 Comments</a></li>
                                         <li><i class="iline2-heart64"></i> <a href="#">2754</a></li>
                                     </ul>
+                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
                                     <span class="clearboth">
                                     </span>
                                     <div class="text-center share-menu">
-                                        <h4 class="text-center clearboth mar-top-xs">SHARE THIS ARTICLE</h4>
+                                        
                                         <ul class="social">
                                             <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-iline-3google27" data-original-title="Share on Google Plus"></a></li>
                                             <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-3facebook27" data-original-title="Share on Facebook"></a></li>
@@ -95,9 +104,9 @@
                             </div>
                             <div class="post-detail mar-top-xs">
                                 <div class="post-detail-body sep-xs">
-                                    <h3>Comments</h3>
+                                    <h3>Bình luận</h3>
                                     <span class="line-sep-gray"></span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                    
                                     <ul class="media-list">
                                         <li class="media">
                                             <div class="media-left">
@@ -106,12 +115,9 @@
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading text-primary">John Doe <span class="pull-right small text-muted"><i>1h ago</i></span></h4>
+                                                <h4 class="media-heading text-primary">Minh Nghĩa <span class="pull-right small text-muted"><i>1h ago</i></span></h4>
                                                 <p>
-                                                    Cras sit amet nibh libero, in gravida nulla.
-                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
-                                                    Cras purus odio, vestibulum in vulputate at, tempus
-                                                    viverra turpis.
+                                                    Hồ bơi này đẹp nè ae
                                                 </p>
                                             </div>
                                         </li>
@@ -123,12 +129,9 @@
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading text-primary">Jule Doe <span class="pull-right small text-muted"><i>2h ago</i></span></h4>
+                                                <h4 class="media-heading text-primary">Nhung <span class="pull-right small text-muted"><i>2h ago</i></span></h4>
                                                 <p>
-                                                    Cras sit amet nibh libero, in gravida nulla.
-                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
-                                                    Cras purus odio, vestibulum in vulputate at, tempus
-                                                    viverra turpis.
+                                                   Thích hợp cho em bơi nè
                                                 </p>
                                             </div>
                                         </li>
@@ -140,12 +143,9 @@
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading text-primary">Jihn Doe <span class="pull-right small text-muted"><i>3h ago</i></span></h4>
+                                                <h4 class="media-heading text-primary">Vũ <span class="pull-right small text-muted"><i>3h ago</i></span></h4>
                                                 <p>
-                                                    Cras sit amet nibh libero, in gravida nulla.
-                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
-                                                    Cras purus odio, vestibulum in vulputate at, tempus
-                                                    viverra turpis.
+                                                    Tốt lắm
                                                 </p>
                                             </div>
                                         </li>
@@ -157,28 +157,25 @@
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading text-primary">Jane Doe <span class="pull-right small text-muted"><i>4h ago</i></span></h4>
+                                                <h4 class="media-heading text-primary">Duy <span class="pull-right small text-muted"><i>4h ago</i></span></h4>
                                                 <p>
-                                                    Cras sit amet nibh libero, in gravida nulla.
-                                                    Nulla vel metus scelerisque ante sollicitudin commodo.
-                                                    Cras purus odio, vestibulum in vulputate at,
-                                                    tempus viverra turpis.
+                                                    Được lắm á
                                                 </p>
                                             </div>
                                         </li>
                                     </ul>
-                                    <h4 class="mar-top-md">Add a comment.</h4>
+                                    <h4 class="mar-top-md">Viết bình luận.</h4>
                                     <span class="line-sep-gray"></span>
                                     <p>All the inputs are required.</p>
                                     <form class="form-horizontal mar-top-sm wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s" method="post" action="/" name="commentForm" novalidate="">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group control-group">
-                                                    <input type="text" class="form-control input-lg" id="firstname" name="firstname" placeholder="First Name* :" required="" data-validation-required-message="Please enter your first name." />
+                                                    <input type="text" class="form-control input-lg" id="firstname" name="firstname" placeholder="Họ* :" required="" data-validation-required-message="Please enter your first name." />
                                                     <p class="help-block"></p>
                                                 </div>
                                                 <div class="form-group control-group">
-                                                    <input type="text" class="form-control input-lg" id="lastname" name="lastname" placeholder="Last Name* :" required="" data-validation-required-message="Please enter your last name." />
+                                                    <input type="text" class="form-control input-lg" id="lastname" name="lastname" placeholder="Tên* :" required="" data-validation-required-message="Please enter your last name." />
                                                     <p class="help-block"></p>
                                                 </div>
                                                 <div class="form-group control-group">
@@ -188,10 +185,10 @@
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group control-group">
-                                                    <textarea class="form-control" name="comment" placeholder="Comment* :" required="" data-validation-required-message="Please enter a Text."></textarea>
+                                                    <textarea class="form-control" name="comment" placeholder="Comment* :" required="" data-validation-required-message="Viết tiếng việt, không được dùng không dấu"></textarea>
                                                     <p class="help-block"></p>
                                                 </div>
-                                                <button type="submit" class="submit btn btn-primary pull-right">Post</button>
+                                                <button type="submit" class="submit btn btn-primary pull-right" style="border-radius: 8px">Đăng</button>
                                             </div>
                                         </div>
                                         <!-- /.row -->
@@ -199,8 +196,8 @@
                                 </div>
                             </div>
                             <div class="nav-links mar-top-md">
-                                <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i> Preview Post</a>
-                                <a href="blog-post-carousel.html" class="text-uppercase pull-right">Next Post <i class="iline1-chevron15"></i></a>
+                                <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i>Bài trước</a>
+                                <a href="blog-post-carousel.html" class="text-uppercase pull-right">Bài tiếp <i class="iline1-chevron15"></i></a>
                             </div>
 
                         </div>
@@ -210,13 +207,13 @@
                             <!-- Categories List -->
                             <div class="post-detail">
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">Categories</h3>
+                                    <h3 class="text-primary text-uppercase text-center">Bộ sưu tập</h3>
                                     <ul class="text-capitalize sidebar">
-                                        <li><a href="#" class="iline1-spiral4">Design</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Life Style</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Application</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Music</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Heath & Life</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Đồ bơi</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Dầu gội</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Mắt kính</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Khóa học người lớn</a></li>
+                                        <li><a href="#" class="iline1-spiral4">Khăn tắm</a></li>
                                     </ul>
                                 </div>
                             </div>

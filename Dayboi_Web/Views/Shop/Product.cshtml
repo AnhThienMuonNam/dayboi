@@ -17,7 +17,17 @@
             data.API_URLs = options;
 
             ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+
+         
         });
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=279038256257090&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 }
 <div id="main-page" data-bind="with: productModel">
@@ -25,7 +35,7 @@
     <section class="header-tree" data-speed="8" data-type="background">
         <h2 class="hidden">Header tree</h2>
         <!-- parallax background -->
-        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <div class="cover-1" data-type="sprite" data-offsety="-700" data-xposition="50%" data-speed="-2"></div>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
@@ -48,7 +58,7 @@
 
     <section class="pattern-3">
         <!-- .container -->
-        <div class="container" >
+        <div class="container">
             <!-- .row -->
             <div class="row">
                 <!-- .col-md-12 -->
@@ -139,7 +149,7 @@
                             <span class="line-sep-blue"></span>
                             <p class="wow fadeInUp" data-bind="text: Description">
                             </p>
-                            <ul class="ic-list wow bounceInRight" >
+                            <ul class="ic-list wow bounceInRight">
                                 <li>
                                     <i class="icon iline2-bullet3"></i> <span data-bind="text: CategoryName"></span>
                                 </li>
@@ -165,7 +175,7 @@
                                 </li>
 
                             </ul>
-
+                            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
                         </div>
                     </div>
                     <!-- /.row -->
