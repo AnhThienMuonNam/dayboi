@@ -125,39 +125,39 @@
                                 @foreach (var item in Model.Courses)
                                 {
 
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="heading-@item.Id">
-                                            <div class="side-tab" data-target="#tab-@item.Id" data-toggle="tab" role="tab" aria-expanded="false">
-                                                <h4 class="panel-title">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
-                                                        @item.Name
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <i class="icon iline2-arrow407"></i>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading-@item.Id">
+                                        <div class="side-tab" data-target="#tab-@item.Id" data-toggle="tab" role="tab" aria-expanded="false">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
+                                                    @item.Name
+                                                </a>
+                                            </h4>
                                         </div>
-                                        @if (IsFirstTabCourse)
-                                        {
-                                            <div id="collapse-@item.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-@item.Id">
-                                                <p class="panel-body no-margin-bottom">
-                                                    @item.Description
-                                                    <br />
-                                                    <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
-                                                </p>
-                                            </div>
-                                            IsFirstTabCourse = false;
-                                        }
-                                        else
-                                        {
-                                            <div id="collapse-@item.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-@item.Id">
-                                                <p class="panel-body no-margin-bottom">
-                                                    @item.Description
-                                                    <br />
-                                                    <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
-                                                </p>
-                                            </div>
-                                        }
+                                        <i class="icon iline2-arrow407"></i>
                                     </div>
+                                    @if (IsFirstTabCourse)
+                                    {
+                                    <div id="collapse-@item.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                        <p class="panel-body no-margin-bottom">
+                                            @item.Description
+                                            <br />
+                                            <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
+                                        </p>
+                                    </div>
+                                    IsFirstTabCourse = false;
+                                    }
+                                    else
+                                    {
+                                    <div id="collapse-@item.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                        <p class="panel-body no-margin-bottom">
+                                            @item.Description
+                                            <br />
+                                            <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
+                                        </p>
+                                    </div>
+                                    }
+                                </div>
                                 }
                                 <div>
                                     <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-toggle="modal" data-target="#myModal" role="button" title="Đăng ký">Đăng ký</a>
@@ -176,19 +176,19 @@
                                                 @{bool IsFirstImageCourse = true;}
                                                 @foreach (var item in Model.Courses)
                                                 {
-                                                    if (IsFirstImageCourse)
-                                                    {
-                                                        <div class="tab-pane in active" id="tab-@item.Id">
-                                                            <img src="@item.Image" alt="" class="img img-responsive" />
-                                                        </div>
-                                                        IsFirstImageCourse = false;
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="tab-pane in" id="tab-@item.Id">
-                                                            <img src="@item.Image" alt="" class="img img-responsive" />
-                                                        </div>
-                                                    }
+                                                if (IsFirstImageCourse)
+                                                {
+                                                <div class="tab-pane in active" id="tab-@item.Id">
+                                                    <img src="@item.Image" alt="" class="img img-responsive" />
+                                                </div>
+                                                IsFirstImageCourse = false;
+                                                }
+                                                else
+                                                {
+                                                <div class="tab-pane in" id="tab-@item.Id">
+                                                    <img src="@item.Image" alt="" class="img img-responsive" />
+                                                </div>
+                                                }
                                                 }
                                             </div>
                                         </div>
@@ -201,7 +201,7 @@
             </div>
         </div>
         <!-- comment -->
-       
+
     </section>
     <!-- Features -->
     <section class="white">
@@ -276,22 +276,22 @@
                     <div class="row">
                         @foreach (var item in Model.Blogs)
                         {
-                            <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                <div class="panel panel-default text-center mar-bottom-sm">
-                                    <div class="panel-body">
-                                        <img src="@item.Image" />
-                                    </div>
-                                    <div class="panel-heading p15">
-                                        <h6 class="uppercase no-margin">@item.Title</h6>
-                                    </div>
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            @item.SortDescription
-                                        </li>
-                                        <li class="list-group-item"><a href="/blog/@item.Id/@item.Alias" class="btn btn-default">Xem chi tiết</a></li>
-                                    </ul>
+                        <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div class="panel panel-default text-center mar-bottom-sm">
+                                <div class="panel-body">
+                                    <img src="@item.Image" />
                                 </div>
+                                <div class="panel-heading p15">
+                                    <h6 class="uppercase no-margin">@item.Title</h6>
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        @item.SortDescription
+                                    </li>
+                                    <li class="list-group-item"><a href="/blog/@item.Id/@item.Alias" class="btn btn-default">Xem chi tiết</a></li>
+                                </ul>
                             </div>
+                        </div>
                         }
                     </div>
                     <!-- /Pricing Table -->
@@ -299,6 +299,63 @@
                 <!-- /.col-md-12 -->
             </div>
             <!-- /.row -->
+        </div>
+    </section>
+        
+    <section>
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="~/assets/images/works/i-title.png" style="padding-left: 518px; margin-top: -133px;" /> 
+                    <div style="text-align: center;color:#125790; margin-top: -69px; font-size: 39px; margin-bottom: 37px;">Tại sao chọn dạy bơi Kid Swim</div>
+                    <div class="row" style="color:#125790">
+                        <div class="col-md-4 mar-bottom-md">
+                            <img src="~/assets/images/works/i-5.png" /> 
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Chất lượng được cam kết</ul> 
+                            <ul style="margin-left: 51px; font-size: 16px;">
+                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
+                            </ul>
+                         </div>
+                        <div class="col-md-4 mar-bottom-md">
+                            <img src="~/assets/images/works/i-6.png" />
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Thời gian linh động</ul>
+                            <ul style="margin-left: 51px; font-size: 16px;">
+                                Bạn có thể tùy chọn lịch dạy bơi theo yêu cầu. Chúng tôi có thể linh động lịch học theo từng học viên.
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mar-bottom-md">
+                            <img src="~/assets/images/works/i-7.png" />
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">HLV tận tụy và đam mê</ul>
+                            <ul style="margin-left: 51px; font-size: 16px;">
+                                HLV được chúng tôi kiểm tra và đánh giá thường xuyên, để đảm bảo mang đến chất lượng tốt nhất cho bạn!
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mar-bottom-md">
+                            <img src="~/assets/images/works/i-8.png" />
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Huấn luyện viên kèm riêng</ul>
+                            <ul style="margin-left: 51px; font-size: 16px;">
+                                Chúng tôi chỉ hướng dẫn học viên bạn đăng ký, và trực tiếp xuống nước hướng dẫn học viên!
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mar-bottom-md">
+                            <img src="~/assets/images/works/i-9.png" />
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Có cả HLV Nam và Nữ</ul>
+                            <ul style="margin-left: 51px; font-size: 16px;">
+                                Tất cả HLV dạy bơi đều có bằng cấp chuyên môn và nhiều năm kinh nghiệm dạy bơi kèm riêng.
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mar-bottom-md">
+                            <img src="~/assets/images/works/i-10.png" />
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">HLV đi đến hồ bơi của bạn</ul>
+                            <ul style="margin-left: 51px; font-size: 16px;">
+                                Hoặc hồ bơi gần nhà bạn, trong khu dân cư của bạn. Hãy liên lạc chúng tôi để được tư vấn hồ bơi phù hợp
+                            </ul>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Portfolio -->
@@ -325,7 +382,7 @@
                                 <li><a class="active" href="#" data-filter="*">Tất cả</a></li>
                                 @foreach (var item in Model.PoolCategories)
                                 {
-                                    <li><a href="#" data-filter=".@item.Id" class="">@item.Name</a></li>
+                                <li><a href="#" data-filter=".@item.Id" class="">@item.Name</a></li>
                                 }
                             </ul>
                         </div>
@@ -340,26 +397,26 @@
                             <ul class="isotope-gallery col-3-gallery">
                                 @foreach (var poolCategory in Model.PoolCategories)
                                 {
-                                    foreach (var pool in poolCategory.Pools)
-                                    {
-                                        <li class="gallery-item @poolCategory.Id">
-                                            <div class="work-body text-center">
-                                                <div class="thumbnail">
-                                                    <figure>
-                                                        <img src="@pool.Image" class="img-responsive" alt="" />
-                                                        <div class="image-overlay" >
-                                                            <p>
-                                                                <a href="@pool.Image" style="width:100%;height:auto;">
-                                                                    @pool.Name
-                                                                </a>
-                                                            </p>
-                                                        </div><!--image overlay-->
+                                foreach (var pool in poolCategory.Pools)
+                                {
+                                <li class="gallery-item @poolCategory.Id">
+                                    <div class="work-body text-center">
+                                        <div class="thumbnail">
+                                            <figure>
+                                                <img src="@pool.Image" class="img-responsive" alt="" />
+                                                <div class="image-overlay">
+                                                    <p>
+                                                        <a href="@pool.Image" style="width:100%;height:auto;">
+                                                            @pool.Name
+                                                        </a>
+                                                    </p>
+                                                </div><!--image overlay-->
 
-                                                    </figure><!--/figure-->
-                                                </div>
-                                            </div>
-                                        </li>
-                                    }
+                                            </figure><!--/figure-->
+                                        </div>
+                                    </div>
+                                </li>
+                                }
                                 }
                             </ul>
                             <!-- /All works -->
@@ -377,6 +434,6 @@
     <!-- /Portfolio -->
 
 
-    
+
 </div>
 
