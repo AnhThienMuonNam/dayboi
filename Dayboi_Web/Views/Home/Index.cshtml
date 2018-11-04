@@ -235,7 +235,7 @@
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-                              
+
                             </p>
                         </div>
                         <div class="col-md-6 mar-bottom-md">
@@ -245,7 +245,7 @@
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
                                 Bạn có thể tùy chọn lịch dạy bơi theo yêu cầu. Chúng tôi có thể linh động lịch học theo từng học viên.
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-                            
+
                         </div>
                         <div class="col-md-6 mar-bottom-md">
                             <img src="~/assets/images/works/gallery_4.jpg" />
@@ -254,7 +254,7 @@
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
                                 HLV được chúng tôi kiểm tra và đánh giá thường xuyên, để đảm bảo mang đến chất lượng tốt nhất cho bạn!
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-                          
+
                             </p>
                         </div>
                         <div class="col-md-6 mar-bottom-md">
@@ -264,7 +264,7 @@
                             <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
                                 Chúng tôi chỉ hướng dẫn học viên bạn đăng ký, và trực tiếp xuống nước hướng dẫn học viên!
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-                            
+
                             </p>
                         </div>
                     </div>
@@ -287,39 +287,23 @@
                     <div class="row">
                         @foreach (var item in Model.Blogs)
                         {
-<<<<<<< HEAD
                             <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                <div class="panel panel-default text-center mar-bottom-sm">
+                                <div class="panel panel-default text-center mar-bottom-sm" style="border-radius: 13px;">
                                     <div class="panel-body">
                                         <img src="@item.Image" />
                                     </div>
                                     <div class="panel-heading p15">
-                                        <h6 class="uppercase no-margin">@item.Title</h6>
+                                        <div class="no-margin" style="font-size: 17px; font-weight: bold; color: royalblue;">
+                                            <a href="/blog/@item.Id/@item.Alias">@item.Title</a>
+                                        </div>
                                     </div>
                                     <ul class="list-group">
-                                        <li class="list-group-item">
+                                        <li class="list-group-item" style="font-size: 15px;">
                                             @item.SortDescription
                                         </li>
-                                        <li class="list-group-item"><a href="/blog/@item.Id/@item.Alias" class="btn btn-default">Xem chi tiết</a></li>
+
                                     </ul>
                                 </div>
-=======
-                        <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <div class="panel panel-default text-center mar-bottom-sm" style="border-radius: 13px;">
-                                <div class="panel-body">
-                                    <img src="@item.Image" />
-                                </div>
-                                <div class="panel-heading p15">
-                                    <div class="no-margin" style="font-size: 17px; font-weight: bold; color: royalblue;">
-                                        <a href="/blog/@item.Id/@item.Alias">@item.Title</a></div>
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item" style="font-size: 15px;">
-                                        @item.SortDescription
-                                    </li>
-                                   
-                                </ul>
->>>>>>> 85d19f8924233d3c5a5af19af6b3dce3175a6934
                             </div>
                         }
                     </div>
@@ -330,8 +314,10 @@
             <!-- /.row -->
         </div>
     </section>
+
     <section>
         <div class="container">
+
             <div class="row">
                 <div class="col-md-12">
                     <img src="~/assets/images/works/i-title.png" style="padding-left: 518px; margin-top: -133px;" />
@@ -459,7 +445,6 @@
         <!-- /.container -->
     </section>
     <!-- /Portfolio -->
-    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->

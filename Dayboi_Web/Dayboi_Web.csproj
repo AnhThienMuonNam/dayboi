@@ -5776,8 +5776,8 @@
     <Content Include="Scripts\Client\page_product.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Template\Booking.html" />
     <Content Include="Template\order_detail.html" />
-    <Content Include="Template\order_info.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
