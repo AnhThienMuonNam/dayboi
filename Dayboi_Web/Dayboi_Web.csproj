@@ -332,6 +332,7 @@
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
     <Content Include="assets\css\animate.css" />
+    <Content Include="assets\css\bootstrap-datetimepicker.min.css" />
     <Content Include="assets\css\iline-icons.css" />
     <Content Include="assets\css\magnific-popup.css" />
     <Content Include="assets\css\mixins.css" />
@@ -411,6 +412,7 @@
     <Content Include="assets\js\knockout-3.5.0rc.js" />
     <Content Include="assets\js\knockout.mapping-latest.js" />
     <Content Include="assets\js\knockout.validation.min.js" />
+    <Content Include="assets\js\libs\bootstrap-datetimepicker.min.js" />
     <Content Include="assets\js\libs\dd_beladpng.js" />
     <Content Include="assets\js\libs\dd_belatedpng.min.js" />
     <Content Include="assets\js\libs\imagesloaded.js" />
@@ -426,6 +428,7 @@
     <Content Include="assets\js\libs\jquery.magnific-popup.min.js" />
     <Content Include="assets\js\libs\jquery.mailchimp.js" />
     <Content Include="assets\js\libs\jquery.textillate.js" />
+    <Content Include="assets\js\libs\moment.min.js" />
     <Content Include="assets\js\libs\owl.carousel.js" />
     <Content Include="assets\js\libs\owl.carousel.min.js" />
     <Content Include="assets\js\libs\ParallaxScrolling.js" />
@@ -5758,6 +5761,7 @@
     <Content Include="Scripts\Admin\product_create-edit.js" />
     <Content Include="Scripts\Admin\product_index.js" />
     <Content Include="Scripts\Client\page_checkout.js" />
+    <Content Include="Scripts\Client\page_home.js" />
     <Content Include="Scripts\Common\common_functions.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

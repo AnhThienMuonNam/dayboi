@@ -96,7 +96,7 @@ a:focus {
 }
 
 .main-content {
-    -webkit-filter: blur(0px);
+    /*-webkit-filter: blur(0px);
     -moz-filter: blur(0px);
     -ms-filter: blur(0px);
     -o-filter: blur(0px);
@@ -104,7 +104,7 @@ a:focus {
     -webkit-transform-origin: top center;
     -moz-transform-origin: top center;
     -ms-transform-origin: top center;
-    transform-origin: top center;
+    transform-origin: top center;*/
 }
 
 figure,
@@ -3117,7 +3117,7 @@ input[type='checkbox']:checked::before {
     background-color: #119e40;
 }
 
-.separator {
+/*.separator {
     display: inline-block;
     position: relative;
     margin-bottom: 15px;
@@ -3142,7 +3142,7 @@ input[type='checkbox']:checked::before {
         height: 2px;
         background-color: #5e5e5e;
         content: " ";
-    }
+    }*/
 /********************
  * 13.0 - Line Separator End
  ********************/

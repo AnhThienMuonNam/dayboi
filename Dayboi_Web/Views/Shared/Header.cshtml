@@ -103,7 +103,6 @@
                             }
                         </ul>
                     </li>
-
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Khóa học <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -130,10 +129,23 @@
                             }
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kỹ năng bơi <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach (var item in Model.PoolCategories)
+                            {
+                                <li>
+                                    <a href="#@item.Id/@item.Alias">
+                                        @item.Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
                     <li><a href="@Url.Action("index","blog")">Tin tức</a></li>
+                    <li><a href="@Url.Action("index","blog")">Liên hệ</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-
                     <li class="dropdown">
 
                         <a href="@Url.Action("index","cart")">
@@ -142,8 +154,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tùy chọn <span class="caret"></span></a>
-
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tài khoản <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             @if (!Request.IsAuthenticated)
                             {

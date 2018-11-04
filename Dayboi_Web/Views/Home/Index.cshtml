@@ -3,7 +3,30 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
+@section Styles{
+    <link href="~/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/assets/js/libs/moment.min.js"></script>
+    <script src="~/Scripts/Client/page_home.js"></script>
+    <script src="~/assets/js/libs/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datetimepicker1').datetimepicker();
+
+            var data = {};
+            var apis = {};
+            var options = {};
+            data.Home = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            data.API_URLs = apis;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<div id="main-page">
     <!-- Image Slider -->
     <section class="slider-content">
         <!-- .container -->
@@ -121,50 +144,44 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel-group panel-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                                @{bool IsFirstTabCourse = true;}
-                                @foreach (var item in Model.Courses)
-                                {
-
+                                <!-- ko foreach: Courses -->
                                 <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="heading-@item.Id">
-                                        <div class="side-tab" data-target="#tab-@item.Id" data-toggle="tab" role="tab" aria-expanded="false">
+                                    <div class="panel-heading" role="tab" data-bind="attr: {id: 'heading-'+ Id}">
+                                        <div class="side-tab" data-bind="attr: {'data-target': '#tab-'+ Id}" data-toggle="tab" role="tab" aria-expanded="false">
                                             <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
-                                                    @item.Name
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" data-bind="attr: {href: '#collapse-'+ Id, 'aria-controls': 'collapse-'+Id}, text: Name, click: selectCourse" aria-expanded="true">
                                                 </a>
                                             </h4>
                                         </div>
                                         <i class="icon iline2-arrow407"></i>
                                     </div>
-                                    @if (IsFirstTabCourse)
-                                    {
-                                    <div id="collapse-@item.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                    <!-- ko if: $index() == 0 -->
+                                    <div data-bind="attr: {id: 'collapse-'+ Id, 'aria-labelledby': 'heading-'+ Id}" class="panel-collapse collapse in" role="tabpanel">
                                         <p class="panel-body no-margin-bottom">
-                                            @item.Description
+                                            <span data-bind="text: Description"></span>
                                             <br />
-                                            <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
+                                            <a data-bind="attr: {href: '/khoa-hoc/'+ Id + '/'+Alias}" style="float:right;">Xem chi tiết</a>
                                         </p>
                                     </div>
-                                    IsFirstTabCourse = false;
-                                    }
-                                    else
-                                    {
-                                    <div id="collapse-@item.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                    <!-- /ko -->
+                                    <!-- ko if: $index() > 0 -->
+                                    <div data-bind="attr: {id: 'collapse-'+ Id, 'aria-labelledby': 'heading-'+Id}" class="panel-collapse collapse" role="tabpanel">
                                         <p class="panel-body no-margin-bottom">
-                                            @item.Description
+                                            <span data-bind="text: Description"></span>
                                             <br />
-                                            <a href="~/khoa-hoc/@item.Id/@item.Alias" style="float:right;">Xem chi tiết</a>
+                                            <a data-bind="attr: {href: '~/khoa-hoc/'+ Id + '/'+Alias}" style="float:right;">Xem chi tiết</a>
                                         </p>
                                     </div>
-                                    }
+                                    <!-- /ko -->
                                 </div>
-                                }
+                                <!-- /ko -->
                                 <div>
-                                    <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-toggle="modal" data-target="#myModal" role="button" title="Đăng ký">Đăng ký</a>
+                                    <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-toggle="modal" data-target="#myModal" role="button" title="Đăng ký" data-bind="text: RegisterCourseButtonName"></a>
+
                                 </div>
-                                <!-- /panel 3 -->
-                            </div><!-- /.panel-group -->
-                        </div><!-- /.col-md-6 --><div class="col-md-6 hidden-xs">
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6 hidden-xs">
                             <!-- begin notebook mockup -->
                             <div class="md-notebook md-glare">
                                 <div class="md-lid">
@@ -176,19 +193,19 @@
                                                 @{bool IsFirstImageCourse = true;}
                                                 @foreach (var item in Model.Courses)
                                                 {
-                                                if (IsFirstImageCourse)
-                                                {
-                                                <div class="tab-pane in active" id="tab-@item.Id">
-                                                    <img src="@item.Image" alt="" class="img img-responsive" />
-                                                </div>
-                                                IsFirstImageCourse = false;
-                                                }
-                                                else
-                                                {
-                                                <div class="tab-pane in" id="tab-@item.Id">
-                                                    <img src="@item.Image" alt="" class="img img-responsive" />
-                                                </div>
-                                                }
+                                                    if (IsFirstImageCourse)
+                                                    {
+                                                        <div class="tab-pane in active" id="tab-@item.Id">
+                                                            <img src="@item.Image" alt="" class="img img-responsive" />
+                                                        </div>
+                                                        IsFirstImageCourse = false;
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="tab-pane in" id="tab-@item.Id">
+                                                            <img src="@item.Image" alt="" class="img img-responsive" />
+                                                        </div>
+                                                    }
                                                 }
                                             </div>
                                         </div>
@@ -196,12 +213,10 @@
                                 </div>
                             </div> <!-- end notebook mockup -->
                         </div> <!-- /.col-md-6 -->
-                    </div> <!--/ .row -->
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- comment -->
-
     </section>
     <!-- Features -->
     <section class="white">
@@ -276,22 +291,22 @@
                     <div class="row">
                         @foreach (var item in Model.Blogs)
                         {
-                        <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <div class="panel panel-default text-center mar-bottom-sm">
-                                <div class="panel-body">
-                                    <img src="@item.Image" />
+                            <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                <div class="panel panel-default text-center mar-bottom-sm">
+                                    <div class="panel-body">
+                                        <img src="@item.Image" />
+                                    </div>
+                                    <div class="panel-heading p15">
+                                        <h6 class="uppercase no-margin">@item.Title</h6>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            @item.SortDescription
+                                        </li>
+                                        <li class="list-group-item"><a href="/blog/@item.Id/@item.Alias" class="btn btn-default">Xem chi tiết</a></li>
+                                    </ul>
                                 </div>
-                                <div class="panel-heading p15">
-                                    <h6 class="uppercase no-margin">@item.Title</h6>
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        @item.SortDescription
-                                    </li>
-                                    <li class="list-group-item"><a href="/blog/@item.Id/@item.Alias" class="btn btn-default">Xem chi tiết</a></li>
-                                </ul>
                             </div>
-                        </div>
                         }
                     </div>
                     <!-- /Pricing Table -->
@@ -301,22 +316,20 @@
             <!-- /.row -->
         </div>
     </section>
-        
     <section>
         <div class="container">
-           
             <div class="row">
                 <div class="col-md-12">
-                    <img src="~/assets/images/works/i-title.png" style="padding-left: 518px; margin-top: -133px;" /> 
+                    <img src="~/assets/images/works/i-title.png" style="padding-left: 518px; margin-top: -133px;" />
                     <div style="text-align: center;color:#125790; margin-top: -69px; font-size: 39px; margin-bottom: 37px;">Tại sao chọn dạy bơi Kid Swim</div>
                     <div class="row" style="color:#125790">
                         <div class="col-md-4 mar-bottom-md">
-                            <img src="~/assets/images/works/i-5.png" /> 
-                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Chất lượng được cam kết</ul> 
+                            <img src="~/assets/images/works/i-5.png" />
+                            <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Chất lượng được cam kết</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
                             </ul>
-                         </div>
+                        </div>
                         <div class="col-md-4 mar-bottom-md">
                             <img src="~/assets/images/works/i-6.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Thời gian linh động</ul>
@@ -352,7 +365,7 @@
                                 Hoặc hồ bơi gần nhà bạn, trong khu dân cư của bạn. Hãy liên lạc chúng tôi để được tư vấn hồ bơi phù hợp
                             </ul>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
@@ -382,7 +395,7 @@
                                 <li><a class="active" href="#" data-filter="*">Tất cả</a></li>
                                 @foreach (var item in Model.PoolCategories)
                                 {
-                                <li><a href="#" data-filter=".@item.Id" class="">@item.Name</a></li>
+                                    <li><a href="#" data-filter=".@item.Id" class="">@item.Name</a></li>
                                 }
                             </ul>
                         </div>
@@ -397,26 +410,26 @@
                             <ul class="isotope-gallery col-3-gallery">
                                 @foreach (var poolCategory in Model.PoolCategories)
                                 {
-                                foreach (var pool in poolCategory.Pools)
-                                {
-                                <li class="gallery-item @poolCategory.Id">
-                                    <div class="work-body text-center">
-                                        <div class="thumbnail">
-                                            <figure>
-                                                <img src="@pool.Image" class="img-responsive" alt="" />
-                                                <div class="image-overlay">
-                                                    <p>
-                                                        <a href="@pool.Image" style="width:100%;height:auto;">
-                                                            @pool.Name
-                                                        </a>
-                                                    </p>
-                                                </div><!--image overlay-->
+                                    foreach (var pool in poolCategory.Pools)
+                                    {
+                                        <li class="gallery-item @poolCategory.Id">
+                                            <div class="work-body text-center">
+                                                <div class="thumbnail">
+                                                    <figure>
+                                                        <img src="@pool.Image" class="img-responsive" alt="" />
+                                                        <div class="image-overlay">
+                                                            <p>
+                                                                <a href="@pool.Image" style="width:100%;height:auto;">
+                                                                    @pool.Name
+                                                                </a>
+                                                            </p>
+                                                        </div><!--image overlay-->
 
-                                            </figure><!--/figure-->
-                                        </div>
-                                    </div>
-                                </li>
-                                }
+                                                    </figure><!--/figure-->
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
                                 }
                             </ul>
                             <!-- /All works -->
@@ -432,8 +445,47 @@
         <!-- /.container -->
     </section>
     <!-- /Portfolio -->
-
-
-
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Đăng ký khoá học</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 blog-main">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group control-group">
+                                        <p class="help-block">Họ tên</p>
+                                        <input type="text" class="form-control input-lg" data-bind="" name="customername" placeholder="Họ tên*" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
+                                    </div>
+                                    <div class="form-group control-group">
+                                        <p class="help-block">Số điện thoại</p>
+                                        <input type="number" class="form-control input-lg" data-bind="" name="customerphone" placeholder="Số điện thoại*" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
+                                    </div>
+                                    <div class="form-group control-group">
+                                        <p class="help-block">Ngày học</p>
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*<input type="email" class="form-control input-lg" data-bind="" name="customeremail" placeholder="Ngày học*" />*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="text: RegisterCourseButtonName">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
