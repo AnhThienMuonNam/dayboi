@@ -1,8 +1,12 @@
-﻿@model IEnumerable<Dayboi_Web.ViewModels.BlogViewModel>
+﻿@model IEnumerable<Dayboi_Web.ViewModels.PoolViewModel>
+
 @{
-    ViewBag.Title = "Tin tức - KidSwim";
+   
+    ViewBag.Title = "Danh mục Hồ bơi - KidSwim";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <div>
     <!-- HEADER TREE -->
@@ -17,7 +21,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb clearfix mar-top-3x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
-                        <li><a class="link" href="#">Tin tức</a></li>
+                        <li><a class="link" href="#">Hồ bơi</a></li>
                     </ul>
                 </div>
                 <!-- /.col-md-12 -->
@@ -29,7 +33,6 @@
     <!-- HEADER TREE END -->
     <!-- BLOG POST BODY SECTION -->
     <section class="pattern-3 no-padding-right" style="padding-top:0px;">
-        <h2 class="hidden">blog posts</h2>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
@@ -51,28 +54,21 @@
                                         </span>
                                         <div class="blog-body">
                                             <header class="entry-header">
-                                                <a href="/blog/@item.Id/@item.Alias">
+                                                <a href="/ho-boi/@item.Id/@item.Alias">
                                                     <img src="@item.Image" alt="post 3" class="img-responsive img-full" />
 
                                                 </a>
                                             </header>
-                                            <h4 class="text-primary text-center mar-top-sm">@item.Title</h4>
+                                            <h4 class="text-primary text-center mar-top-sm">@item.Name</h4>
                                             <p>
-                                                @item.SortDescription
+                                                @item.Address
                                             </p>
-                                            <a class="btn btn-primary text-uppercase" href="/blog/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
+                                            <a class="btn btn-primary text-uppercase" href="/ho-boi/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
                                         </div>
                                     </article>
                                     <!-- /.blog-post -->
                                 }
                             </section>
-                            <!-- .navigation -->
-                            <nav class="navigation paging-navigation">
-                                <ul class="page-numbers pagination">
-
-                                    <li><a class="next page-numbers pagination" href="#">Xem thêm →</a></li>
-                                </ul>
-                            </nav><!-- /.navigation -->
                         </div>
                         <!-- /Left part -->
                         <!-- Right part -->

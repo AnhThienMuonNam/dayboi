@@ -1,17 +1,19 @@
-﻿@model Dayboi_Web.ViewModels.CourseViewModel
+﻿@model Dayboi_Web.ViewModels.PoolViewModel
+
 @{
     ViewBag.Title = Model.Name + " - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 @section Scripts{
-    <script src="~/Scripts/Client/course_detail.js"></script>
+    <script src="~/Scripts/Client/pool_detail.js"></script>
     <script>
         $(document).ready(function () {
             var data = {};
             var apis = {};
             var options = {};
-            data.Course = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            data.Pool = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
             data.API_URLs = apis;
             data.Options = options;
@@ -23,7 +25,6 @@
 <div id="main-page">
     <!-- HEADER TREE -->
     <section class="header-tree" data-speed="8" data-type="background">
-        <h2 class="hidden">Header tree</h2>
         <!-- parallax background -->
         <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
         <!-- .container -->
@@ -34,7 +35,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb clearfix mar-top-3x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
-                        <li><a class="link text-success" href="/">Khoá học</a></li>
+                        <li><a class="link text-success" href="/">Hồ bơi</a></li>
                         <li><a class="link" href="#">@Model.Name</a></li>
                     </ul>
                 </div>
@@ -59,12 +60,13 @@
                         <div class="col-md-8 blog-main">
                             <div class="post-detail sep-bottom-lg">
                                 <figure class="no-margin">
-                                    <img data-bind="attr:{src: Course().Image}" alt="" class="img-responsive" />
+                                    <img data-bind="attr:{src: Pool().Image}" alt="" class="img-responsive" />
                                 </figure>
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-uppercase" data-bind="text: Course().Name"></h3>
+                                    <h3 class="text-uppercase" data-bind="text: Pool().Name"></h3>
+                                    <h4 class="text-uppercase" data-bind="text: 'Địa chỉ: ' + Pool().Address"></h4>
                                     <span class="line-sep-gray"></span>
-                                    <div class="content" data-bind="html: showContent(Course().Content)">
+                                    <div class="content" data-bind="html: showContent(Pool().Content)">
 
                                     </div>
                                     <div class="post-detail-bottom mar-top-sm">
@@ -80,17 +82,8 @@
                                     </ul>
                                     <span class="clearboth">
                                     </span>
-                                    <div class="text-center share-menu">
-                                        <button type="button" class="btn btn-primary">Đăng ký khoá học</button>
-                                    </div>
                                 </div>
                             </div>
-
-                            @*<div class="nav-links mar-top-md">
-                                    <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i> Preview Post</a>
-                                    <a href="blog-post-carousel.html" class="text-uppercase pull-right">Next Post <i class="iline1-chevron15"></i></a>
-                                </div>*@
-
                         </div>
                         <!-- /Left part -->
                         <!-- Right part -->
@@ -98,9 +91,9 @@
                             <!-- Popular Posts -->
                             <div class="post-detail">
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">Khoá học khác</h3>
+                                    <h3 class="text-primary text-uppercase text-center">Hồ bơi khác</h3>
                                     <ul class="text-capitalize sidebar">
-                                        @foreach (var item in Model.OtherCourses)
+                                        @foreach (var item in Model.OtherPools)
                                         {
                                             <li>
                                                 <a href="#">
@@ -108,7 +101,7 @@
                                                         <img src="@item.Image" alt="" class="img-responsive" />
                                                     </span>
                                                     <h4 class="text-uppercase text-success">@item.Name</h4>
-                                                    <i class="text-muted small">34 Comments</i>
+                                                    <i class="text-muted small">@item.Address</i>
                                                 </a>
                                             </li>
                                         }

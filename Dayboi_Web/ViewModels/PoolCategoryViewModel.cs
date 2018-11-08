@@ -6,7 +6,7 @@ namespace Dayboi_Web.ViewModels
     {
         public PoolCategoryViewModel()
         {
-            //Pools = new List<PoolViewModel>();
+            Pools = new List<PoolViewModel>();
         }
 
         public int Id { get; set; }

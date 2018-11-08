@@ -22,6 +22,7 @@ namespace Dayboi_Web.ViewModels
         public string Address { get; set; }
 
         public string Image { get; set; }
+
         public string Content { get; set; }
 
         public DateTime CreatedOn { get; set; }

@@ -282,6 +282,7 @@
     <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PoolController.cs" />
     <Compile Include="Helper\MailHelper.cs" />
     <Compile Include="Models\SelectItemModel.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -5777,6 +5778,7 @@
     <Content Include="Scripts\Admin\product_index.js" />
     <Content Include="Scripts\Client\page_checkout.js" />
     <Content Include="Scripts\Client\page_home.js" />
+    <Content Include="Scripts\Client\pool_detail.js" />
     <Content Include="Scripts\Common\common_functions.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5847,6 +5849,8 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\CourseDetail.cshtml" />
     <Content Include="Views\Feature\FAQ.cshtml" />
+    <Content Include="Views\Pool\PoolDetail.cshtml" />
+    <Content Include="Views\Pool\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

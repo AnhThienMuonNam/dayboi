@@ -1,6 +1,6 @@
 ﻿@model Dayboi_Web.ViewModels.HomeViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dạy bơi, các hoạt động bơi lội - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
@@ -438,7 +438,7 @@
                                                         <img src="@pool.Image" class="img-responsive" alt="" />
                                                         <div class="image-overlay">
                                                             <p>
-                                                                <a href="@pool.Image" style="width:100%;height:auto;">
+                                                                <a href="/ho-boi/@pool.Id/@pool.Alias" style="width:100%;height:auto;">
                                                                     @pool.Name
                                                                 </a>
                                                             </p>
