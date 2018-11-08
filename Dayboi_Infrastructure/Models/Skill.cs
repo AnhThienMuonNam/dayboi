@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dayboi_Infrastructure.Models
 {
-    [Table("Courses")]
-    public class Course
+    [Table("Skills")]
+    public class Skill
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -42,8 +42,6 @@ namespace Dayboi_Infrastructure.Models
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }
 
-        public ICollection<CourseTag> CourseTags { get; set; }
-
-        public ICollection<EnrollmentCourse> EnrollmentCourses { get; set; }
+        public ICollection<SkillTag> SkillTags { get; set; }
     }
 }

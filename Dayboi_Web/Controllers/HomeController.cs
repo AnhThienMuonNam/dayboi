@@ -3,6 +3,8 @@ using Dayboi_Infrastructure.Models;
 using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service.Admin;
 using Dayboi_Web.ViewModels;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -15,19 +17,28 @@ namespace Dayboi_Web.Controllers
         private readonly IBlogRepository _blogRepository;
         private readonly ICourseRepository _courseRepository;
         private readonly IPoolCategoryRepository _poolCategoryRepository;
+        private readonly IEnrollmentCourseRepository _enrollmentCourseRepository;
+        private readonly ISkillRepository _skillRepository;
 
-        private List<CourseViewModel> _courses;
+        private List<CourseViewModel> _courses = new List<CourseViewModel>();
+        private List<SkillViewModel> _skill = new List<SkillViewModel>();
+
 
         public HomeController(ICategoryService categoryService,
                             IBlogRepository blogRepository,
                             IPoolCategoryRepository poolCategoryRepository,
-                            ICourseRepository courseRepository)
+                            ICourseRepository courseRepository,
+                            IEnrollmentCourseRepository enrollmentCourseRepository,
+                            ISkillRepository skillRepository)
         {
             _categoryService = categoryService;
             _blogRepository = blogRepository;
             _courseRepository = courseRepository;
+            _skillRepository = skillRepository;
+            _poolCategoryRepository = poolCategoryRepository;
+            _enrollmentCourseRepository = enrollmentCourseRepository;
             _courses = _courseRepository.GetMany(x => x.IsActive &&
-                                                          !x.IsDeleted)
+                                                        !x.IsDeleted)
                                                         .OrderBy(x => x.DisplayOrder)
                                                         .Select(x => new CourseViewModel
                                                         {
@@ -38,7 +49,18 @@ namespace Dayboi_Web.Controllers
                                                             Description = x.Description
                                                         })
                                                         .ToList();
-            _poolCategoryRepository = poolCategoryRepository;
+
+            _skill = _skillRepository.GetMany(x => x.IsActive &&
+                                                    !x.IsDeleted)
+                                                    .Select(x => new SkillViewModel
+                                                    {
+                                                        Id = x.Id,
+                                                        Name = x.Name,
+                                                        Alias = x.Alias,
+                                                        Image = x.Image,
+                                                        Description = x.Description
+                                                    }).ToList();
+
         }
 
         [ChildActionOnly]
@@ -64,9 +86,12 @@ namespace Dayboi_Web.Controllers
                                                                             Id = x.Id,
                                                                             Name = x.Name,
                                                                             Alias = x.Alias,
-                                                                            Image = x.Image
+                                                                            Image = x.Image,
                                                                         }).ToList();
             headerModel.PoolCategories = poolCategoryModels;
+
+
+            headerModel.Skills = _skill;
 
             return PartialView(headerModel);
         }
@@ -83,6 +108,7 @@ namespace Dayboi_Web.Controllers
             var blogModels = Mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             homeModel.Blogs = blogModels;
             homeModel.Courses = _courses;
+            homeModel.Skills = _skill;
             homeModel.PoolCategories = GetPoolCategories();
             return View(homeModel);
         }
@@ -115,6 +141,47 @@ namespace Dayboi_Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult RegisterCourse(EnrollmentCourseViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new
+                {
+                    IsSuccess = false,
+                });
+            }
+
+            try
+            {
+
+                var entity = Mapper.Map<EnrollmentCourseViewModel, EnrollmentCourse>(model);
+
+                entity.CreatedOn = DateTime.Now;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    entity.CreatedBy = User.Identity.GetUserId();
+                }
+
+                _enrollmentCourseRepository.Add(entity);
+
+                return Json(new
+                {
+                    IsSuccess = true,
+                });
+            }
+
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    IsSuccess = false,
+                    ErrorMessage = ex.Message
+                });
+            }
         }
     }
 }

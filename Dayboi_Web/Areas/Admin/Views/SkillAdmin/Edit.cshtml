@@ -1,4 +1,5 @@
-﻿@model Dayboi_Web.Areas.Admin.Models.CourseModel
+﻿@model Dayboi_Web.Areas.Admin.Models.SkillModel
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -17,7 +18,7 @@
     <!-- Select2 -->
     <script src="~/assets_admin/bower_components/select2/dist/js/select2.full.min.js"></script>
 
-    <script src="~/Scripts/Admin/course_create-edit.js"></script>
+    <script src="~/Scripts/Admin/skill_create-edit.js"></script>
     <script>
         $(document).ready(function () {
             CKEDITOR.replace('editor1')
@@ -32,11 +33,11 @@
             var urls = {};
             var options = {};
 
-            data.Course = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            data.Skill = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
-            urls.CreateCourse = "@Url.Action("CreateCourse", "CourseAdmin")";
-            urls.UpdateCourse = "@Url.Action("UpdateCourse", "CourseAdmin")";
-            urls.EditProductPage = "@Url.Action("Edit", "Product")";
+            urls.CreateSkill= "@Url.Action("CreateSkill", "SkillAdmin")";
+            urls.UpdateSkill = "@Url.Action("UpdateSkill", "SkillAdmin")";
+            urls.EditSkillPage = "@Url.Action("Edit", "SkillAdmin")";
 
             data.API_URLs = urls;
             data.Options = options;
@@ -47,28 +48,23 @@
 }
 
 <section class="content" id="main-page">
-    <div class="row" data-bind="with: courseModel">
-        <!-- left column -->
+    <div class="row" data-bind="with: skillModel">
         <div class="col-md-12">
-            <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Cập nhật Bài viết</h3>
+                    <h3 class="box-title">Cập nhật Kỹ năng bơi</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                @Html.Partial("~/Areas/Admin/Views/CourseAdmin/Partial/CourseEditor.cshtml")
+                @Html.Partial("~/Areas/Admin/Views/SkillAdmin/Partial/SkillEditor.cshtml")
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" data-bind="click: update" class="btn btn-danger pull-right">Xoá</button>
+                    <button type="button" data-bind="" class="btn btn-danger pull-right">Xoá</button>
                     <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhập</button>
                 </div>
             </div>
-            <!-- /.box -->
         </div>
-        <!--/.col (left) -->
     </div>
-    <!-- /.row -->
 </section>
 
 

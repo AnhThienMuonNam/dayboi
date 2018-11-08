@@ -10,9 +10,9 @@
             var data = {};
             var options = {};
             data.Product = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
-            options.AddToCart = '@Url.Action("AddToCart", "Cart")';
-            options.GetRelatedProducts = '@Url.Action("GetRelatedProducts", "Shop")';
+            data.RelatedProducts = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.RelatedProducts));
 
+            options.AddToCart = '@Url.Action("AddToCart", "Cart")';
 
             data.API_URLs = options;
 
@@ -132,7 +132,7 @@
                                         <i class="iline2-subtract1" style="margin-right:20px;"></i>
                                     </span>
                                     <span class="input-group-btn" style="width: 0%;">
-                                        <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: '3'"></span></i>
+                                        <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: '1'"></span></i>
                                     </span>
                                     <span class="input-group-btn" style="width: 0%;">
                                         <i class="iline2-add63"></i>
@@ -164,7 +164,7 @@
                             <ul class="ic-list wow bounceInRight hidden-md hidden-lg">
                                 <li style="padding-left: 0px;">
                                     <i class="iline2-subtract1" style="margin-right:20px;"></i>
-                                    <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: '3'"></span></i>
+                                    <i class="wow fadeInDown text-muted h3" data-wow-duration=".8s" data-wow-delay=".2s"><span data-bind="text: '1'"></span></i>
                                     <i class="iline2-add63"></i>
                                 </li>
                                 <li style="padding-left: 0px;">

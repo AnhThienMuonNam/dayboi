@@ -36,6 +36,9 @@ namespace Dayboi_Infrastructure
         public DbSet<PoolTag> PoolTags { set; get; }
         public DbSet<PoolCategory> PoolCategories { set; get; }
 
+        public DbSet<Skill> Skills { set; get; }
+        public DbSet<SkillTag> SkillTags { set; get; }
+
         public static DayboiDbContext Create()
         {
             return new DayboiDbContext();

@@ -34,9 +34,20 @@ namespace Dayboi_Web.Mappings
             base.CreateMap<Course, CourseViewModel>()
                .ForMember(s => s.Tags, t => t.MapFrom(src => src.CourseTags != null ? src.CourseTags.Select(x => x.Tag) : null));
 
-            base.CreateMap<Pool, PoolModel>()
-              .ForMember(s => s.Tags, t => t.MapFrom(src => src.PoolTags != null ? src.PoolTags.Select(x => x.Tag) : null));
+            base.CreateMap<Skill, SkillViewModel>()
+               .ForMember(s => s.Tags, t => t.MapFrom(src => src.SkillTags != null ? src.SkillTags.Select(x => x.Tag) : null));
 
+            base.CreateMap<Skill, SkillModel>()
+              .ForMember(s => s.Tags, t => t.MapFrom(src => src.SkillTags != null ? src.SkillTags.Select(x => x.Tag) : null));
+
+            base.CreateMap<Pool, PoolModel>()
+              .ForMember(s => s.Tags, t => t.MapFrom(src => src.PoolTags != null ? src.PoolTags.Select(x => x.Tag) : null))
+              .ForMember(s => s.PoolCategoryName, t => t.MapFrom(src => src.PoolCategory != null ? src.PoolCategory.Name : string.Empty));
+
+            base.CreateMap<Order, OrderAdminModel>()
+             .ForMember(s => s.FullAddress, t => t.MapFrom(src => src.Address + ", " + src.WardName + ", " + src.DistrictName + ", " + src.ProvinceName))
+              .ForMember(s => s.PaymentMethodName, t => t.MapFrom(src => src.PaymentMethod != null ? src.PaymentMethod.Name : string.Empty))
+              .ForMember(s => s.OrderStatusName, t => t.MapFrom(src => src.OrderStatus != null ? src.OrderStatus.Name : string.Empty));
         }
     }
 }

@@ -1,19 +1,19 @@
-﻿@model IEnumerable<Dayboi_Web.Areas.Admin.Models.PoolModel>
+﻿@model IEnumerable<Dayboi_Web.Areas.Admin.Models.SkillModel>
 
 @{
-    ViewBag.Title = "Danh sách Hồ bơi - KidSwim";
+    ViewBag.Title = "Kỹ năng bơi - KidSwim";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @section footerJS{
-    <script src="~/Scripts/Admin/pool_index.js"></script>
+    <script src="~/Scripts/Admin/skill_index.js"></script>
     <script>
         $(document).ready(function () {
             var data = {};
             var options = {};
-            data.Pools = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            data.Skills = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
-            options.EditPoolUrl = '@Url.Action("Edit", "PoolAdmin")';
+            options.EditSkillUrl = '@Url.Action("Edit", "SkillAdmin")';
             data.API_URLs = options;
 
             ko.applyBindings(MainModel(data), document.getElementById("main-page"));
@@ -25,7 +25,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Danh sách Hồ bơi</h3>
+                    <h3 class="box-title">Danh sách Kỹ năng bơi</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -41,26 +41,22 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên</th>
-                            <th>Loại</th>
-                            <th>Địa chỉ</th>
+                            <th>Mô tả</th>
                             <th>Trạng thái</th>
                             <th></th>
                         </tr>
-                        <!-- ko foreach: Pools -->
+                        <!-- ko foreach: Skills -->
                         <tr>
                             <td data-bind="text: Id"></td>
                             <td data-bind="text: Name"></td>
-                            <td data-bind="text: PoolCategoryName"></td>
-                            <td data-bind="text: Address"></td>
+                            <td data-bind="text: Description"></td>
                             <td data-bind="text: IsActive"></td>
                             <td>
-                                <a class="label label-warning" data-bind="attr: {href: EditPoolUrl() +'/' + Id}">Sửa</a>
-                                <a class="label label-danger" data-bind="attr: {href: EditPoolUrl() +'/' + Id}">Xoá</a>
+                                <a class="label label-warning" data-bind="attr: {href: EditSkillUrl() +'/' + Id}">Sửa</a>
+                                <a class="label label-danger" data-bind="attr: {href: EditSkillUrl() +'/' + Id}">Xoá</a>
                             </td>
-
                         </tr>
                         <!-- /ko -->
-
                     </table>
                 </div>
                 <!-- /.box-body -->

@@ -9,5 +9,7 @@ namespace Dayboi_Web.ViewModels
         public List<CourseViewModel> Courses { get; set; }
 
         public List<PoolCategoryViewModel> PoolCategories { get; set; }
+
+        public List<SkillViewModel> Skills { get; set; }
     }
 }

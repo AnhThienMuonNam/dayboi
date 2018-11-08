@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace Dayboi_Web.Areas.Admin.Models
 {
-    public class PoolModel
+    public class SkillModel
     {
         public int Id { get; set; }
 
@@ -12,7 +15,7 @@ namespace Dayboi_Web.Areas.Admin.Models
 
         public string MetaKeyword { get; set; }
 
-        public string Address { get; set; }
+        public string Description { get; set; }
 
         public string Content { get; set; }
 
@@ -24,9 +27,5 @@ namespace Dayboi_Web.Areas.Admin.Models
         public bool IsActive { get; set; }
 
         public List<string> Tags { get; set; }
-
-        public int PoolCategoryId { get; set; }
-
-        public string PoolCategoryName { get; set; }
     }
 }

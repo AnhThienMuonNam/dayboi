@@ -29,7 +29,7 @@
     </section>
     <!-- HEADER TREE END -->
     <!-- BLOG POST BODY SECTION -->
-    <section class="pattern-3 no-padding-right">
+    <section class="pattern-3 no-padding-right"style="padding-top:0px;">
         <h2 class="hidden">blog posts</h2>
         <!-- .container -->
         <div class="container">
@@ -42,7 +42,6 @@
                         <!-- Left part -->
                         <div class="col-md-8 blog-main">
                             <section class="blog-post-list no-padding">
-                                <h2 class="hidden">Last Posts</h2>
                                 @foreach (var item in Model)
                                     {
                                     <!-- .blog-post -->
@@ -51,25 +50,18 @@
                                             @item.CreatedOn.Month
                                             <small class="blog-month">@item.CreatedOn.Year</small>
                                         </span>
-
                                         <div class="blog-body">
                                             <header class="entry-header">
-                                                <a href="blog-post.html">
+                                                <a href="/blog/@item.Id/@item.Alias">
                                                     <img src="@item.Image" alt="post 3" class="img-responsive img-full" />
-                                                    <div class="image-overlay">
-                                                        <p>
-                                                            <span class="show-image">
-                                                                <i class="iline2-arrow423"></i>
-                                                            </span>
-                                                        </p>
-                                                    </div>
+                                                   
                                                 </a>
                                             </header>
                                             <h4 class="text-primary text-center mar-top-sm">@item.Title</h4>
                                             <p>
                                                 @item.SortDescription
                                             </p>
-                                            <a class="btn btn-primary text-uppercase" href="/blog/@item.Id/@item.Alias" role="button" title="continue reading"> Xem tiếp</a>
+                                            <a class="btn btn-primary text-uppercase" href="/blog/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
                                         </div>
                                     </article>
                                     <!-- /.blog-post -->
@@ -78,10 +70,8 @@
                             <!-- .navigation -->
                             <nav class="navigation paging-navigation">
                                 <ul class="page-numbers pagination">
-                                    <li><span class="page-numbers pagination current">1</span></li>
-                                    <li><a class="page-numbers pagination" href="#">2</a></li>
-                                    <li><a class="page-numbers pagination" href="#">3</a></li>
-                                    <li><a class="next page-numbers pagination" href="#">Next →</a></li>
+                                   
+                                    <li><a class="next page-numbers pagination" href="#">Xem thêm →</a></li>
                                 </ul>
                             </nav><!-- /.navigation -->
                         </div>

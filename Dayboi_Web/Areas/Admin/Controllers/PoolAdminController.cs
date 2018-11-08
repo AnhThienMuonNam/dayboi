@@ -17,7 +17,6 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         private readonly IPoolRepository _poolRepository;
         private readonly IPoolTagRepository _poolTagRepository;
         private readonly IPoolCategoryRepository _poolCategoryRepository;
-
         private readonly IUnitOfWork _unitOfWork;
 
         public PoolAdminController(IPoolRepository poolRepository,
@@ -34,8 +33,21 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         // GET: Admin/PoolAdmin
         public ActionResult Index()
         {
-            return View();
+            var courses = GetPools();
+
+            return View(courses);
         }
+
+        private IEnumerable<PoolModel> GetPools()
+        {
+            var courses = _poolRepository.GetMany(x => !x.IsDeleted)
+                                        .Include(x => x.PoolCategory)
+                                        .ToList();
+
+            var toReturn = Mapper.Map<IEnumerable<Pool>, IEnumerable<PoolModel>>(courses);
+            return toReturn;
+        }
+
 
         public ActionResult Create()
         {
@@ -76,6 +88,11 @@ namespace Dayboi_Web.Areas.Admin.Controllers
                                                         .FirstOrDefault();
                 if (pool != null)
                 {
+                    var poolCategories = _poolCategoryRepository.GetMany(x => !x.IsDeleted)
+                                                       .Select(x => new { Id = x.Id, Name = x.Name })
+                                                       .ToList();
+                    ViewBag.PoolCategories = poolCategories;
+
                     var toReturn = Mapper.Map<Pool, PoolModel>(pool);
                     return View(toReturn);
                 }

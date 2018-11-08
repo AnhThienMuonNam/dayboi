@@ -19,6 +19,9 @@
             var options = {};
             data.Home = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
+            apis.RegisterCourse = '@Url.Action("RegisterCourse", "Home")';
+
+
             data.API_URLs = apis;
             data.Options = options;
 
@@ -177,7 +180,6 @@
                                 <!-- /ko -->
                                 <div>
                                     <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-toggle="modal" data-target="#myModal" role="button" title="Đăng ký" data-bind="text: RegisterCourseButtonName"></a>
-
                                 </div>
                             </div>
                         </div><!-- /.col-md-6 -->
@@ -228,45 +230,17 @@
                 <div class="col-md-12">
                     <!-- .row -->
                     <div class="row">
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_8.jpg" />
-                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">Chất lượng dịch vụ </h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                            </p>
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_3.jpg" />
-                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">Thời gian linh động</h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Bạn có thể tùy chọn lịch dạy bơi theo yêu cầu. Chúng tôi có thể linh động lịch học theo từng học viên.
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_4.jpg" />
-                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">HLV tận tụy và đam mê</h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                HLV được chúng tôi kiểm tra và đánh giá thường xuyên, để đảm bảo mang đến chất lượng tốt nhất cho bạn!
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                            </p>
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_5.jpg" />
-                            <h1 class="wow fadeInDown" data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">Huấn luyện viên kèm riêng</h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Chúng tôi chỉ hướng dẫn học viên bạn đăng ký, và trực tiếp xuống nước hướng dẫn học viên!
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                            </p>
-                        </div>
+                        @foreach (var item in Model.Skills)
+                        {
+                            <div class="col-md-6 mar-bottom-md">
+                                <img src="@item.Image" />
+                                <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">@item.Name</h1>
+                                <span class="line-sep-gray"></span>
+                                <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                    @item.Description
+                                </p>
+                            </div>
+                        }
                     </div>
                     <!-- /.row -->
                 </div>
@@ -448,7 +422,7 @@
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" data-bind="with: registerCourseModel">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Đăng ký khoá học</h4>
@@ -460,11 +434,11 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group control-group">
                                         <p class="help-block">Họ tên</p>
-                                        <input type="text" class="form-control input-lg" data-bind="" name="customername" placeholder="Họ tên*" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
+                                        <input type="text" class="form-control input-lg" data-bind="value: FullName" name="customername" placeholder="Họ tên*" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
                                     </div>
                                     <div class="form-group control-group">
                                         <p class="help-block">Số điện thoại</p>
-                                        <input type="number" class="form-control input-lg" data-bind="" name="customerphone" placeholder="Số điện thoại*" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
+                                        <input type="number" class="form-control input-lg" data-bind="value: Phone" name="customerphone" placeholder="Số điện thoại*" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
                                     </div>
                                     <div class="form-group control-group">
                                         <p class="help-block">Ngày học</p>
@@ -474,7 +448,10 @@
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                         </div>
-                                        @*<input type="email" class="form-control input-lg" data-bind="" name="customeremail" placeholder="Ngày học*" />*@
+                                    </div>
+                                    <div class="form-group control-group">
+                                        <p class="help-block">Ghi chú</p>
+                                        <input type="text" class="form-control input-lg" data-bind="value: Note" placeholder="Ghi chú" />
                                     </div>
                                 </div>
                             </div>
@@ -482,7 +459,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="text: RegisterCourseButtonName">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" data-bind="text: RegisterCourseButtonName, click: register"></button>
                 </div>
             </div>
         </div>

@@ -53,6 +53,7 @@
     <Compile Include="Admin\CategoryService.cs" />
     <Compile Include="Admin\CourseAdminService.cs" />
     <Compile Include="Admin\ProductService.cs" />
+    <Compile Include="Admin\SkillAdminService.cs" />
     <Compile Include="BlogService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="CommonService.cs" />

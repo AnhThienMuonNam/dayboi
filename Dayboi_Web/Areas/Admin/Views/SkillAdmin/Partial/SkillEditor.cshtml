@@ -1,0 +1,52 @@
+﻿<div class="box-body">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nhập tên Kỹ năng</label>
+        <input type="email" class="form-control" placeholder="Nhập tiêu đề" data-bind="value: Name, valueUpdate: 'keypress'">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Tiêu đề SEO</label>
+        <input type="email" class="form-control" placeholder="Tiêu đề SEO" data-bind="value: Alias">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Hình ảnh</label>
+        <button type="button" class="btn btn-primary" data-bind="click: uploadImage">Tải ảnh</button>
+    </div>
+
+    <div class="form-group">
+        <ul class="list-group">
+            <li class="list-group-item" style="display: inline-grid; border: 0px; padding: 1px 3px;">
+                <img style="height: 80px; cursor: pointer;" data-bind="attr : {src: Image}" />
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Mô tả</label>
+        <textarea class="form-control" placeholder="Mô tả" data-bind="value: Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Meta Keyword</label>
+        <input type="text" class="form-control" placeholder="Meta Keyword" data-bind="value: MetaKeyword">
+    </div>
+
+    <div class="form-group">
+        <label>Tags</label>
+        <select id="blogTag" data-bind="event: { change: changeTag }" class="form-control select2" multiple="multiple" data-placeholder="Tags"
+                style="width: 100%;"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Nội dung</label>
+        <textarea id="editor1" name="editor1" rows="10" cols="150">
+                        </textarea>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" data-bind="checked: IsActive"> Visible
+        </label>
+    </div>
+</div>
+
+
