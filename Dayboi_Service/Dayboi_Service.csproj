@@ -55,6 +55,8 @@
     <Compile Include="Admin\ProductService.cs" />
     <Compile Include="Admin\SkillAdminService.cs" />
     <Compile Include="BlogService.cs" />
+    <Compile Include="Enum\eEnrollmentCourseStatus.cs" />
+    <Compile Include="Enum\eOrderStatus.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="CommonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

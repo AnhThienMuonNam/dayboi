@@ -2,7 +2,6 @@
 using Dayboi_Infrastructure.Models;
 using Dayboi_Infrastructure.Repositories;
 using Dayboi_Web.ViewModels;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -23,23 +22,24 @@ namespace Dayboi_Web.Controllers
         // GET: Pool
         public ActionResult Index(int poolCategoryId)
         {
+            var poolCategories = _poolCategoryRepository.GetMany(x => x.IsActive && !x.IsDeleted).Select(x => new PoolCategoryViewModel
+                                                                                                        {
+                                                                                                            Id = x.Id,
+                                                                                                            Name = x.Name,
+                                                                                                            Alias = x.Alias
+                                                                                                        }).ToList();
+            ViewBag.PoolCategories = poolCategories;
             return View(GetPoolsByPoolCategoryId(poolCategoryId));
         }
 
-        private IEnumerable<PoolViewModel> GetPoolsByPoolCategoryId(int poolCategoryId)
+        private PoolCategoryViewModel GetPoolsByPoolCategoryId(int poolCategoryId)
         {
-            var blogs = _poolRepository.GetMany(x => x.IsActive && x.PoolCategoryId == poolCategoryId &&
-                                                !x.IsDeleted)
-                                                .Select(x => new PoolViewModel
-                                                {
-                                                    Id = x.Id,
-                                                    Name = x.Name,
-                                                    Image = x.Image,
-                                                    Alias = x.Alias,
-                                                    Address = x.Address,
-                                                    CreatedOn = x.CreatedOn
-                                                }).ToList();
-            return blogs;
+            var poolCategory = _poolCategoryRepository.GetMany(x => x.Id == poolCategoryId)
+                                                        .Include(x => x.Pools)
+                                                        .FirstOrDefault();
+            var returnPoolCategory = Mapper.Map<PoolCategory, PoolCategoryViewModel>(poolCategory);
+
+            return returnPoolCategory;
         }
 
         [HttpGet]
@@ -54,6 +54,7 @@ namespace Dayboi_Web.Controllers
                                                 && x.IsActive
                                                 && !x.IsDeleted)
                                                 .Include(x => x.PoolTags)
+                                                .Include(x => x.PoolCategory)
                                                 .FirstOrDefault();
 
             var returnBlog = Mapper.Map<Pool, PoolViewModel>(pool);

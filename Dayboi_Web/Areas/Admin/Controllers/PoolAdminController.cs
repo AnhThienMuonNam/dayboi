@@ -120,6 +120,11 @@ namespace Dayboi_Web.Areas.Admin.Controllers
                     entity.IsActive = model.IsActive;
                     entity.Content = model.Content;
                     entity.PoolCategoryId = model.PoolCategoryId;
+                    entity.OpeningHour = model.OpeningHour;
+                    entity.OpeningDay = model.OpeningDay;
+                    entity.ClosedHour = model.ClosedHour;
+                    entity.Fare = model.Fare;
+
                     AddPoolTag(entity, model.Tags);
                     if (User.Identity.IsAuthenticated)
                     {

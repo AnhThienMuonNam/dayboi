@@ -24,7 +24,6 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(500)]
         public string Address { get; set; }
 
-        [StringLength(5000)]
         public string Content { get; set; }
 
         public int? ViewCount { get; set; }
@@ -45,6 +44,11 @@ namespace Dayboi_Infrastructure.Models
         public bool IsDeleted { get; set; }
         public int? DisplayOrder { get; set; }
         public bool IsActive { get; set; }
+
+        public int? OpeningHour{ get; set; }
+        public int? ClosedHour { get; set; }
+        public string OpeningDay { get; set; }
+        public decimal? Fare { get; set; }
 
         public ICollection<PoolTag> PoolTags { get; set; }
     }

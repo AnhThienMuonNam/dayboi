@@ -138,6 +138,22 @@
     <Compile Include="Migrations\201811071700088_addTableSkill.Designer.cs">
       <DependentUpon>201811071700088_addTableSkill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811111737226_updateDB111220180036.cs" />
+    <Compile Include="Migrations\201811111737226_updateDB111220180036.Designer.cs">
+      <DependentUpon>201811111737226_updateDB111220180036.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811111748402_updateDB111220180048.cs" />
+    <Compile Include="Migrations\201811111748402_updateDB111220180048.Designer.cs">
+      <DependentUpon>201811111748402_updateDB111220180048.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131543411_update_11132018_2243.cs" />
+    <Compile Include="Migrations\201811131543411_update_11132018_2243.Designer.cs">
+      <DependentUpon>201811131543411_update_11132018_2243.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131550490_update_11132018_2250.cs" />
+    <Compile Include="Migrations\201811131550490_update_11132018_2250.Designer.cs">
+      <DependentUpon>201811131550490_update_11132018_2250.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -151,6 +167,7 @@
     <Compile Include="Models\CourseTag.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\EnrollmentCourse.cs" />
+    <Compile Include="Models\EnrollmentCourseStatus.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderStatus.cs" />
@@ -242,6 +259,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811071700088_addTableSkill.resx">
       <DependentUpon>201811071700088_addTableSkill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811111737226_updateDB111220180036.resx">
+      <DependentUpon>201811111737226_updateDB111220180036.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811111748402_updateDB111220180048.resx">
+      <DependentUpon>201811111748402_updateDB111220180048.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131543411_update_11132018_2243.resx">
+      <DependentUpon>201811131543411_update_11132018_2243.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131550490_update_11132018_2250.resx">
+      <DependentUpon>201811131550490_update_11132018_2250.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

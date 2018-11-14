@@ -3,7 +3,13 @@
     ViewBag.Title = Model.Name + " - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Styles{
+    <style>
+        .validationMessage {
+            color: #A8351C;
+        }
+    </style>
+}
 @section Scripts{
     <script src="~/Scripts/Client/course_detail.js"></script>
     <script>
@@ -12,6 +18,7 @@
             var apis = {};
             var options = {};
             data.Course = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            apis.RegisterCourse = '@Url.Action("RegisterCourse", "Home")';
 
             data.API_URLs = apis;
             data.Options = options;
@@ -25,14 +32,14 @@
     <section class="header-tree" data-speed="8" data-type="background">
         <h2 class="hidden">Header tree</h2>
         <!-- parallax background -->
-        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <div class="cover-1" style="background-image: url(@Model.Image);" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
-                    <ul class="breadcrumb clearfix mar-top-3x">
+                    <ul class="breadcrumb clearfix mar-top-2x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
                         <li><a class="link text-success" href="/">Khoá học</a></li>
                         <li><a class="link" href="#">@Model.Name</a></li>
@@ -57,9 +64,9 @@
                     <div class="mar-top-lg row">
                         <!-- Left part -->
                         <div class="col-md-8 blog-main">
-                            <div class="post-detail sep-bottom-lg">
+                            <div class="post-detail ">
                                 <figure class="no-margin">
-                                    <img data-bind="attr:{src: Course().Image}" alt="" class="img-responsive" />
+                                    <img data-bind="attr:{src: Course().Image}" alt="" class="img-responsive " />
                                 </figure>
                                 <div class="post-detail-body sep-xs">
                                     <h3 class="text-uppercase" data-bind="text: Course().Name"></h3>
@@ -81,16 +88,10 @@
                                     <span class="clearboth">
                                     </span>
                                     <div class="text-center share-menu">
-                                        <button type="button" class="btn btn-primary">Đăng ký khoá học</button>
+                                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Đăng ký khoá học</button>
                                     </div>
                                 </div>
                             </div>
-
-                            @*<div class="nav-links mar-top-md">
-                                    <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i> Preview Post</a>
-                                    <a href="blog-post-carousel.html" class="text-uppercase pull-right">Next Post <i class="iline1-chevron15"></i></a>
-                                </div>*@
-
                         </div>
                         <!-- /Left part -->
                         <!-- Right part -->
@@ -138,4 +139,6 @@
         <!-- /.container -->
     </section>
     <!-- POST BODY SECTION END -->
+
+    @Html.Partial("~/Views/Course/Partial/RegisterCourseModal.cshtml")
 </div>

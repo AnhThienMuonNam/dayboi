@@ -11,8 +11,8 @@ namespace Dayboi_Web.Helper
                 var host = "smtp.gmail.com";
                 var port = 587;
                 var fromEmail = "thiendandy@gmail.com";
-                var password = "Sonata204";
-                var fromName = "Admin";
+                var password = "Sonata@1217";
+                var fromName = "KidSwim.Club";
 
                 var smtpClient = new SmtpClient(host, port)
                 {
@@ -45,5 +45,7 @@ namespace Dayboi_Web.Helper
                 return false;
             }
         }
+
+        public static int PageSize = 2;
     }
 }

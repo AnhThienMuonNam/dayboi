@@ -39,6 +39,10 @@ namespace Dayboi_Infrastructure
         public DbSet<Skill> Skills { set; get; }
         public DbSet<SkillTag> SkillTags { set; get; }
 
+        public DbSet<EnrollmentCourse> EnrollmentCourses { set; get; }
+
+        public DbSet<EnrollmentCourseStatus> EnrollmentCourseStatues { set; get; }
+
         public static DayboiDbContext Create()
         {
             return new DayboiDbContext();

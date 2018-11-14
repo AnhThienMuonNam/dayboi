@@ -785,7 +785,7 @@ header.expanded nav {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.85714286em;
     z-index: 4;
-    background-image: url('../images/media/pattern-2.png');
+    /*background-image: url('../images/media/pattern-2.png');*/
     width: 100%;
     border-radius: 0;
     -webkit-transition: none;
@@ -842,7 +842,7 @@ header.expanded nav {
         }
 
     .navbar-default:hover a:hover {
-        /*color: #ffffff;*/
+        color: #ffffff;
     }
 
     .navbar-default .subbrand-list {
@@ -873,7 +873,7 @@ header.expanded nav {
         }
 
     .navbar-default ul {
-        background-color: #222;
+        /*background-color: #222;*/
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -881,7 +881,7 @@ header.expanded nav {
 
         .navbar-default ul li a {
             background-color: transparent;
-            color: #eeeeee !important;
+            color: #fff !important;
             font-weight: 900;
         }
 
@@ -904,22 +904,22 @@ header.expanded nav {
             }
 
             .navbar-default ul li a:hover {
-                /*color: #ffffff !important;
-  background-color: #1fa3ff !important;*/
+                color: #ffffff !important;
+                background-color: #1fa3ff !important;
             }
 
                 .navbar-default ul li a:hover:after {
-                    /*left: 100%;
-  visibility: visible;*/
+                    left: 100%;
+                    visibility: visible;
                 }
 
         .navbar-default ul li a {
-            padding: 39px 20px;
+            padding: 20px;
             text-decoration: none;
             font-weight: 400;
             text-transform: uppercase;
-            font-size: 14px;
-            /*display: block;*/
+            font-size: 12px;
+            display: block;
         }
 
         .navbar-default ul li.active a {
@@ -1058,8 +1058,8 @@ header.expanded nav {
     }
 
 .navbar-default {
-    border-color: #000;
-    background-color: #000;
+    border-color: #1fa3ff;
+    background-color: #1fa3ff;
 }
 
     .navbar-default .navbar-nav > .open > a,
@@ -1113,17 +1113,18 @@ header.expanded nav {
 
 .navbar-brand {
     float: left;
-    height: 98px;
+    height: auto;
     padding: 0;
     font-size: 18px;
-    width: 150px;
+    width: auto;
     line-height: 20px;
 }
 
     .navbar-brand > img {
         width: auto;
         margin: auto;
-        max-height: 100px;
+        max-height: 65px;
+        padding-left: 5px;
     }
 
 a.link.cta {
@@ -2434,9 +2435,9 @@ a.inline-link {
     background-image: url('../images/backgrounds/background-4.png');
 }
 
-.cover-1 {
+/*.cover-1 {
     background-image: url('../images/backgrounds/cover-1.jpg');
-}
+}*/
 
 .cover-2 {
     background-image: url('../images/backgrounds/cover-2.jpg');
@@ -2543,7 +2544,7 @@ a.inline-link {
 footer,
 section {
     position: relative;
-    padding: 100px 0;
+    padding: 50px 0;
     display: block;
     z-index: 1;
     background-position: 50% 50%;
@@ -3152,7 +3153,7 @@ input[type='checkbox']:checked::before {
 .header-tree {
     padding: 0;
     margin: 0;
-    min-height: 400px;
+    min-height: 200px;
 }
 
     .header-tree .breadcrumb {
@@ -3914,3 +3915,12 @@ figure {
 /*********************
  * 22.0 - Newsletter signup end
  *********************/
+
+
+.tableContentCell {
+    display: table-cell;
+    margin: 0 auto;
+    padding-top: 10px;
+    max-height: 200px;
+    width: auto;
+}

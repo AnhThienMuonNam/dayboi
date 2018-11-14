@@ -1,27 +1,24 @@
-﻿@model IEnumerable<Dayboi_Web.ViewModels.PoolViewModel>
+﻿@model Dayboi_Web.ViewModels.PoolCategoryViewModel
 
 @{
-   
     ViewBag.Title = "Danh mục Hồ bơi - KidSwim";
-
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div>
     <!-- HEADER TREE -->
     <section class="header-tree" data-speed="8" data-type="background">
         <!-- parallax background -->
-        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <div class="cover-1" style="background-image:url(@Model.Image)" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
-                    <ul class="breadcrumb clearfix mar-top-3x">
+                    <ul class="breadcrumb clearfix mar-top-2x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
-                        <li><a class="link" href="#">Hồ bơi</a></li>
+                        <li><a class="link" href="#">@Model.Name</a></li>
                     </ul>
                 </div>
                 <!-- /.col-md-12 -->
@@ -44,24 +41,22 @@
                         <!-- Left part -->
                         <div class="col-md-8 blog-main">
                             <section class="blog-post-list no-padding">
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.Pools)
                                 {
                                     <!-- .blog-post -->
-                                    <article class="blog-post wow fadeInUp" data-wow-duration="1s">
-                                        <span class="blog-date">
-                                            @item.CreatedOn.Month
-                                            <small class="blog-month">@item.CreatedOn.Year</small>
-                                        </span>
+                                    <article class="blog-post wow fadeInUp" >
                                         <div class="blog-body">
                                             <header class="entry-header">
                                                 <a href="/ho-boi/@item.Id/@item.Alias">
-                                                    <img src="@item.Image" alt="post 3" class="img-responsive img-full" />
-
+                                                    <img src="@item.Image" alt="post 3" class="img-responsive tableContentCell" />
                                                 </a>
                                             </header>
                                             <h4 class="text-primary text-center mar-top-sm">@item.Name</h4>
                                             <p>
-                                                @item.Address
+                                                <i class="iline1-maps3">Địa chỉ: </i>@item.Address
+                                            </p>
+                                            <p>
+                                                <i class="iline2-timer18">Thời gian mở cửa: </i>@item.OpeningHour AM - @item.ClosedHour PM (@item.OpeningDay)
                                             </p>
                                             <a class="btn btn-primary text-uppercase" href="/ho-boi/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
                                         </div>
@@ -76,13 +71,12 @@
                             <!-- Categories List -->
                             <div class="post-detail">
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">Bộ sưu tập</h3>
+                                    <h3 class="text-primary text-uppercase text-center">Danh mục Hồ bơi</h3>
                                     <ul class="text-capitalize sidebar">
-                                        <li><a href="#" class="iline1-spiral4">Design</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Life Style</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Application</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Music</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Heath & Life</a></li>
+                                        @foreach (var category in ViewBag.PoolCategories)
+                                        {
+                                            <li><a href="~/danh-muc-ho-boi/@category.Id/@category.Name" class="iline1-spiral4">@category.Name</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>

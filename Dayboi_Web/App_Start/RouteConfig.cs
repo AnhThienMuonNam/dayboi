@@ -56,6 +56,13 @@ namespace Dayboi_Web
        );
 
             routes.MapRoute(
+      name: "Skill",
+      url: "ky-nang/{skillId}/{alias}",
+      defaults: new { controller = "Skill", action = "SkillDetail", skillId = UrlParameter.Optional },
+      namespaces: new string[] { "Dayboi_Web.Controllers" }
+      );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

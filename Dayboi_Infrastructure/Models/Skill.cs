@@ -24,7 +24,6 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-        [StringLength(5000)]
         public string Content { get; set; }
 
         public int? ViewCount { get; set; }

@@ -263,15 +263,18 @@
     <Compile Include="Areas\Admin\Controllers\BlogAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourseAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EnrollmentCourseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PoolAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillAdminController.cs" />
     <Compile Include="Areas\Admin\Models\BlogModel.cs" />
     <Compile Include="Areas\Admin\Models\CourseModel.cs" />
+    <Compile Include="Areas\Admin\Models\EnrollmentCourseModel.cs" />
     <Compile Include="Areas\Admin\Models\OrderAdminModel.cs" />
     <Compile Include="Areas\Admin\Models\PoolCategoryModel.cs" />
     <Compile Include="Areas\Admin\Models\PoolModel.cs" />
+    <Compile Include="Areas\Admin\Models\SearchModel.cs" />
     <Compile Include="Areas\Admin\Models\SkillModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -283,6 +286,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PoolController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Helper\MailHelper.cs" />
     <Compile Include="Models\SelectItemModel.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -419,7 +423,6 @@
     <Content Include="assets\js\knockout-3.5.0rc.js" />
     <Content Include="assets\js\knockout.mapping-latest.js" />
     <Content Include="assets\js\knockout.validation.min.js" />
-    <Content Include="assets\js\libs\bootstrap-datetimepicker.min.js" />
     <Content Include="assets\js\libs\dd_beladpng.js" />
     <Content Include="assets\js\libs\dd_belatedpng.min.js" />
     <Content Include="assets\js\libs\imagesloaded.js" />
@@ -5503,6 +5506,9 @@
     <Content Include="Scripts\Admin\blog_index.js" />
     <Content Include="Scripts\Admin\course_create-edit.js" />
     <Content Include="Scripts\Admin\course_index.js" />
+    <Content Include="Scripts\Admin\enrollmentcourse_detail.js" />
+    <Content Include="Scripts\Admin\enrollmentcourse_index.js" />
+    <Content Include="Scripts\Admin\order_detail.js" />
     <Content Include="Scripts\Admin\order_index.js" />
     <Content Include="Scripts\Admin\pool_create-edit.js" />
     <Content Include="Scripts\Admin\pool_index.js" />
@@ -5767,6 +5773,9 @@
     <Content Include="Areas\Admin\Views\SkillAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SkillAdmin\Partial\SkillEditor.cshtml" />
     <Content Include="Areas\Admin\Views\OrderAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\EnrollmentCourseAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EnrollmentCourseAdmin\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />
@@ -5779,6 +5788,7 @@
     <Content Include="Scripts\Client\page_checkout.js" />
     <Content Include="Scripts\Client\page_home.js" />
     <Content Include="Scripts\Client\pool_detail.js" />
+    <Content Include="Scripts\Client\skill_detail.js" />
     <Content Include="Scripts\Common\common_functions.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5851,6 +5861,8 @@
     <Content Include="Views\Feature\FAQ.cshtml" />
     <Content Include="Views\Pool\PoolDetail.cshtml" />
     <Content Include="Views\Pool\Index.cshtml" />
+    <Content Include="Views\Course\Partial\RegisterCourseModal.cshtml" />
+    <Content Include="Views\Skill\SkillDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

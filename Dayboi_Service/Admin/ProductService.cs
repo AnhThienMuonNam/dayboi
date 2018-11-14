@@ -16,8 +16,6 @@ namespace Dayboi_Service.Admin
 
         Product GetById(int id);
 
-        IEnumerable<Product> GetAll();
-
         bool Update(Product entity);
     }
     public class ProductService : IProductService
@@ -42,14 +40,6 @@ namespace Dayboi_Service.Admin
             {
                 throw ex;
             }
-        }
-
-        public IEnumerable<Product> GetAll()
-        {
-            var toReturn = _productReponsitory.GetMany(x => !x.IsDeleted)
-                                                .Include(x => x.Category)
-                                                .ToList();
-            return toReturn;
         }
 
         public Product GetById(int id)

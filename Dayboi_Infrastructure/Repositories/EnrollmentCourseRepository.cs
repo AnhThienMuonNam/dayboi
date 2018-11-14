@@ -13,4 +13,15 @@ namespace Dayboi_Infrastructure.Repositories
         {
         }
     }
+
+    public interface IEnrollmentCourseStatusRepository : IRepository<EnrollmentCourseStatus>
+    {
+    }
+
+    public class EnrollmentCourseStatusRepository : RepositoryBase<EnrollmentCourseStatus>, IEnrollmentCourseStatusRepository
+    {
+        public EnrollmentCourseStatusRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
+    }
 }

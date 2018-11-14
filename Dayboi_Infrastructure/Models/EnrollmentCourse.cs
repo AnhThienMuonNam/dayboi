@@ -16,7 +16,7 @@ namespace Dayboi_Infrastructure.Models
 
         public string Phone { set; get; }
 
-        public DateTime StartDate { set; get; }
+        public DateTime? StartDate { set; get; }
 
         [StringLength(200)]
         public string Note { get; set; }
@@ -34,6 +34,11 @@ namespace Dayboi_Infrastructure.Models
         public Course Course { get; set; }
 
         public string UserId { get; set; }
+
+        public int EnrollmentCourseStatusId { get; set; }
+
+        [ForeignKey("EnrollmentCourseStatusId")]
+        public EnrollmentCourseStatus EnrollmentCourseStatus { get; set; }
 
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }

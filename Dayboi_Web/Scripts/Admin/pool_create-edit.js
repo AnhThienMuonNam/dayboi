@@ -17,6 +17,9 @@ var PoolModel = function (data, parent) {
     self.IsActive = ko.observable(true);
     self.Content = ko.observable('');
     self.PoolCategoryId = ko.observable('');
+    self.OpeningHour = ko.observable('');
+    self.ClosedHour = ko.observable('');
+    self.OpeningDay = ko.observable('');
 
     self.Name.subscribe(function (value) {
         self.Alias(getAlias(value));
@@ -133,6 +136,10 @@ var PoolModel = function (data, parent) {
             Content: ko.utils.unwrapObservable(this.Content),
             Tags: ko.utils.unwrapObservable(this.Tags),
             PoolCategoryId: ko.utils.unwrapObservable(this.PoolCategoryId),
+            OpeningHour: ko.utils.unwrapObservable(this.OpeningHour),
+            ClosedHour: ko.utils.unwrapObservable(this.ClosedHour),
+            OpeningDay: ko.utils.unwrapObservable(this.OpeningDay),
+
         };
         return model;
     };

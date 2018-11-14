@@ -8,7 +8,7 @@ namespace Dayboi_Web.ViewModels
 
         public string Phone { set; get; }
 
-        public DateTime StartDate { set; get; }
+        public DateTime? StartDate { set; get; }
 
         public string Note { get; set; }
 

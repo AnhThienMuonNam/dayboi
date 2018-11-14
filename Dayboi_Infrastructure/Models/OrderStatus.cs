@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dayboi_Infrastructure.Models
 {
-    [Table("OrderStatuses")]
+    [Table("OrderStatues")]
     public class OrderStatus
     {
         [Key]
