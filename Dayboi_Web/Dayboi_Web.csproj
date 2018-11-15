@@ -5806,6 +5806,7 @@
     <Content Include="Template\Booking.html" />
     <Content Include="Template\data.sql" />
     <Content Include="Template\order_detail.html" />
+    <Content Include="Template\tables.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
