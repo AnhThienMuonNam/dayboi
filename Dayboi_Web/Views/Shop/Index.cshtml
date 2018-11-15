@@ -1,7 +1,7 @@
 ﻿@model Dayboi_Web.ViewModels.CategoryModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Name + "- KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts{
@@ -27,14 +27,14 @@
 <section class="header-tree" data-speed="8" data-type="background">
     <h2 class="hidden">Header tree</h2>
     <!-- parallax background -->
-    <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+    <div class="cover-1" style="background-image: url(@Model.Image);" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
     <!-- .container -->
     <div class="container">
         <!-- .row -->
         <div class="row">
             <!-- .col-md-12 -->
             <div class="col-md-12">
-                <ul class="breadcrumb clearfix mar-top-3x">
+                <ul class="breadcrumb clearfix mar-top-2x">
                     <li><a class="link text-success" href="/">Trang chủ</a></li>
                     <li><a class="link" href="#">@Model.Name</a></li>
                 </ul>
@@ -54,74 +54,74 @@
         <div class="row">
             <!-- .col-md-12 -->
             <div class="col-md-12">
-                    <!-- .navigation -->
-                    <div class="col-md-9 blog-main">
-                        <!-- All blog posts -->
-                        <div class="row">
-                            <!-- ko foreach: Products-->
-                            <div class="col-sm-4 wow fadeInUp" >
-                                <div class="panel panel-default text-center mar-bottom-sm">
-                                    <div class="blog-body" style="cursor:pointer;">
-                                        <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
-                                            <img data-bind="attr:{src: getFirstImage(Images)}" alt="post 4" class="img-responsive img-full" />
-                                            <h6 class="text-primary text-center text-uppercase" data-bind="html: Name.length > 38 ? Name.substring(0, 33)+' ...' : Name, attr:{title: Name}"> </h6>
-                                            <i style="letter-spacing: 1px;" class="wow fadeInDown text-muted h6" ><span style="text-decoration: line-through;" data-bind="text: formatMoney(OtherPrice)"></span></i>
-                                            <br />
-                                            <i style="letter-spacing: 1px;" class="wow fadeInDown text-muted h4"  data-bind="text: formatMoney(Price)"></i>
-                                        </a>
-                                       
-                                        <a style="width: 100%;" class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>
-                                    </div>
+                <!-- .navigation -->
+                <div class="col-md-9 blog-main">
+                    <!-- All blog posts -->
+                    <div class="row">
+                        <!-- ko foreach: Products-->
+                        <div class="col-sm-4 wow fadeInUp">
+                            <div class="panel panel-default text-center mar-bottom-sm">
+                                <div class="blog-body" style="cursor:pointer;">
+                                    <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
+                                        <img data-bind="attr:{src: getFirstImage(Images)}" alt="post 4" class="img-responsive img-full" />
+                                        <h6 class="text-primary text-center text-uppercase" data-bind="html: Name.length > 38 ? Name.substring(0, 33)+' ...' : Name, attr:{title: Name}"> </h6>
+                                        <i style="letter-spacing: 1px;" class="wow fadeInDown text-muted h6"><span style="text-decoration: line-through;" data-bind="text: formatMoney(OtherPrice)"></span></i>
+                                        <br />
+                                        <i style="letter-spacing: 1px;" class="wow fadeInDown text-muted h4" data-bind="text: formatMoney(Price)"></i>
+                                    </a>
+
+                                    <a style="width: 100%;" class="btn btn-primary" data-bind="attr:{href: '/product/'+Id+'/'+Alias}" role="button" title="Xem chi tiết"> Chi tiết</a>
                                 </div>
                             </div>
-                            <!-- /ko -->
-
-
                         </div>
-                        <!-- .navigation -->
-                        @*<nav class="navigation paging-navigation">
+                        <!-- /ko -->
+
+
+                    </div>
+                    <!-- .navigation -->
+                    @*<nav class="navigation paging-navigation">
                             <ul class="page-numbers pagination">
                                 <li><a class="next page-numbers pagination" href="#">Xem tiếp</a></li>
                             </ul>
                         </nav>*@
-                        <!-- /.navigation -->
-                        <!-- /All blog posts -->
-                    </div>
-                    <div class="col-md-3 blog-sidebar">
-                        <!-- Categories List -->
-                        <div class="post-detail">
-                            <div class="post-detail-body sep-xs">
-                                <h4 class="text-primary text-uppercase text-center">Danh mục</h4>
-                                <ul class="text-capitalize sidebar">
-                                    <!-- ko foreach: Categories-->
-                                    <li style="padding: 0px 0;"><a class="iline1-spiral4" data-bind="text: Name, attr:{href: '/shop/'+Id+'/'+Alias}"></a></li>
-                                    <!-- /ko -->
-                                </ul>
-                            </div>
+                    <!-- /.navigation -->
+                    <!-- /All blog posts -->
+                </div>
+                <div class="col-md-3 blog-sidebar">
+                    <!-- Categories List -->
+                    <div class="post-detail">
+                        <div class="post-detail-body sep-xs">
+                            <h4 class="text-primary text-uppercase text-center">Danh mục</h4>
+                            <ul class="text-capitalize sidebar">
+                                <!-- ko foreach: Categories-->
+                                <li style="padding: 0px 0;"><a class="iline1-spiral4" data-bind="text: Name, attr:{href: '/shop/'+Id+'/'+Alias}"></a></li>
+                                <!-- /ko -->
+                            </ul>
                         </div>
-                        <!-- Categories List End -->
-                        <!-- Popular Posts -->
-                        <div class="post-detail mar-top-md">
-                            <div class="post-detail-body sep-xs">
-                                <h4 class="text-primary text-uppercase text-center">Sản phẩm mới</h4>
-                                <ul class="text-capitalize sidebar">
-                                    <!-- ko foreach: NewestProducts-->
-                                    <li>
-                                        <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
-                                            <span class="post-img">
-                                                <img data-bind="attr:{src: ImageList[0]}" alt="" class="img-responsive" />
-                                            </span>
-                                            <h5 class="text-uppercase text-success" data-bind="text: Name"></h5>
-                                            <i style="letter-spacing: 1px;" class="text-muted h4" data-bind="text: formatMoney(Price)"></i>
-                                        </a>
-                                    </li>
-                                    <!-- /ko -->
-                                   
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Popular Posts End -->
                     </div>
+                    <!-- Categories List End -->
+                    <!-- Popular Posts -->
+                    <div class="post-detail mar-top-md">
+                        <div class="post-detail-body sep-xs">
+                            <h4 class="text-primary text-uppercase text-center">Sản phẩm mới</h4>
+                            <ul class="text-capitalize sidebar">
+                                <!-- ko foreach: NewestProducts-->
+                                <li>
+                                    <a data-bind="attr:{href: '/product/'+Id+'/'+Alias}">
+                                        <span class="post-img">
+                                            <img data-bind="attr:{src: ImageList[0]}" alt="" class="img-responsive" />
+                                        </span>
+                                        <h5 class="text-uppercase text-success" data-bind="text: Name"></h5>
+                                        <i style="letter-spacing: 1px;" class="text-muted h4" data-bind="text: formatMoney(Price)"></i>
+                                    </a>
+                                </li>
+                                <!-- /ko -->
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Popular Posts End -->
+                </div>
                 <!-- /.col-md-12 -->
             </div>
         </div>

@@ -20,11 +20,10 @@ var ProductModel = function (data, parent) {
     self.CategoryName = ko.observable('');
     self.Images = ko.observable([]);
     self.Tags = ko.observableArray([]);
-
     if (data && data.Product) {
         ko.mapping.fromJS(data.Product, {}, self);
     }
-    self.RelatedProducts = ko.observableArray([]);
+    self.RelatedProducts = ko.observableArray(data && data.RelatedProducts ? data.RelatedProducts : []);
 
     self.addToCart = function () {
         var product = self.toJSON();
@@ -62,19 +61,19 @@ var ProductModel = function (data, parent) {
     }
 
     function getRelatedProducts() {
-        $.ajax({
-            url: data.API_URLs.GetRelatedProducts,
-            type: "POST",
-            data: { productTags: self.Tags(), productId: self.Id() },
-            success: function (response) {
-                if (response.IsSuccess === true) {
-                    self.RelatedProducts(response.RelatedProducts);
-                }
+        //$.ajax({
+        //    url: data.API_URLs.GetRelatedProducts,
+        //    type: "POST",
+        //    data: { productTags: self.Tags(), productId: self.Id() },
+        //    success: function (response) {
+        //        if (response.IsSuccess === true) {
+        //            self.RelatedProducts(response.RelatedProducts);
+        //        }
 
-            },
-            error: function (xhr, error) {
-            },
-        });
+        //    },
+        //    error: function (xhr, error) {
+        //    },
+        //});
     };
 
     ProductModel.prototype.toJSON = function () {

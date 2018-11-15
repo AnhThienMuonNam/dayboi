@@ -1,23 +1,27 @@
 ﻿@model Dayboi_Web.ViewModels.HomeViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dạy bơi, các hoạt động bơi lội - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
-    <link href="~/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <style>
+        .validationMessage {
+            color: #A8351C;
+        }
+    </style>
 }
 @section Scripts{
     <script src="~/assets/js/libs/moment.min.js"></script>
     <script src="~/Scripts/Client/page_home.js"></script>
-    <script src="~/assets/js/libs/bootstrap-datetimepicker.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#datetimepicker1').datetimepicker();
 
             var data = {};
             var apis = {};
             var options = {};
             data.Home = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            apis.RegisterCourse = '@Url.Action("RegisterCourse", "Home")';
 
             data.API_URLs = apis;
             data.Options = options;
@@ -143,47 +147,56 @@
                     <div class="col-md-3 mar-bottom-md" style="margin-bottom: initial;">
                         <div style="overflow: hidden; border: 1px dashed #00729E; padding: 15px 24px 10px 17px; -webkit-box-sizing: border-box;">
                             <img src="~/assets/images/works/i-11.png" />
-                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">Cam kết 
-                             <br /> 
-                            100% biết bơi</p>
+                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">
+                                Cam kết
+                                <br />
+                                100% biết bơi
+                            </p>
                         </div>
-                       
+
                     </div>
                     <div class="col-md-3 mar-bottom-md" style="margin-bottom: initial;">
                         <div style="overflow: hidden; border: 1px dashed #00729E; padding: 15px 24px 10px 17px; -webkit-box-sizing: border-box;">
                             <img src="~/assets/images/works/i-12.png" />
-                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">THỜI GIAN
-                            <br/> 
-                            LINH ĐỘNG</p>
+                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">
+                                THỜI GIAN
+                                <br />
+                                LINH ĐỘNG
+                            </p>
                         </div>
                     </div>
                     <div class="col-md-3 mar-bottom-md" style="margin-bottom: initial;">
                         <div style="overflow: hidden; border: 1px dashed #00729E; padding: 15px 24px 10px 17px; -webkit-box-sizing: border-box;">
                             <img src="~/assets/images/works/i-13.png" />
-                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">HUẤN LUYỆN VIÊN
-                           
-                             NAM, NỮ</p>
+                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">
+                                HUẤN LUYỆN VIÊN
+
+                                NAM, NỮ
+                            </p>
                         </div>
                     </div>
-                    <div class="col-md-3 mar-bottom-md"  style="margin-bottom: initial;">
+                    <div class="col-md-3 mar-bottom-md" style="margin-bottom: initial;">
                         <div style="overflow: hidden; border: 1px dashed #00729E; padding: 15px 15px 10px 17px; -webkit-box-sizing: border-box;">
                             <img src="~/assets/images/works/i-14.png" />
-                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">HUẤN LUYỆN VIÊN
-                          
-                             KÈM RIÊNG</p>
+                            <p style="float: right; width: 70%; text-transform: uppercase; font-size: 16px; font-weight: 500; padding-left: 10px;">
+                                HUẤN LUYỆN VIÊN
+
+                                KÈM RIÊNG
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="pattern-3">
         <!-- .container -->
         <div class="container">
             <!-- .row -->
             <div class="row">
                 <div class="col-md-12">
+                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center; ">Khoá Học</h2>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel-group panel-accordion" id="accordion" role="tablist" aria-multiselectable="true">
@@ -203,7 +216,7 @@
                                         <p class="panel-body no-margin-bottom">
                                             <span data-bind="text: Description"></span>
                                             <br />
-                                            <a data-bind="attr: {href: '/khoa-hoc/'+ Id + '/'+Alias}" style="float:right;">Xem chi tiết</a>
+                                            <a data-bind="attr: {href: '/khoa-hoc/'+ Id + '/'+Alias}" style="float:right; font-style:italic;">Xem chi tiết</a>
                                         </p>
                                     </div>
                                     <!-- /ko -->
@@ -212,15 +225,14 @@
                                         <p class="panel-body no-margin-bottom">
                                             <span data-bind="text: Description"></span>
                                             <br />
-                                            <a data-bind="attr: {href: '~/khoa-hoc/'+ Id + '/'+Alias}" style="float:right;">Xem chi tiết</a>
+                                            <a data-bind="attr: {href: '/khoa-hoc/'+ Id + '/'+Alias}" style="float:right; font-style:italic;">Xem chi tiết</a>
                                         </p>
                                     </div>
                                     <!-- /ko -->
                                 </div>
                                 <!-- /ko -->
                                 <div>
-                                    <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-toggle="modal" data-target="#myModal" role="button" title="Đăng ký" data-bind="text: RegisterCourseButtonName"></a>
-
+                                    <a style="width: 100%; border-radius: 8px; " class="btn btn-primary" data-toggle="modal" data-target="#myModal" role="button" title="Đăng ký" data-bind="text: 'Đăng ký: '+ RegisterCourseButtonName()"></a>
                                 </div>
                             </div>
                         </div><!-- /.col-md-6 -->
@@ -267,49 +279,25 @@
         <div class="container">
             <!-- .row -->
             <div class="row">
+                <h2 class="wow fadeInDown text-uppercase" style="text-align: center; ">Kỹ năng bơi</h2>
+
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
                     <!-- .row -->
                     <div class="row">
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_8.jpg" />
-                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">Chất lượng dịch vụ </h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                            </p>
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_3.jpg" />
-                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">Thời gian linh động</h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Bạn có thể tùy chọn lịch dạy bơi theo yêu cầu. Chúng tôi có thể linh động lịch học theo từng học viên.
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_4.jpg" />
-                            <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">HLV tận tụy và đam mê</h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                HLV được chúng tôi kiểm tra và đánh giá thường xuyên, để đảm bảo mang đến chất lượng tốt nhất cho bạn!
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                            </p>
-                        </div>
-                        <div class="col-md-6 mar-bottom-md">
-                            <img src="~/assets/images/works/gallery_5.jpg" />
-                            <h1 class="wow fadeInDown" data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">Huấn luyện viên kèm riêng</h1>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                Chúng tôi chỉ hướng dẫn học viên bạn đăng ký, và trực tiếp xuống nước hướng dẫn học viên!
-                                Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
-
-                            </p>
-                        </div>
+                        @foreach (var item in Model.Skills)
+                        {
+                            <div class="col-md-6 mar-bottom-md">
+                                <img src="@item.Image" />
+                                <a href="~/ky-nang/@item.Id/@item.Alias">
+                                    <h1 class="wow fadeInDown " data-wow-duration=".8s" data-wow-delay=".2s" style="color: royalblue;">@item.Name</h1>
+                                </a>
+                                <span class="line-sep-gray"></span>
+                                <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                    @item.Description
+                                </p>
+                            </div>
+                        }
                     </div>
                     <!-- /.row -->
                 </div>
@@ -326,13 +314,15 @@
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
+                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center; color:#fff;">Tin Tức</h2>
+
                     <!-- Pricing Table -->
                     <div class="row">
                         @foreach (var item in Model.Blogs)
                         {
                             <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
                                 <div class="panel panel-default text-center mar-bottom-sm" style="border-radius: 13px;">
-                                    <div class="panel-body">
+                                    <div class="panel-body" style="padding:0px;">
                                         <img src="@item.Image" />
                                     </div>
                                     <div class="panel-heading p15">
@@ -360,50 +350,50 @@
 
     <section>
         <div class="container">
+
             <div class="row">
                 <div class="col-md-12">
                     <div style="position: absolute;display: block;width: 114px; height: 50px; background: url(~/assets/images/works/i-title.png) no-repeat center center; left: 50%; transform: translateX(-50%); background-size: 100%;top: -20px;">
                         <img src="~/assets/images/works/i-title.png" />
                     </div>
-
-                    <div style="text-align: center;color:#125790; margin-top: 1px; font-size: 39px; margin-bottom: -6px;">Tại sao chọn dạy bơi Kid Swim</div>
+                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center;color:#125790;">Tại sao chọn dạy bơi Kid Swim</h2>
                     <div class="row" style="color:#125790">
-                        <div class="col-md-4 mar-bottom-md" style="padding-top: 37px;">
+                        <div class="col-md-4 mar-bottom-md" style="padding-top: 26px;">
                             <img src="~/assets/images/works/i-5.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Chất lượng được cam kết</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
                                 Với các học viên trên 6 tuổi, dạn nước và hợp tác với HLV, chúng tôi cam kết sẽ biết bơi sau khóa học!
                             </ul>
                         </div>
-                        <div class="col-md-4 mar-bottom-md" style="padding-top: 37px;">
+                        <div class="col-md-4 mar-bottom-md" style="padding-top: 26px;">
                             <img src="~/assets/images/works/i-6.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Thời gian linh động</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
                                 Bạn có thể tùy chọn lịch dạy bơi theo yêu cầu. Chúng tôi có thể linh động lịch học theo từng học viên.
                             </ul>
                         </div>
-                        <div class="col-md-4 mar-bottom-md" style="padding-top: 37px;">
+                        <div class="col-md-4 mar-bottom-md" style="padding-top: 26px;">
                             <img src="~/assets/images/works/i-7.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">HLV tận tụy và đam mê</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
                                 HLV được chúng tôi kiểm tra và đánh giá thường xuyên, để đảm bảo mang đến chất lượng tốt nhất cho bạn!
                             </ul>
                         </div>
-                        <div class="col-md-4 mar-bottom-md" style="padding-top: 37px;">
+                        <div class="col-md-4 mar-bottom-md" style="padding-top: 26px;">
                             <img src="~/assets/images/works/i-8.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Huấn luyện viên kèm riêng</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
                                 Chúng tôi chỉ hướng dẫn học viên bạn đăng ký, và trực tiếp xuống nước hướng dẫn học viên!
                             </ul>
                         </div>
-                        <div class="col-md-4 mar-bottom-md" style="padding-top: 37px;">
+                        <div class="col-md-4 mar-bottom-md" style="padding-top: 26px;">
                             <img src="~/assets/images/works/i-9.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">Có cả HLV Nam và Nữ</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
                                 Tất cả HLV dạy bơi đều có bằng cấp chuyên môn và nhiều năm kinh nghiệm dạy bơi kèm riêng.
                             </ul>
                         </div>
-                        <div class="col-md-4 mar-bottom-md" style="padding-top: 37px;">
+                        <div class="col-md-4 mar-bottom-md" style="padding-top: 26px;">
                             <img src="~/assets/images/works/i-10.png" />
                             <ul style="padding-left: 92px; margin-top: -88px; font-size: 24px; letter-spacing: 0px;">HLV đi đến hồ bơi của bạn</ul>
                             <ul style="margin-left: 51px; font-size: 16px;">
@@ -416,71 +406,6 @@
             </div>
         </div>
     </section>
-        
-    <section class="background-2">       
-        <div class="container">
-            <!-- .row -->
-            <div class="row">
-                <div style="text-align: center;color:#ffffff; margin-top: -59px; font-size: 39px; margin-bottom: 26px;">Cảm nhận của học viên</div>
-                <!-- .col-md-12 -->
-                <div class="col-md-12">
-                    <!-- Pricing Table -->
-                    <div class="row">                      
-                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" style="color:#ffffff">
-                            <div style="color: #ffffff;">
-                                <div>
-                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
-
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
-                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
-                                </div>
-                                <div style="color:#ffffff;margin-top: 37px;">
-                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <div style="color: #ffffff;">
-                                <div>
-                                    <img src="~/assets/images/works/ava-1.jpg"  style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;"/>
-
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
-                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
-                                </div>
-                                <div style="color: #ffffff; margin-top: 37px;">
-                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <div style="color: #ffffff;">
-                                <div>
-                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
-
-                                </div>
-                                <div>
-                                    <h4 style ="font-size: 23px; font-weight: bold;">Lê Thu</h4>
-                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
-                                </div>
-                                <div style="color: #ffffff;margin-top: 37px;">
-                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
-                                </div>
-
-                            </div>
-                        </div>  
-                                   
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Portfolio -->
     <section class="pattern-3">
         <!-- .container -->
@@ -493,15 +418,8 @@
                     <div class="row">
                         <!-- .col-md-12 -->
                         <div class="col-md-12">
-                            <h2 class="wow fadeInDown text-uppercase">HỒ BƠI</h2>
-                            <span class="line-sep-gray"></span>
-                            <p class="wow fadeInUp" style="letter-spacing: 0px;font-size: 20px;">
-                                Cung cấp các khóa học bơi
-                                chuyên sâu dành cho trẻ em
-                                mọi lứa tuổi.
-                                HỌC ĐÚNG-BƠI KHỎE-KỸ NĂNG TỐT
-                            </p>
-                            <ul class="filter list-inline text-center mar-top-lg">
+                            <h2 class="wow fadeInDown text-uppercase" style="text-align: center;">HỒ BƠI</h2>
+                            <ul class="filter list-inline text-center">
                                 <li><a class="active" href="#" data-filter="*">Tất cả</a></li>
                                 @foreach (var item in Model.PoolCategories)
                                 {
@@ -529,7 +447,7 @@
                                                         <img src="@pool.Image" class="img-responsive" alt="" />
                                                         <div class="image-overlay">
                                                             <p>
-                                                                <a href="@pool.Image" style="width:100%;height:auto;">
+                                                                <a href="/ho-boi/@pool.Id/@pool.Alias" style="width:100%;height:auto;">
                                                                     @pool.Name
                                                                 </a>
                                                             </p>
@@ -554,47 +472,63 @@
         </div>
         <!-- /.container -->
     </section>
-    <!-- /Portfolio -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Đăng ký khoá học</h4>
-                </div>
-                <div class="modal-body">
+
+    <section class="background-2">
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <div style="text-align: center;color:#ffffff; margin-top: -59px; font-size: 39px; margin-bottom: 26px;">Cảm nhận của học viên</div>
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- Pricing Table -->
                     <div class="row">
-                        <div class="col-md-12 blog-main">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group control-group">
-                                        <p class="help-block">Họ tên</p>
-                                        <input type="text" class="form-control input-lg" data-bind="" name="customername" placeholder="Họ tên*" required="" data-validation-required-message="Bạn chưa nhập họ tên" />
-                                    </div>
-                                    <div class="form-group control-group">
-                                        <p class="help-block">Số điện thoại</p>
-                                        <input type="number" class="form-control input-lg" data-bind="" name="customerphone" placeholder="Số điện thoại*" required="" data-validation-required-message="Bạn chưa nhập số điện thoại" />
-                                    </div>
-                                    <div class="form-group control-group">
-                                        <p class="help-block">Ngày học</p>
-                                        <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" />
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                        @*<input type="email" class="form-control input-lg" data-bind="" name="customeremail" placeholder="Ngày học*" />*@
-                                    </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" style="color:#ffffff">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color:#ffffff;margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color: #ffffff; margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color: #ffffff;margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="text: RegisterCourseButtonName">Close</button>
-                </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- /Portfolio -->
+    @Html.Partial("~/Views/Course/Partial/RegisterCourseModal.cshtml")
 </div>

@@ -40,6 +40,27 @@ namespace Dayboi_Web
        namespaces: new string[] { "Dayboi_Web.Controllers" }
        );
 
+            routes.MapRoute(
+      name: "PoolCategory",
+      url: "danh-muc-ho-boi/{poolCategoryId}/{alias}",
+      defaults: new { controller = "Pool", action = "Index", poolCategoryId = UrlParameter.Optional },
+      namespaces: new string[] { "Dayboi_Web.Controllers" }
+      );
+
+
+            routes.MapRoute(
+       name: "Pool",
+       url: "ho-boi/{poolId}/{alias}",
+       defaults: new { controller = "Pool", action = "PoolDetail", poolId = UrlParameter.Optional },
+       namespaces: new string[] { "Dayboi_Web.Controllers" }
+       );
+
+            routes.MapRoute(
+      name: "Skill",
+      url: "ky-nang/{skillId}/{alias}",
+      defaults: new { controller = "Skill", action = "SkillDetail", skillId = UrlParameter.Optional },
+      namespaces: new string[] { "Dayboi_Web.Controllers" }
+      );
 
             routes.MapRoute(
                 name: "Default",

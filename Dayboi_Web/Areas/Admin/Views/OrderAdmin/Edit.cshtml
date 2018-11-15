@@ -1,0 +1,150 @@
+﻿@model Dayboi_Web.Areas.Admin.Models.OrderAdminModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section footerJS{
+    <script src="~/assets/js/libs/moment.min.js"></script>
+    <script src="~/Scripts/Admin/order_detail.js"></script>
+    <script>
+        $(document).ready(function () {
+            var data = {};
+            var urls = {};
+            var options = {};
+
+            data.Order = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+            data.OrderStatus = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.OrderStatues));
+            data.PaymentMethods = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.PaymentMethods));
+
+            urls.EditProductUrl = '@Url.Action("Edit", "Product")';
+            urls.Update = '@Url.Action("UpdateOrder", "OrderAdmin")';
+
+            data.API_URLs = urls;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+
+<section class="content" id="main-page">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Địa chỉ giao hàng</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label>Người nhận</label>
+                        <input type="text" readonly class="form-control" data-bind="value: Order().Name">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input type="text" readonly class="form-control" data-bind="value: Order().FullAddress">
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input type="text" readonly class="form-control" data-bind="value: Order().Phone">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" readonly class="form-control" data-bind="value: Order().Email">
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Chi tiết đơn hàng</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>ID Đơn hàng</label>
+                    <input type="text" readonly class="form-control" data-bind="value: Order().Id">
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label>Ngày đặt hàng</label>
+                    <input type="text" readonly class="form-control" data-bind="value: moment(Order().CreatedOn)">
+                </div>
+                <!-- /.form-group -->
+            </div>
+
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+                <!-- ko foreach: OrderDetails -->
+                <tr>
+                    <td data-bind="text: Id"></td>
+                    <td><a data-bind="text: ProductName, attr: {href:  EditProductUrl() +'/' + ProductId}"></a></td>
+                    <td data-bind="text: CategoryName"></td>
+                    <td data-bind="text: Price"></td>
+                    <td data-bind="text: Quantity"></td>
+                    <td data-bind="text: SumPrice"></td>
+                </tr>
+                <!-- /ko -->
+            </table>
+        </div>
+    </div>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Cập nhật đơn hàng</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Trạng thái đơn hàng</label>
+                        <select class="form-control" data-bind="options: OrderStatus,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: OrderStatusId"></select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Hình thức thanh toán</label>
+                        <select class="form-control" data-bind="options: PaymentMethods,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: PaymentMethodId"></select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="button" class="btn btn-info pull-right" data-bind="click: update">Cập nhật</button>
+        </div>
+    </div>
+</section>

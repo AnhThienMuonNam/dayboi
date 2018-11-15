@@ -1,0 +1,72 @@
+﻿@model Dayboi_Web.Areas.Admin.Models.PoolModel
+
+@{
+    ViewBag.Title = "Hồ bơi - KidSwim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section headerStyles{
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/assets_admin/bower_components/select2/dist/css/select2.min.css">
+}
+
+@section footerJS{
+    <!-- ckeditor -->
+    <script src="~/assets_admin/bower_components/ckeditor/ckeditor.js"></script>
+    <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
+    <!-- Select2 -->
+    <script src="~/assets_admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/Scripts/Admin/pool_create-edit.js"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('editor1')
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                tags: true,
+                selectOnBlur: true,
+                multiple: true
+            });
+
+            var data = {};
+            var urls = {};
+            var options = {};
+            data.Pool = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            data.PoolCategories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.PoolCategories));
+
+            urls.CreatePool = "@Url.Action("CreatePool", "PoolAdmin")";
+            urls.UpdatePool = "@Url.Action("UpdatePool", "PoolAdmin")";
+            urls.EditPoolPage = "@Url.Action("Edit", "PoolAdmin")";
+
+            data.API_URLs = urls;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+
+<section class="content" id="main-page">
+    <div class="row" data-bind="with: poolModel">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cập nhật Hồ bơi</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @Html.Partial("~/Areas/Admin/Views/PoolAdmin/Partial/PoolEditor.cshtml")
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhật</button>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</section>

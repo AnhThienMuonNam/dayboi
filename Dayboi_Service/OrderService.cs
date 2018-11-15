@@ -1,6 +1,7 @@
 ﻿using Dayboi_Infrastructure.Infrastructures;
 using Dayboi_Infrastructure.Models;
 using Dayboi_Infrastructure.Repositories;
+using Dayboi_Service.Enum;
 using System;
 
 namespace Dayboi_Service
@@ -26,7 +27,7 @@ namespace Dayboi_Service
         {
             try
             {
-                order.OrderStatusId = 1;
+                order.OrderStatusId = (int)eOrderStatus.ChoXacNhan;
                 _orderRepository.Add(order);
                 _unitOfWork.Commit();
                 return order;

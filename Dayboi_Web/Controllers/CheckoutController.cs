@@ -48,18 +48,36 @@ namespace Dayboi_Web.Controllers
             var orderCreated = _orderService.Add(order);
 
             //send mail
-            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_info.html"));
+            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/order_detail.html"));
             content = content.Replace("{{orderId}}", orderCreated.Id.ToString());
             content = content.Replace("{{customerName}}", orderCreated.Name);
             content = content.Replace("{{createdDate}}", orderCreated.CreatedOn.ToString());
             content = content.Replace("{{totalMoney}}", orderCreated.TotalPrice.ToString());
+            content = content.Replace("{{customerAddress}}", orderCreated.Address + ", " + orderCreated.WardName + ", " + orderCreated.DistrictName + ", " + orderCreated.ProvinceName);
+            content = content.Replace("{{customerPhone}}", orderCreated.Phone);
+            content = content.Replace("{{paymentMethod}}", checkoutModel.Order.PaymentMethodName);
 
-            MailHelper.SendMail(orderCreated.Email, "Đặt hàng thành công", content);
+            var orderDetailAsStringToSendMailTemplate = string.Empty;
+            foreach (var item in orderCreated.OrderDetails)
+            {
+                orderDetailAsStringToSendMailTemplate += CreateOrderDetailTemplate(item.ProductName, item.Quantity, item.SumPrice);
+            }
+
+            content = content.Replace("{{orderDetails}}", orderDetailAsStringToSendMailTemplate);
+
+            MailHelper.SendMail(orderCreated.Email, "Thông tin xác nhận đặt hàng từ KidSwim", content);
 
             return Json(new
             {
                 IsSuccess = true,
             });
+        }
+
+        private string CreateOrderDetailTemplate(string productName, int quantity, decimal totalMoney)
+        {
+            var toReturn = $"<tr><td>{productName}</td><td>{quantity.ToString()}</td><td>{totalMoney.ToString()}</td></tr>";
+
+            return toReturn;
         }
     }
 }

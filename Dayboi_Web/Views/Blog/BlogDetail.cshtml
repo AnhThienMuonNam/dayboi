@@ -1,6 +1,6 @@
 ﻿@model Dayboi_Web.ViewModels.BlogViewModel
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = Model.Title + " - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts{
@@ -39,7 +39,7 @@
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
-                    <ul class="breadcrumb clearfix mar-top-3x">
+                    <ul class="breadcrumb clearfix mar-top-2x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
                         <li><a class="link" href="@Url.Action("Index","Blog")">Tin tức</a></li>
                         <li><a class="link" href="#">@Model.Title</a></li>
@@ -53,7 +53,7 @@
     </section>
     <!-- HEADER TREE END -->
     <!-- BLOG POST BODY SECTION -->
-    <section class="pattern-3 no-padding-right">
+    <section class="pattern-3 no-padding-right" style="padding-top:0px;">
         <!-- .container -->
         <div class="container">
             <!-- .row -->
@@ -64,19 +64,19 @@
                     <div class="mar-top-lg row">
                         <!-- Left part -->
                         <div class="col-md-8 blog-main">
-                            <div class="post-detail sep-bottom-lg">
+                            <div class="post-detail">
                                 <figure class="no-margin">
-                                    <img data-bind="attr:{src: Blog().Image}" alt="" class="img-responsive" />
+                                    <img data-bind="attr:{src: Blog().Image}" alt="" class="img-responsive " />
                                 </figure>
                                 <div class="post-detail-body sep-xs">
                                     <h3 style="color: #40b7d2" data-bind="text: Blog().Title"></h3>
                                     <span class="line-sep-gray"></span>
                                     <div class="content" data-bind="html: showContent(Blog().Content)">
-                                       
+
                                     </div>
                                     <div class="post-detail-bottom mar-top-sm">
                                         <p class="cat-links">
-                                            <a class="text-capitalize"><i class="iline2-tag27 no-margin"></i>Hash tags:</a>
+                                            <a class="text-capitalize"><i class="iline2-tag27 no-margin"></i></a>
                                             <a href="#">design</a>
                                             <a href="#">marketing</a>
                                             <a href="#">products</a>
@@ -84,14 +84,11 @@
                                     </div>
                                     <ul class="post-info pull-left">
                                         <li><i class="iline2-round27 text-primary"></i> <a href="#">Tháng 10 17, 2018</a></li>
-                                        <li><i class="iline2-rectangular22 text-success"></i> <a href="#">30 Comments</a></li>
-                                        <li><i class="iline2-heart64"></i> <a href="#">2754</a></li>
                                     </ul>
                                     <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
                                     <span class="clearboth">
                                     </span>
                                     <div class="text-center share-menu">
-                                        
                                         <ul class="social">
                                             <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-iline-3google27" data-original-title="Share on Google Plus"></a></li>
                                             <li><a target="_blank" title="" data-toggle="tooltip" data-placement="top" href="#" class="icon iline-3facebook27" data-original-title="Share on Facebook"></a></li>
@@ -102,104 +99,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="post-detail mar-top-xs">
-                                <div class="post-detail-body sep-xs">
-                                    <h3>Bình luận</h3>
-                                    <span class="line-sep-gray"></span>
-                                    
-                                    <ul class="media-list">
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-1.jpg" data-holder-rendered="true" />
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-primary">Minh Nghĩa <span class="pull-right small text-muted"><i>1h ago</i></span></h4>
-                                                <p>
-                                                    Hồ bơi này đẹp nè ae
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <!-- Nested media object -->
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-2.jpg" data-holder-rendered="true" />
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-primary">Nhung <span class="pull-right small text-muted"><i>2h ago</i></span></h4>
-                                                <p>
-                                                   Thích hợp cho em bơi nè
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <!-- Nested media object -->
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-3.jpg" data-holder-rendered="true" />
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-primary">Vũ <span class="pull-right small text-muted"><i>3h ago</i></span></h4>
-                                                <p>
-                                                    Tốt lắm
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <!-- Nested media object -->
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="~/assets/images/team/team-member-4.jpg" data-holder-rendered="true" />
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading text-primary">Duy <span class="pull-right small text-muted"><i>4h ago</i></span></h4>
-                                                <p>
-                                                    Được lắm á
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <h4 class="mar-top-md">Viết bình luận.</h4>
-                                    <span class="line-sep-gray"></span>
-                                    <p>All the inputs are required.</p>
-                                    <form class="form-horizontal mar-top-sm wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s" method="post" action="/" name="commentForm" novalidate="">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group control-group">
-                                                    <input type="text" class="form-control input-lg" id="firstname" name="firstname" placeholder="Họ* :" required="" data-validation-required-message="Please enter your first name." />
-                                                    <p class="help-block"></p>
-                                                </div>
-                                                <div class="form-group control-group">
-                                                    <input type="text" class="form-control input-lg" id="lastname" name="lastname" placeholder="Tên* :" required="" data-validation-required-message="Please enter your last name." />
-                                                    <p class="help-block"></p>
-                                                </div>
-                                                <div class="form-group control-group">
-                                                    <input type="email" class="form-control input-lg" id="email" name="email" placeholder="E-mail* :" required="" data-validation-required-message="Please enter your email address." />
-                                                    <p class="help-block"></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group control-group">
-                                                    <textarea class="form-control" name="comment" placeholder="Comment* :" required="" data-validation-required-message="Viết tiếng việt, không được dùng không dấu"></textarea>
-                                                    <p class="help-block"></p>
-                                                </div>
-                                                <button type="submit" class="submit btn btn-primary pull-right" style="border-radius: 8px">Đăng</button>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="nav-links mar-top-md">
-                                <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i>Bài trước</a>
-                                <a href="blog-post-carousel.html" class="text-uppercase pull-right">Bài tiếp <i class="iline1-chevron15"></i></a>
-                            </div>
-
+                            @*<div class="nav-links mar-top-md">
+                                    <a href="blog-post-gallery.html" class="text-uppercase pull-left"><i class="iline1-arrowhead2"></i>Bài trước</a>
+                                    <a href="blog-post-carousel.html" class="text-uppercase pull-right">Bài tiếp <i class="iline1-chevron15"></i></a>
+                                </div>*@
                         </div>
                         <!-- /Left part -->
                         <!-- Right part -->
@@ -221,7 +124,7 @@
                             <!-- Popular Posts -->
                             <div class="post-detail mar-top-md">
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">POPULAR POSTS</h3>
+                                    <h3 class="text-primary text-uppercase text-center">Tin tức liên quan</h3>
                                     <ul class="text-capitalize sidebar">
                                         <li>
                                             <a href="#">
@@ -263,32 +166,51 @@
                                 </div>
                             </div>
                             <!-- Popular Posts End -->
-                            <!-- Tags -->
+                            <!-- Popular Posts -->
                             <div class="post-detail mar-top-md">
                                 <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">TAGS</h3>
-                                    <p>
-                                        <a class="label label-default" href="#">design</a>
-                                        <a class="label label-default" href="#">marketing</a>
-                                        <a class="label label-default" href="#">application</a>
-                                        <a class="label label-default" href="#">products</a>
-                                        <a class="label label-default" href="#">blog</a>
-                                        <a class="label label-default" href="#">article</a>
-                                        <a class="label label-default" href="#">dollar</a>
-                                        <a class="label label-default" href="#">facebook</a>
-                                        <a class="label label-default" href="#">twitter</a>
-                                        <a class="label label-default" href="#">market</a>
-                                        <a class="label label-default" href="#">place</a>
-                                        <a class="label label-default" href="#">login</a>
-                                        <a class="label label-default" href="#">carousel</a>
-                                        <a class="label label-default" href="#">tweet</a>
-                                        <a class="label label-default" href="#">john</a>
-                                        <a class="label label-default" href="#">doe</a>
-                                        <a class="label label-default" href="#">comments</a>
-                                    </p>
+                                    <h3 class="text-primary text-uppercase text-center">Sản phẩm</h3>
+                                    <ul class="text-capitalize sidebar">
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="~/assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-success">MARKETING #1</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="~/assets/images/blog/post-3.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-primary">LOGO</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="~/assets/images/blog/post-4.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-primary">MARKETING #2</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="post-img">
+                                                    <img src="~/assets/images/blog/post-5.jpg" alt="" class="img-responsive" />
+                                                </span>
+                                                <h4 class="text-uppercase text-primary">PLACES</h4>
+                                                <i class="text-muted small">34 Comments</i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <!-- Tags End -->
+                            <!-- Popular Posts End -->
 
                         </div>
                         <!-- /Right part -->

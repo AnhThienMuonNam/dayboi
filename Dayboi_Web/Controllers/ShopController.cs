@@ -58,13 +58,13 @@ namespace Dayboi_Web.Controllers
                 var product = _shopService.GetProductById(productId);
                 var productModel = Mapper.Map<Product, ProductModel>(product);
 
+                ViewBag.RelatedProducts = GetRelatedProducts(productModel.Tags, productId);
                 return View(productModel);
             }
             return null;
         }
 
-        [HttpPost]
-        public JsonResult GetRelatedProducts(List<string> productTags, int productId)
+        private dynamic GetRelatedProducts(List<string> productTags, int productId)
         {
             if (productTags != null && productTags.Count() > 0)
             {
@@ -82,19 +82,9 @@ namespace Dayboi_Web.Controllers
                                                                             Images = x.Images
                                                                         }).ToList();
 
-                return Json(new
-                {
-                    IsSuccess = true,
-                    RelatedProducts = relatedProducts
-                });
+                return relatedProducts;
             }
-            else
-            {
-                return Json(new
-                {
-                    IsSuccess = false
-                });
-            }
+            return null;
         }
     }
 }

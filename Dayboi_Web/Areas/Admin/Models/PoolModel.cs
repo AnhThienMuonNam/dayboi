@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Dayboi_Web.Areas.Admin.Models
 {
@@ -26,5 +27,13 @@ namespace Dayboi_Web.Areas.Admin.Models
         public List<string> Tags { get; set; }
 
         public int PoolCategoryId { get; set; }
+
+        public int? OpeningHour { get; set; }
+        public int? ClosedHour { get; set; }
+        public decimal? Fare { get; set; }
+        public string OpeningDay { get; set; }
+
+
+        public string PoolCategoryName { get; set; }
     }
 }

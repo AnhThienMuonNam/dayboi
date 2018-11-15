@@ -31,32 +31,25 @@
 </style>
 
 <header class="fallone-navbar" id="default-navbar">
-
     <div class="top-bar" style="background: #1a3e84" id="header-top">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3 col-xs-3">
-                   
-                        <p style="font-size: 15px; padding-top: 12px;">
-                            <i class="fa fa-phone-square" style="font-size:24px ; color: white"></i>
-                            <strong style="color:white">
-                                HOTLINE: 0947.808.297
-                            </strong>
-
-                        </p>
-                    
+                <div class="col-sm-3 col-xs-6">
+                    <p style="font-size: 15px; padding-top: 12px;">
+                        <i class="fa fa-phone-square" style="font-size:24px ; color: white"></i>
+                        <strong style="color:white">
+                            HOTLINE: 0947.808.297
+                        </strong>
+                    </p>
                 </div>
-                <div class="col-sm-6 col-xs-6">
-                   
-                        <p style="font-size: 15px; margin-left: 63px;padding-top: 12px;">
-                            <strong style="color:white">
-                                FREE SHIP TOÀN QUỐC CHO ĐƠN HÀNG TRÊN 1 TRIỆU
-                            </strong>
-
-                        </p>
-                    
+                <div class="col-sm-6 col-xs-6 visible-lg">
+                    <p style="font-size: 15px; margin-left: 63px;padding-top: 12px;">
+                        <strong style="color:white">
+                            FREE SHIP TOÀN QUỐC CHO ĐƠN HÀNG TRÊN 1 TRIỆU
+                        </strong>
+                    </p>
                 </div>
-                <div class="col-sm-3 col-xs-3">
+                <div class="col-sm-3 col-xs-6">
                     <div class="social" style="text-align:right ; padding-top: 12px;">
                         <a href="https://www.facebook.com/dayboihcm" target="_blank">
                             <i class="fa fa-facebook-square" style="font-size:25px; color: white"></i>
@@ -67,14 +60,17 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div><!--/.container-->
     </div><!--/.top-bar-->
 
     <nav class="navbar navbar-default" data-bind="with: headerModel">
         <div class="container">
+            <div style="width:auto; float:right; padding-top:12px;">
+                <a href="@Url.Action("index","cart")" style="float:right;color:#fff;">
+                    <i class="iline2-shopping57">Giỏ hàng:</i>
+                    <span style="font-size:15px;" data-bind="text: NumberCart()"></span>
+                </a>
+            </div>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
@@ -84,14 +80,15 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="~/assets/images/logo.png" alt="Fallone logo" class="img-responsive" />
+                    <img src="~/assets/images/logo.png" alt="KidSwim logo" class="img-responsive"  />
                 </a>
             </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">SHOP<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="~/cart">SHOP<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             @foreach (var category in Model.Categories)
                             {
@@ -122,7 +119,7 @@
                             @foreach (var item in Model.PoolCategories)
                             {
                                 <li>
-                                    <a href="#@item.Id/@item.Alias">
+                                    <a href="~/danh-muc-ho-boi/@item.Id/@item.Alias">
                                         @item.Name
                                     </a>
                                 </li>
@@ -132,10 +129,10 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kỹ năng bơi <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            @foreach (var item in Model.PoolCategories)
+                            @foreach (var item in Model.Skills)
                             {
                                 <li>
-                                    <a href="#@item.Id/@item.Alias">
+                                    <a href="~/ky-nang/@item.Id/@item.Alias">
                                         @item.Name
                                     </a>
                                 </li>
@@ -147,13 +144,7 @@
                     <li><a href="@Url.Action("FAQ", "Feature")">F.A.Q</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
 
-                        <a href="@Url.Action("index","cart")">
-                            <img src="~/assets/images/custom/cart.png" style="width: 55%" />
-                            <span data-bind="text: NumberCart"></span>
-                        </a>
-                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tài khoản <span class="caret"></span></a>
                         <ul class="dropdown-menu">

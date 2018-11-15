@@ -24,7 +24,6 @@ namespace Dayboi_Infrastructure.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-        [StringLength(5000)]
         public string Content { get; set; }
 
         public int? ViewCount { get; set; }
@@ -43,5 +42,7 @@ namespace Dayboi_Infrastructure.Models
         public bool IsActive { get; set; }
 
         public ICollection<CourseTag> CourseTags { get; set; }
+
+        public ICollection<EnrollmentCourse> EnrollmentCourses { get; set; }
     }
 }
