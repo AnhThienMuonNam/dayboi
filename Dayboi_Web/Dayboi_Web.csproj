@@ -5776,6 +5776,7 @@
     <Content Include="Areas\Admin\Views\OrderAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\EnrollmentCourseAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\EnrollmentCourseAdmin\Edit.cshtml" />
+    <Content Include="ckfinder\userfiles.zip" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />
