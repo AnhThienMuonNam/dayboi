@@ -5804,6 +5804,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Template\Booking.html" />
+    <Content Include="Template\data.sql" />
     <Content Include="Template\order_detail.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
