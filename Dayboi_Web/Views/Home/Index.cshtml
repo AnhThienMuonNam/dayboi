@@ -308,21 +308,21 @@
         <!-- /.container -->
     </section>
     <!-- /Features -->
-    <section class="background-1">
+    <section class="pattern-3">
         <div class="container">
             <!-- .row -->
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
-                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center; color:#fff;">Tin Tức</h2>
+                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center; color: #777777;">Tin Tức</h2>
 
                     <!-- Pricing Table -->
                     <div class="row">
                         @foreach (var item in Model.Blogs)
                         {
                             <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                <div class="panel panel-default text-center mar-bottom-sm" style="border-radius: 13px;">
-                                    <div class="panel-body" style="padding:0px;">
+                                <div class=" text-center mar-bottom-sm">
+                                    <div  style="padding:0px;">
                                         <img src="@item.Image" />
                                     </div>
                                     <div class="panel-heading p15">
@@ -331,8 +331,11 @@
                                         </div>
                                     </div>
                                     <ul class="list-group">
-                                        <li class="list-group-item" style="font-size: 15px;">
+                                        <li style="font-size: 15px;">
                                             @item.SortDescription
+                                        </li>
+                                        <li style="font-size: 15px; margin-left: -151px;font-size: 17px; color: blue;">
+                                            <a href="/blog/@item.Id/@item.Alias">Xem thêm...</a>
                                         </li>
 
                                     </ul>
@@ -406,6 +409,63 @@
             </div>
         </div>
     </section>
+
+    <section class="background-2">
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <div style="text-align: center;color:#ffffff; margin-top: -34px; font-size: 39px; margin-bottom: 26px;">Cảm nhận của học viên</div>
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- Pricing Table -->
+                    <div class="row">
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" style="color:#ffffff">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold; color: white">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color:#ffffff;margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold; color: white">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color: #ffffff; margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold; color: white">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color: #ffffff;margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Portfolio -->
     <section class="pattern-3">
         <!-- .container -->
@@ -473,62 +533,7 @@
         <!-- /.container -->
     </section>
 
-    <section class="background-2">
-        <div class="container">
-            <!-- .row -->
-            <div class="row">
-                <div style="text-align: center;color:#ffffff; margin-top: -59px; font-size: 39px; margin-bottom: 26px;">Cảm nhận của học viên</div>
-                <!-- .col-md-12 -->
-                <div class="col-md-12">
-                    <!-- Pricing Table -->
-                    <div class="row">
-                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" style="color:#ffffff">
-                            <div style="color: #ffffff;">
-                                <div>
-                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
-                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
-                                </div>
-                                <div style="color:#ffffff;margin-top: 37px;">
-                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <div style="color: #ffffff;">
-                                <div>
-                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
-                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
-                                </div>
-                                <div style="color: #ffffff; margin-top: 37px;">
-                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <div style="color: #ffffff;">
-                                <div>
-                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 23px; font-weight: bold;">Lê Thu</h4>
-                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
-                                </div>
-                                <div style="color: #ffffff;margin-top: 37px;">
-                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- /Portfolio -->
     @Html.Partial("~/Views/Course/Partial/RegisterCourseModal.cshtml")
 </div>
