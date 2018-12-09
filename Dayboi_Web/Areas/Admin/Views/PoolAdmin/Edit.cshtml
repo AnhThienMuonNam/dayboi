@@ -20,6 +20,8 @@
     <script src="~/Scripts/Admin/pool_create-edit.js"></script>
     <script>
         $(document).ready(function () {
+         $('#treePool').addClass("active");
+            document.getElementById("treePool2").classList.add("active");
             CKEDITOR.replace('editor1')
             //Initialize Select2 Elements
             $('.select2').select2({
@@ -38,7 +40,8 @@
             urls.CreatePool = "@Url.Action("CreatePool", "PoolAdmin")";
             urls.UpdatePool = "@Url.Action("UpdatePool", "PoolAdmin")";
             urls.EditPoolPage = "@Url.Action("Edit", "PoolAdmin")";
-
+            urls.PoolIndexUrl= "@Url.Action("Index", "PoolAdmin")";
+            urls.DeletePool = "@Url.Action("Delete", "PoolAdmin")";
             data.API_URLs = urls;
             data.Options = options;
 
@@ -61,6 +64,8 @@
                 @Html.Partial("~/Areas/Admin/Views/PoolAdmin/Partial/PoolEditor.cshtml")
                 <!-- /.box-body -->
                 <div class="box-footer">
+                    <button type="button" data-bind="click: deleteItem" class="btn btn-danger pull-right">Xoá</button>
+
                     <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhật</button>
                 </div>
             </div>

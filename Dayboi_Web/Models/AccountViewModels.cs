@@ -41,7 +41,7 @@ namespace Dayboi_Web.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -83,19 +83,25 @@ namespace Dayboi_Web.Models
         [Compare("Password", ErrorMessage = "Mật khẩu không trùng nhau")]
         public string ConfirmPassword { get; set; }
 
+        [Required(ErrorMessage = "Bạn chưa nhập Họ tên")]
+        [StringLength(150, ErrorMessage = "Họ tên không được quá 150 ký tự")]
+        [Display(Name = "Họ tên")]
         public string FullName { get; set; }
 
+        [Required(ErrorMessage = "Bạn chưa nhập Số điện thoại")]
+        [StringLength(11, ErrorMessage = "Số điện thoại không được quá 11 ký tự")]
+        [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Email")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Mật khẩu")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -103,7 +109,7 @@ namespace Dayboi_Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu không trùng nhau")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -111,7 +117,7 @@ namespace Dayboi_Web.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập Email")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

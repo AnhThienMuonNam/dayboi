@@ -9,6 +9,8 @@
     <script src="~/Scripts/Admin/pool_index.js"></script>
     <script>
         $(document).ready(function () {
+         $('#treePool').addClass("active");
+            document.getElementById("treePool2").classList.add("active");
             var data = {};
             var options = {};
             data.Pools = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
@@ -55,7 +57,6 @@
                             <td data-bind="text: IsActive"></td>
                             <td>
                                 <a class="label label-warning" data-bind="attr: {href: EditPoolUrl() +'/' + Id}">Sửa</a>
-                                <a class="label label-danger" data-bind="attr: {href: EditPoolUrl() +'/' + Id}">Xoá</a>
                             </td>
 
                         </tr>

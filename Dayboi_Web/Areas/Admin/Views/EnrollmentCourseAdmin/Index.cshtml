@@ -9,6 +9,8 @@
     <script src="~/Scripts/Admin/enrollmentcourse_index.js"></script>
     <script>
         $(document).ready(function () {
+            $('#treeCourse').addClass("active");
+            document.getElementById("treeCourse2").classList.add("active");
             var data = {};
             var options = {};
             data.EnrollmentCourses = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));

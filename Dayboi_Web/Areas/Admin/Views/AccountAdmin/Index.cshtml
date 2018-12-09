@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Dayboi_Web.Areas.Admin.Models.AccountModel>
+
+@{
+    ViewBag.Title = "Danh mục hồ bơi - KidSwim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section footerJS{
+    <script src="~/Scripts/Admin/account_index.js"></script>
+    <script>
+        $(document).ready(function () {
+         $('#treeAccount').addClass("active");
+            document.getElementById("treeAccount1").classList.add("active");
+            var data = {};
+            var options = {};
+            data.Accounts = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            options.EditAccountUrl = '@Url.Action("Edit", "AccountAdmin")';
+            data.API_URLs = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+<section class="content" id="main-page">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Tài khoản</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <div class="input-group-btn">
+                                <a href="@Url.Action("Create","PoolCategoryAdmin")" class="btn btn-default">Tạo danh mục Hồ bơi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Địa chỉ</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                        <!-- ko foreach: Accounts -->
+                        <tr>
+                            <td data-bind="text: Id"></td>
+                            <td data-bind="text: FullName"></td>
+                            <td data-bind="text: Email"></td>
+                            <td data-bind="text: PhoneNumber"></td>
+                            <td data-bind="text: Address"></td>
+                            <td data-bind="text: IsActive"></td>
+                            <td>
+                                <a class="label label-warning" data-bind="attr: {href: EditAccountUrl() +'/' + Id}">Sửa</a>
+                            </td>
+                        </tr>
+                        <!-- /ko -->
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>

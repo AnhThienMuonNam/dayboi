@@ -30,6 +30,30 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             _courseAdminService = courseAdminService;
             _unitOfWork = unitOfWork;
         }
+
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var item = _courseRepository.GetSingleById(id);
+            var toReturn = false;
+            if (item != null)
+            {
+                item.IsDeleted = true;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    item.UpdatedBy = User.Identity.GetUserId();
+                }
+
+                _unitOfWork.Commit();
+                toReturn = true;
+
+            }
+            return Json(new
+            {
+                IsSuccess = toReturn
+            });
+        }
         // GET: Admin/CourseAdmin
         public ActionResult Index()
         {
@@ -63,7 +87,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             return Json(new
             {
                 IsSuccess = true,
-                Data = toReturn
+                //Data = toReturn
             });
         }
 
@@ -136,7 +160,7 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             {
                 course.CourseTags = new List<CourseTag>();
             }
-            if (tags.Count > 0)
+            if (tags != null && tags.Count > 0)
             {
                 foreach (var newTag in tags)
                 {

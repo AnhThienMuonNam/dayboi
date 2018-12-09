@@ -259,6 +259,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
@@ -266,8 +267,10 @@
     <Compile Include="Areas\Admin\Controllers\EnrollmentCourseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PoolAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PoolCategoryAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillAdminController.cs" />
+    <Compile Include="Areas\Admin\Models\AccountModel.cs" />
     <Compile Include="Areas\Admin\Models\BlogModel.cs" />
     <Compile Include="Areas\Admin\Models\CourseModel.cs" />
     <Compile Include="Areas\Admin\Models\EnrollmentCourseModel.cs" />
@@ -5550,6 +5553,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Admin\account_edit.js" />
+    <Content Include="Scripts\Admin\account_index.js" />
     <Content Include="Scripts\Admin\blog_create-edit.js" />
     <Content Include="Scripts\Admin\blog_index.js" />
     <Content Include="Scripts\Admin\course_create-edit.js" />
@@ -5558,6 +5563,8 @@
     <Content Include="Scripts\Admin\enrollmentcourse_index.js" />
     <Content Include="Scripts\Admin\order_detail.js" />
     <Content Include="Scripts\Admin\order_index.js" />
+    <Content Include="Scripts\Admin\poolCategory_create-edit.js" />
+    <Content Include="Scripts\Admin\poolCategory_index.js" />
     <Content Include="Scripts\Admin\pool_create-edit.js" />
     <Content Include="Scripts\Admin\pool_index.js" />
     <Content Include="Scripts\Admin\skill_create-edit.js" />
@@ -5825,6 +5832,12 @@
     <Content Include="Areas\Admin\Views\EnrollmentCourseAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\EnrollmentCourseAdmin\Edit.cshtml" />
     <Content Include="ckfinder\userfiles.zip" />
+    <Content Include="Areas\Admin\Views\PoolCategoryAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolCategoryAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolCategoryAdmin\Partial\PoolCategoryEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\PoolCategoryAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountAdmin\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Admin\category_create-edit.js" />
@@ -5852,10 +5865,8 @@
     <Content Include="Scripts\Client\page_product.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Template\Booking.html" />
-    <Content Include="Template\data.sql" />
+    <Content Include="Template\forgot_password.html" />
     <Content Include="Template\order_detail.html" />
-    <Content Include="Template\tables.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -5895,8 +5906,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shop\Product.cshtml" />
-    <Content Include="Template\Admin\AdminLTE-2.4.2.zip" />
-    <Content Include="Template\Client\fallone.zip" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
@@ -5914,6 +5923,7 @@
     <Content Include="Views\Pool\Index.cshtml" />
     <Content Include="Views\Course\Partial\RegisterCourseModal.cshtml" />
     <Content Include="Views\Skill\SkillDetail.cshtml" />
+    <Content Include="Views\Checkout\CheckoutConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

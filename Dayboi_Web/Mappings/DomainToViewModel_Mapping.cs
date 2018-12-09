@@ -63,6 +63,11 @@ namespace Dayboi_Web.Mappings
             base.CreateMap<EnrollmentCourse, EnrollmentCourseModel>()
                      .ForMember(s => s.CourseName, t => t.MapFrom(src => src.Course != null ? src.Course.Name : string.Empty))
                      .ForMember(s => s.EnrollmentCourseStatusName, t => t.MapFrom(src => src.EnrollmentCourseStatus != null ? src.EnrollmentCourseStatus.Name : string.Empty));
+
+            base.CreateMap<PoolCategory, PoolCategoryModel>();
+
+            base.CreateMap<ApplicationUser, AccountModel>();
+                //.ForMember(s => s.Role, t => t.MapFrom(src => src.Roles != null ? src.Roles.First().RoleId.ToString() : string.Empty));
         }
     }
 }

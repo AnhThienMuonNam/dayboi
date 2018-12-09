@@ -21,6 +21,8 @@
     <script src="~/Scripts/Admin/skill_create-edit.js"></script>
     <script>
         $(document).ready(function () {
+            $('#treeSkill').addClass("active");
+            document.getElementById("treeSkill1").classList.add("active");
             CKEDITOR.replace('editor1')
             //Initialize Select2 Elements
             $('.select2').select2({
@@ -38,7 +40,8 @@
             urls.CreateSkill= "@Url.Action("CreateSkill", "SkillAdmin")";
             urls.UpdateSkill = "@Url.Action("UpdateSkill", "SkillAdmin")";
             urls.EditSkillPage = "@Url.Action("Edit", "SkillAdmin")";
-
+               urls.SkillIndexUrl= "@Url.Action("Index", "SkillAdmin")";
+            urls.DeleteSkill = "@Url.Action("Delete", "SkillAdmin")";
             data.API_URLs = urls;
             data.Options = options;
 
@@ -59,7 +62,7 @@
                 @Html.Partial("~/Areas/Admin/Views/SkillAdmin/Partial/SkillEditor.cshtml")
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" data-bind="" class="btn btn-danger pull-right">Xoá</button>
+                    <button type="button" data-bind="click: deleteItem" class="btn btn-danger pull-right">Xoá</button>
                     <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhập</button>
                 </div>
             </div>

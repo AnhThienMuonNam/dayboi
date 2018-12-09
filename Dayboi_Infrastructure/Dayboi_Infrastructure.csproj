@@ -154,6 +154,10 @@
     <Compile Include="Migrations\201811131550490_update_11132018_2250.Designer.cs">
       <DependentUpon>201811131550490_update_11132018_2250.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812081453056_updateDatabase215212082018.cs" />
+    <Compile Include="Migrations\201812081453056_updateDatabase215212082018.Designer.cs">
+      <DependentUpon>201812081453056_updateDatabase215212082018.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -271,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811131550490_update_11132018_2250.resx">
       <DependentUpon>201811131550490_update_11132018_2250.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081453056_updateDatabase215212082018.resx">
+      <DependentUpon>201812081453056_updateDatabase215212082018.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

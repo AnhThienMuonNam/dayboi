@@ -24,6 +24,7 @@ namespace Dayboi_Web.Mappings
             base.CreateMap<PoolModel, Pool>();
             base.CreateMap<SkillModel, Skill>();
             base.CreateMap<EnrollmentCourseViewModel, EnrollmentCourse>();
+            base.CreateMap<PoolCategoryModel, PoolCategory>();
         }
     }
 }

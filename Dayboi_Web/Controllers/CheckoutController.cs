@@ -79,5 +79,10 @@ namespace Dayboi_Web.Controllers
 
             return toReturn;
         }
+
+        public ActionResult CheckoutConfirmation()
+        {
+            return View();
+        }
     }
 }

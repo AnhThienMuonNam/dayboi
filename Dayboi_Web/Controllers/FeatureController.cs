@@ -42,5 +42,10 @@ namespace Dayboi_Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Lienhe()
+        {
+            return View();
+        }
     }
 }

@@ -9,10 +9,15 @@
     <script src="~/Scripts/Admin/category_create-edit.js"></script>
     <script>
         $(document).ready(function () {
+            $('#treeShop').addClass("active");
+            document.getElementById("treeShop1").classList.add("active");
             var data = {};
             var options = {};
             data.Category = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
-            options.UpdateCategory= "@Url.Action("UpdateCategory", "Category")";
+            options.UpdateCategory = "@Url.Action("UpdateCategory", "Category")";
+            options.CategoryIndexUrl= "@Url.Action("Index", "Category")";
+            options.DeleteCategory= "@Url.Action("Delete", "Category")";
+
             data.API_URLs = options;
 
             ko.applyBindings(MainModel(data), document.getElementById("category_edit"));
@@ -26,7 +31,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tạo Danh mục</h3>
+                    <h3 class="box-title">Cập nhật Danh mục</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -55,7 +60,7 @@
                     <div class="form-group">
                         <img style="height: 200px;" data-bind="attr : {src: Image}" />
                     </div>
-                   
+
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" data-bind="checked: IsActive"> Is Active
@@ -64,9 +69,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" class="btn btn-danger pull-right" data-bind="click: update">Xoá</button>
-                    <button type="button" class="btn btn-warning" data-bind="click: update">Danh sách sản phẩm</button>
-
+                    <button type="button" class="btn btn-danger pull-right" data-bind="click: deleteItem">Xoá</button>
                     <button type="button" class="btn btn-primary" data-bind="click: update">Cập nhật</button>
                 </div>
             </div>

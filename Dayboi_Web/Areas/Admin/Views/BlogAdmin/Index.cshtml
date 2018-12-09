@@ -9,6 +9,8 @@
     <script src="~/Scripts/Admin/blog_index.js"></script>
     <script>
         $(document).ready(function () {
+          $('#treeBlog').addClass("active");
+            document.getElementById("treeBlog1").classList.add("active");
             var data = {};
             var options = {};
             data.Blogs = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
@@ -52,8 +54,9 @@
                             <td data-bind="text: Title"></td>
                             <td data-bind="text: SortDescription"></td>
                             <td data-bind="text: IsActive"></td>
-                            <td><a class="label label-warning" data-bind="attr: {href: EditBlogUrl() +'/' + Id}">Sửa</a>
-                            <a class="label label-danger" data-bind="attr: {href: EditBlogUrl() +'/' + Id}">Xoá</a></td>
+                            <td>
+                                <a class="label label-warning" data-bind="attr: {href: EditBlogUrl() +'/' + Id}">Sửa</a>
+                            </td>
 
                         </tr>
                         <!-- /ko -->
@@ -62,7 +65,7 @@
                 </div>
                 <!-- /.box-body -->
                 <!-- /.box-body -->
-                <div class="box-footer clearfix">
+                @*<div class="box-footer clearfix">
                     <ul class="pagination pagination-sm no-margin pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>
@@ -70,7 +73,7 @@
                         <li><a href="#">3</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
-                </div>
+                </div>*@
             </div>
             <!-- /.box -->
         </div>

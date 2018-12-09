@@ -13,6 +13,7 @@
             data.Checkout = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
 
             apis.CreateOrder = '@Url.Action("CreateOrder", "Checkout")';
+            apis.CheckoutConfirmationUrl = '@Url.Action("CheckoutConfirmation", "Checkout")';
 
             data.API_URLs = apis;
             data.Options = options;

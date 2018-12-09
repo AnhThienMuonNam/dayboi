@@ -1,11 +1,12 @@
 ﻿using Dayboi_Infrastructure.Models;
+using Dayboi_Web.Helper;
 using Dayboi_Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
 using System;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -18,8 +19,10 @@ namespace Dayboi_Web.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -71,7 +74,6 @@ namespace Dayboi_Web.Controllers
                 return View(model);
             }
 
-            //Neu ham duoi ko xai được thì thay PasswordSignInAsync bang //loginFunction
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -233,22 +235,27 @@ namespace Dayboi_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
-                }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                }
+                var provider = new DpapiDataProtectionProvider("SampleAppName");
+
+                _userManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(
+                    provider.Create("SampleTokenName"));
+                string code = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/forgot_password.html"));
+
+                content = content.Replace("{{callbackUrl}}", callbackUrl);
+
+                MailHelper.SendMail(model.Email, "Khôi phục mật khẩu từ KidSwim", content);
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -279,13 +286,18 @@ namespace Dayboi_Web.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var provider = new DpapiDataProtectionProvider("SampleAppName");
+
+            _userManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(
+                provider.Create("SampleTokenName"));
+
+            var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");

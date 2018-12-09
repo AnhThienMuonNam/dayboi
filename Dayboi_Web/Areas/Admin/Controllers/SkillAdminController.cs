@@ -31,6 +31,30 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var item = _skillRepository.GetSingleById(id);
+            var toReturn = false;
+            if (item != null)
+            {
+                item.IsDeleted = true;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    item.UpdatedBy = User.Identity.GetUserId();
+                }
+
+                _unitOfWork.Commit();
+                toReturn = true;
+
+            }
+            return Json(new
+            {
+                IsSuccess = toReturn
+            });
+        }
+
         public ActionResult Index()
         {
             var skills = GetSkills();

@@ -1,0 +1,90 @@
+﻿@model Dayboi_Web.Areas.Admin.Models.AccountModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section headerStyles{
+
+}
+
+@section footerJS{
+    <script src="~/Scripts/Admin/account_edit.js"></script>
+    <script>
+        $(document).ready(function () {
+          $('#treeAccount').addClass("active");
+            document.getElementById("treeAccount1").classList.add("active");
+            var data = {};
+            var urls = {};
+            var options = {};
+            data.Roles = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.Roles));
+
+            data.Account = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
+
+            urls.UpdateAccount = "@Url.Action("UpdateAccount", "AccountAdmin")";
+
+            data.API_URLs = urls;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+
+<section class="content" id="main-page">
+    <div class="row" data-bind="with: accountModel">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cập nhật Tài khoản</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Họ tên</label>
+                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" data-bind="value: FullName">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Số điện thoại</label>
+                        <input type="text" readonly class="form-control" placeholder="Số điện thoại" data-bind="value: PhoneNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="text" readonly class="form-control" placeholder="Email" data-bind="value: Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Địa chỉ</label>
+                        <input type="text" class="form-control" placeholder="Địa chỉ" data-bind="value: Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Nhóm người dùng</label>
+                        <select class="form-control" data-bind="options: Roles,
+                                                                    optionsText: 'Name',
+                                                                    optionsValue: 'Id',
+                                                                    value: RoleId"></select>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-bind="checked: IsActive"> Is Active
+                        </label>
+                    </div>
+                </div>
+
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" data-bind="" class="btn btn-danger pull-right">Xoá</button>
+                    <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhập</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

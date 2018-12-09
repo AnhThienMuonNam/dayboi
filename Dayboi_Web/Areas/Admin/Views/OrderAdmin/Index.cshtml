@@ -11,6 +11,8 @@
     <script src="~/Scripts/Admin/order_index.js"></script>
     <script>
         $(document).ready(function () {
+         $('#treeOrder').addClass("active");
+            document.getElementById("treeOrder1").classList.add("active");
             var data = {};
             var options = {};
             data.Orders = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));

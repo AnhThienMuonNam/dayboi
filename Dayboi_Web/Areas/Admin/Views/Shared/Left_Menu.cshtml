@@ -4,7 +4,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+            <li id="treeShop" class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Shop</span>
                     <span class="pull-right-container">
@@ -12,13 +12,13 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index", "Category")"><i class="fa fa-circle-o"></i> Danh sách Danh Mục</a></li>
-                    <li><a href="@Url.Action("Create", "Category")"><i class="fa fa-circle-o"></i> Thêm Danh Mục</a></li>
-                    <li><a href="@Url.Action("Index", "Product")"><i class="fa fa-circle-o"></i> Danh sách Sản Phẩm</a></li>
-                    <li><a href="@Url.Action("Create", "Product")"><i class="fa fa-circle-o"></i> Thêm Sản Phẩm</a></li>
+                    <li id="treeShop1"><a href="@Url.Action("Index", "Category")"><i class="fa fa-circle-o"></i> Danh sách Danh Mục</a></li>
+                    <li id="treeShop2"><a href="@Url.Action("Create", "Category")"><i class="fa fa-circle-o"></i> Thêm Danh Mục</a></li>
+                    <li id="treeShop3"><a href="@Url.Action("Index", "Product")"><i class="fa fa-circle-o"></i> Danh sách Sản Phẩm</a></li>
+                    <li id="treeShop4"><a href="@Url.Action("Create", "Product")"><i class="fa fa-circle-o"></i> Thêm Sản Phẩm</a></li>
                 </ul>
             </li>
-            <li class=" treeview">
+            <li id="treeBlog" class=" treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Bài viết</span>
                     <span class="pull-right-container">
@@ -26,11 +26,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="@Url.Action("Index", "BlogAdmin")"><i class="fa fa-circle-o"></i> Danh sách Bài viết</a></li>
-                    <li><a href="@Url.Action("Create", "BlogAdmin")"><i class="fa fa-circle-o"></i> Thêm Bài viết</a></li>
+                    <li id="treeBlog1"><a href="@Url.Action("Index", "BlogAdmin")"><i class="fa fa-circle-o"></i> Danh sách Bài viết</a></li>
+                    <li id="treeBlog2"><a href="@Url.Action("Create", "BlogAdmin")"><i class="fa fa-circle-o"></i> Thêm Bài viết</a></li>
                 </ul>
             </li>
-            <li class=" treeview">
+            <li id="treeCourse" class=" treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Khoá học</span>
                     <span class="pull-right-container">
@@ -38,13 +38,13 @@
                     </span>
                 </a>
                 <ul class=" treeview-menu">
-                    <li class="active"><a href="@Url.Action("Index", "CourseAdmin")"><i class="fa fa-circle-o"></i> Danh sách Khoá học</a></li>
-                    <li><a href="@Url.Action("Index", "EnrollmentCourseAdmin")"><i class="fa fa-circle-o"></i> D/s đăng ký khoá học</a></li>
-                    <li><a href="@Url.Action("Create", "CourseAdmin")"><i class="fa fa-circle-o"></i> Thêm Khoá học</a></li>
+                    <li id="treeCourse1"><a href="@Url.Action("Index", "CourseAdmin")"><i class="fa fa-circle-o"></i> Danh sách Khoá học</a></li>
+                    <li id="treeCourse2"><a href="@Url.Action("Index", "EnrollmentCourseAdmin")"><i class="fa fa-circle-o"></i> D/s đăng ký khoá học</a></li>
+                    <li id="treeCourse3"><a href="@Url.Action("Create", "CourseAdmin")"><i class="fa fa-circle-o"></i> Thêm Khoá học</a></li>
 
                 </ul>
             </li>
-            <li class=" treeview">
+            <li id="treePool" class=" treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Hồ bơi</span>
                     <span class="pull-right-container">
@@ -52,12 +52,12 @@
                     </span>
                 </a>
                 <ul class=" treeview-menu">
-                    <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Danh mục Hồ bơi</a></li>
-                    <li><a href="@Url.Action("Index", "PoolAdmin")"><i class="fa fa-circle-o"></i> Danh sách Hồ bơi</a></li>
-                    <li><a href="@Url.Action("Create", "PoolAdmin")"><i class="fa fa-circle-o"></i> Thêm Hồ bơi</a></li>
+                    <li id="treePool1"><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Danh mục Hồ bơi</a></li>
+                    <li id="treePool2"><a href="@Url.Action("Index", "PoolAdmin")"><i class="fa fa-circle-o"></i> Danh sách Hồ bơi</a></li>
+                    <li id="treePool3"><a href="@Url.Action("Create", "PoolAdmin")"><i class="fa fa-circle-o"></i> Thêm Hồ bơi</a></li>
                 </ul>
             </li>
-            <li class=" treeview">
+            <li id="treeSkill" class=" treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Kỹ năng bơi</span>
                     <span class="pull-right-container">
@@ -65,11 +65,11 @@
                     </span>
                 </a>
                 <ul class=" treeview-menu">
-                    <li><a href="@Url.Action("Index", "SkillAdmin")"><i class="fa fa-circle-o"></i> Danh sách Kỹ năng</a></li>
-                    <li><a href="@Url.Action("Create", "SkillAdmin")"><i class="fa fa-circle-o"></i> Thêm Kỹ năng</a></li>
+                    <li id="treeSkill1"><a href="@Url.Action("Index", "SkillAdmin")"><i class="fa fa-circle-o"></i> Danh sách Kỹ năng</a></li>
+                    <li id="treeSkill2"><a href="@Url.Action("Create", "SkillAdmin")"><i class="fa fa-circle-o"></i> Thêm Kỹ năng</a></li>
                 </ul>
             </li>
-            <li class="  treeview">
+            <li id="treeAccount" class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Tài khoản</span>
                     <span class="pull-right-container">
@@ -77,10 +77,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
+                    <li id="treeAccount1"><a href="@Url.Action("Index", "AccountAdmin")"><i class="fa fa-circle-o"></i> Quản lý tài khoản</a></li>
                 </ul>
             </li>
-            <li class=" treeview">
+            <li id="treeOrder" class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Đơn hàng</span>
                     <span class="pull-right-container">
@@ -88,23 +88,23 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index", "OrderAdmin")"><i class="fa fa-circle-o"></i> Danh sách đơn hàng</a></li>
+                    <li id="treeOrder1"><a href="@Url.Action("Index", "OrderAdmin")"><i class="fa fa-circle-o"></i> Danh sách đơn hàng</a></li>
                 </ul>
             </li>
-            <li class=" treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Master Data</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Slide trang chủ</a></li>
-                    <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Về chúng tôi</a></li>
-                    <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> F.A.Q</a></li>
-                    <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Thông tin liên hệ</a></li>
-                </ul>
-            </li>
+            @*<li class=" treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Master Data</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Slide trang chủ</a></li>
+                        <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Về chúng tôi</a></li>
+                        <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> F.A.Q</a></li>
+                        <li><a href="@Url.Action("Index", "PoolCategoryAdmin")"><i class="fa fa-circle-o"></i> Thông tin liên hệ</a></li>
+                    </ul>
+                </li>*@
         </ul>
     </section>
     <!-- /.sidebar -->

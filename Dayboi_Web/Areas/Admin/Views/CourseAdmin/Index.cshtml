@@ -10,6 +10,8 @@
     <script src="~/Scripts/Admin/course_index.js"></script>
     <script>
         $(document).ready(function () {
+        $('#treeCourse').addClass("active");
+            document.getElementById("treeCourse1").classList.add("active");
             var data = {};
             var options = {};
             data.Courses = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));
@@ -54,7 +56,6 @@
                             <td data-bind="text: IsActive"></td>
                             <td>
                                 <a class="label label-warning" data-bind="attr: {href: EditCourseUrl() +'/' + Id}">Sửa</a>
-                                <a class="label label-danger" data-bind="attr: {href: EditCourseUrl() +'/' + Id}">Xoá</a>
                             </td>
 
                         </tr>

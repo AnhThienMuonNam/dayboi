@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dayboi_Infrastructure.Infrastructures;
 using Dayboi_Infrastructure.Models;
 using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service;
@@ -23,13 +24,15 @@ namespace Dayboi_Web.Areas.Admin.Controllers
         private readonly IProductTagRepository _productTagRepository;
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public ProductController(ICategoryService categoryService,
                                 ICommonService commonService,
                                 IProductService productService,
                                 IProductTagRepository productTagRepository,
                                 IProductRepository productRepository,
-                                ICategoryRepository categoryRepository)
+                                ICategoryRepository categoryRepository,
+                                IUnitOfWork unitOfWork)
         {
             _categoryService = categoryService;
             _commonService = commonService;
@@ -37,6 +40,31 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             _productRepository = productRepository;
             _productTagRepository = productTagRepository;
             _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var item = _productRepository.GetSingleById(id);
+            var toReturn = false;
+            if (item != null)
+            {
+                item.IsDeleted = true;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    item.UpdatedBy = User.Identity.GetUserId();
+                }
+
+                _unitOfWork.Commit();
+                toReturn = true;
+
+            }
+            return Json(new
+            {
+                IsSuccess = toReturn
+            });
         }
 
         // GET: Admin/Product

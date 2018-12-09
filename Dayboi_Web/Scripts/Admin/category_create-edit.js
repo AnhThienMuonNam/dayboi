@@ -67,6 +67,26 @@ var CategoryModel = function (data, parent) {
         });
     };
 
+    self.deleteItem = function () {
+        alertify.confirm('Xác nhận', 'Bạn chắc chắn muốn xoá?', function () {
+            $.ajax({
+                url: data.API_URLs.DeleteCategory,
+                type: "POST",
+                data: { id: self.Id() },
+                success: function (response) {
+                    if (response.IsSuccess == true) {
+                        alertify.success('Xoá thành công');
+                        window.location.replace(data.API_URLs.CategoryIndexUrl);
+                    }
+                },
+                error: function (xhr, error) {
+                    var e = 0;
+                },
+            });
+        }
+            , function () { alertify.error('Cancel') });
+
+    }
 
     function getAlias(input) {
         if (input == undefined || input == '')
@@ -112,6 +132,4 @@ var CategoryModel = function (data, parent) {
 
         return model;
     };
-
-
 }

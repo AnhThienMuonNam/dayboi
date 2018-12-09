@@ -18,6 +18,8 @@
     <script src="~/Scripts/Admin/product_create-edit.js"></script>
     <script>
         $(document).ready(function () {
+          $('#treeShop').addClass("active");
+            document.getElementById("treeShop3").classList.add("active");
             //Initialize Select2 Elements
             $('.select2').select2({
                 tags: true,
@@ -32,6 +34,8 @@
             options.Categories = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(ViewBag.Categories));
 
             urls.UpdateProduct = "@Url.Action("UpdateProduct", "Product")";
+            urls.ProductIndexUrl= "@Url.Action("Index", "Product")";
+            urls.DeleteProduct = "@Url.Action("Delete", "Product")";
 
             data.API_URLs = urls;
             data.Options = options;
@@ -121,6 +125,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
+                    <button type="button" class="btn btn-danger pull-right" data-bind="click: deleteItem">Xoá</button>
                     <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhật</button>
                 </div>
             </div>

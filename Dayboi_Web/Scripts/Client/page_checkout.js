@@ -15,10 +15,12 @@
             type: "POST",
             success: function (response) {
                 if (response.IsSuccess == true) {
-                    alertify.success('Đã tạo đơn hàng thành công!');
+                    //alertify.success('Đã tạo đơn hàng thành công!');
                     var koNode = document.getElementById('default-navbar');
                     var hi = ko.dataFor(koNode);
                     hi.headerModel().NumberCart(0);
+                    //CheckoutConfirmationUrl
+                    window.location.replace(data.API_URLs.CheckoutConfirmationUrl);
                 }
 
             },
@@ -30,8 +32,6 @@
         history.go(-1)
     };
 }
-
-
 
 var OrderModel = function (options, parent) {
     //properties

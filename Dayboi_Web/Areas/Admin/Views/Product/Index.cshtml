@@ -8,6 +8,8 @@
     <script src="~/Scripts/Admin/product_index.js"></script>
     <script>
         $(document).ready(function () {
+           $('#treeShop').addClass("active");
+            document.getElementById("treeShop3").classList.add("active");
             var data = {};
             var options = {};
             data.Products = @Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model));

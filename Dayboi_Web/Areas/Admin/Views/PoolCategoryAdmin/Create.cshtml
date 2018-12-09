@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Thêm Danh mục Hồ bơi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section headerStyles{
+
+}
+
+@section footerJS{
+    <script src="~/assets_admin/bower_components/ckfinder/ckfinder.js"></script>
+    <script src="~/Scripts/Admin/poolCategory_create-edit.js"></script>
+    <script>
+        $(document).ready(function () {
+         $('#treePool').addClass("active");
+            document.getElementById("treePool1").classList.add("active");
+            var data = {};
+            var urls = {};
+            var options = {};
+
+            urls.CreatePoolCategory= "@Url.Action("CreatePoolCategory", "PoolCategoryAdmin")";
+            urls.UpdatePoolCategory = "@Url.Action("UpdatePoolCategory", "PoolCategoryAdmin")";
+            urls.EditPoolCategoryPage = "@Url.Action("Edit", "PoolCategoryAdmin")";
+
+            data.API_URLs = urls;
+            data.Options = options;
+
+            ko.applyBindings(MainModel(data), document.getElementById("main-page"));
+        });
+    </script>
+}
+
+<section class="content" id="main-page">
+    <div class="row" data-bind="with: poolCategoryModel">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @Html.Partial("~/Areas/Admin/Views/PoolCategoryAdmin/Partial/PoolCategoryEditor.cshtml")
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" data-bind="click: create" class="btn btn-primary">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

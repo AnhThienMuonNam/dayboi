@@ -45,38 +45,53 @@
                             <div id="main-carousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
-                                    <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#main-carousel" data-slide-to="1"></li>
-                                    <li data-target="#main-carousel" data-slide-to="2"></li>
+                                    @{ var itemIndex = 0; }
+                                    @foreach (var item in Model.Courses)
+                                    {
+                                        if (itemIndex == 0)
+                                        {
+                                            <li data-target="#main-carousel" data-slide-to="@itemIndex" class="active"></li>
+                                        }
+                                        else
+                                        {
+                                            <li data-target="#main-carousel" data-slide-to="@itemIndex"></li>
+                                        }
+                                        itemIndex++;
+                                    }
                                 </ol>
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
-                                    <div class="item active">
-                                        <!-- img src="~/~/assets/images/slider/Slider-1.png" alt="first slider image" /-->
-                                        <div class="carousel-caption">
-                                            <span class="caption-head" data-animation="animated bounceInLeft"><span class="text-success">HTML5</span> & <span class="text-primary">Wordpress</span> versions</span>
-                                            <p class="text-center" data-animation="animated bounceInRight">are now ready for download.</p>
-                                            <a class="btn btn-primary btn-lg" data-animation="animated zoomInUp" href="#">Get it now</a>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <!--img src="~/~/assets/images/slider/Slider-2.png" alt="second slider image" / -->
-                                        <div class="carousel-caption">
-                                            <span class="caption-head" data-animation="animated bounceInDown">A <span class="text-success">Joomla</span> version</span><br />
-                                            <p class="text-center" data-animation="animated bounceInUp">will be available soon</p>
-                                            <a class="btn btn-success btn-lg" data-animation="animated zoomInRight" href="#">Stay focus</a>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <!-- img src="~/~/assets/images/slider/Slider-3.png" alt="thirth slider image" / -->
-                                        <div class="carousel-caption">
-                                            <span class="caption-head" data-animation="animated zoomInLeft">Blog, Design & <span class="text-danger">Fun</span></span><br />
-                                            <p class="text-center" data-animation="animated flipInX">Lorem ipsum dolor sit amet, consectetur adipisicing elit et dolore magna aliqua.</p>
-                                            <a class="btn btn-danger btn-lg" data-animation="animated lightSpeedIn" href="#">Continue reading</a>
-                                        </div>
-                                    </div>
+                                    @{ var itemIndexImage = 0; }
+                                    @foreach (var item in Model.Courses)
+                                    {
+                                        if (itemIndexImage == 0)
+                                        {
+                                            <div class="item active">
+
+                                                <!-- img src="~/~/assets/images/slider/Slider-1.png" alt="first slider image" /-->
+                                                <div class="carousel-caption">
+                                                    <span class="caption-head" data-animation="animated bounceInLeft"><span class="text-success">@item.Name</span>  </span>
+                                                    <p class="text-center" data-animation="animated bounceInRight">@*are now ready for download.*@</p>
+                                                    <a class="btn btn-success btn-lg" data-animation="animated zoomInUp" href="/khoa-hoc/@item.Id/@item.Alias">Đăng ký ngay</a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="item">
+                                                <!--img src="~/~/assets/images/slider/Slider-2.png" alt="second slider image" / -->
+                                                <div class="carousel-caption">
+                                                    <span class="caption-head" data-animation="animated bounceInDown"><span class="text-success">@item.Name</span> </span>
+                                                    <p class="text-center" data-animation="animated bounceInUp">@*will be available soon*@</p>
+                                                    <a class="btn btn-success btn-lg" data-animation="animated zoomInRight" href="/khoa-hoc/@item.Id/@item.Alias">Đăng ký ngay</a>
+                                                </div>
+                                            </div>
+                                        }
+                                        itemIndexImage++;
+                                    }
+
                                 </div>
-                                <div class="slider-inner">
+                                @*<div class="slider-inner">
                                     <div class="boxed">
                                         <h1 class="text-primary wow fadeInDown text-uppercase" data-wow-duration="1.8s" data-wow-delay=".2s">Fallone</h1>
                                         <span class="line-sep-green"></span>
@@ -84,7 +99,7 @@
                                             Awesome website theme based on <span class="text-success">Bootstrap</span> v.3.3.5.
                                         </h3>
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -106,30 +121,19 @@
                 <div class="col-md-12">
                     <!-- .row -->
                     <div class="row">
-                        <div class="col-sm-6 col-xs-12">
+                        <div style="margin-left: 460px;  margin-bottom: -225px;">
                             <h2 class="uppercase wow fadeInDown" data-wow-duration=".8s" data-wow-delay=".2s">Dạy bơi trẻ em </h2>
                             <span class="line-sep-blue"></span>
-                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                            <p class="wow fadeInUp">
                                 Kid Swim hân hạnh mang đến bạn giải pháp dạy bơi trẻ em tốt nhât SG,
                                 Dịch vụ 24/24 , hồ bơi chuyên nghiệp, các thầy cô tận tâm, được đào tạo chuẩn bơi Olymic.
                                 Từng dạy cho vận động viên Ánh Viên giành huy chương vàng Olympic Việt Nam, thế vận hội Asiad.
                                 KidSwim có mặt ở hầu hết các quận huyện ở HCM, Đăng ký nhanh gọn lẹ
                             </p>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="thumbnail mar-auto wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                <figure>
-                                    <img src="~/assets/images/media/glass.jpg" class="img-responsive" alt="" />
-                                    <div class="image-overlay">
-                                        <p>
-                                            <a href="~/assets/images/media/glass.jpg" class="show-image">
-                                                <i class="iline2-arrows55"></i>
-                                            </a>
-                                        </p>
-                                    </div><!--image overlay-->
-                                </figure><!--/figure-->
-                            </div>
-                        </div>
+
+                        <img style="max-width: 85%;" src="~/assets/images/media/Triswim-01.png">
+
                     </div>
                     <!-- /.row -->
                 </div>
@@ -308,21 +312,21 @@
         <!-- /.container -->
     </section>
     <!-- /Features -->
-    <section class="background-1">
+    <section class="pattern-3">
         <div class="container">
             <!-- .row -->
             <div class="row">
                 <!-- .col-md-12 -->
                 <div class="col-md-12">
-                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center; color:#fff;">Tin Tức</h2>
+                    <h2 class="wow fadeInDown text-uppercase" style="text-align: center; color: #777777;">Tin Tức</h2>
 
                     <!-- Pricing Table -->
                     <div class="row">
                         @foreach (var item in Model.Blogs)
                         {
                             <div class="col-sm-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                <div class="panel panel-default text-center mar-bottom-sm" style="border-radius: 13px;">
-                                    <div class="panel-body" style="padding:0px;">
+                                <div class=" text-center mar-bottom-sm">
+                                    <div style="padding:0px;">
                                         <img src="@item.Image" />
                                     </div>
                                     <div class="panel-heading p15">
@@ -331,8 +335,11 @@
                                         </div>
                                     </div>
                                     <ul class="list-group">
-                                        <li class="list-group-item" style="font-size: 15px;">
+                                        <li style="font-size: 15px;">
                                             @item.SortDescription
+                                        </li>
+                                        <li style="font-size: 15px; margin-left: -151px;font-size: 17px; color: blue;">
+                                            <a href="/blog/@item.Id/@item.Alias">Xem thêm...</a>
                                         </li>
 
                                     </ul>
@@ -405,6 +412,63 @@
             </div>
         </div>
     </section>
+
+    <section class="background-2">
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <div style="text-align: center;color:#ffffff; margin-top: -34px; font-size: 39px; margin-bottom: 26px;">Cảm nhận của học viên</div>
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                    <!-- Pricing Table -->
+                    <div class="row">
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" style="color:#ffffff">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold; color: white">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color:#ffffff;margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold; color: white">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color: #ffffff; margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <div style="color: #ffffff;">
+                                <div>
+                                    <img src="~/assets/images/works/ava-1.jpg" style="width: 90px;float: left; border-radius: 100%; margin-right: 15px;border: 2px solid white;" />
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 23px; font-weight: bold; color: white">Lê Thu</h4>
+                                    <span>Phụ huynh bé Nguyễn An 7 tuổi</span>
+                                </div>
+                                <div style="color: #ffffff;margin-top: 37px;">
+                                    Hơn 1 tháng cứ đến bể bơi là khóc hoăc đứng im biểu tình, Vậy giờ cũng đã bơi được rồi. Cám ơn các thầy cô tại Trung tâm dạy bơi Bình An, đặc biệt là thầy Nguyễn Văn A
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Portfolio -->
     <section class="pattern-3">
         <!-- .container -->
@@ -472,7 +536,7 @@
         <!-- /.container -->
     </section>
 
-    <section style="background-image:url(../../assets/images/backgrounds/background-2.jpg)">
+    @*<section style="background-image:url(../../assets/images/backgrounds/background-2.jpg)">
         <div class="container">
             <!-- .row -->
             <div class="row">
@@ -527,7 +591,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>*@
     <!-- /Portfolio -->
     @Html.Partial("~/Views/Course/Partial/RegisterCourseModal.cshtml")
 </div>

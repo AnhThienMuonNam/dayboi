@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
+using Dayboi_Infrastructure.Infrastructures;
 using Dayboi_Infrastructure.Models;
+using Dayboi_Infrastructure.Repositories;
 using Dayboi_Service;
 using Dayboi_Service.Admin;
 using Dayboi_Web.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Dayboi_Web.Areas.Admin.Controllers
@@ -14,13 +14,19 @@ namespace Dayboi_Web.Areas.Admin.Controllers
     [Authorize(Roles = "admin")]
     public class CategoryController : Controller
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly ICategoryService _categoryService;
         private readonly ICommonService _commonService;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ICategoryService categoryService, ICommonService commonService)
+        public CategoryController(ICategoryService categoryService, ICommonService commonService,
+                                    ICategoryRepository categoryRepository,
+                                    IUnitOfWork unitOfWork)
         {
             _categoryService = categoryService;
             _commonService = commonService;
+            _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Admin/Category
@@ -91,6 +97,30 @@ namespace Dayboi_Web.Areas.Admin.Controllers
                     category.UpdatedBy = User.Identity.GetUserId();
                 }
                 toReturn = _categoryService.Update(category);
+            }
+            return Json(new
+            {
+                IsSuccess = toReturn
+            });
+        }
+
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var category = _categoryRepository.GetSingleById(id);
+            var toReturn = false;
+            if (category != null)
+            {
+                category.IsDeleted = true;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    category.UpdatedBy = User.Identity.GetUserId();
+                }
+
+                _unitOfWork.Commit();
+                toReturn = true;
+
             }
             return Json(new
             {

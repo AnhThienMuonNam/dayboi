@@ -49,7 +49,7 @@ var CourseModel = function (data, parent) {
                 if (response.IsSuccess == true) {
                     alertify.success('Tạo sản phẩm thành công');
                     setTimeout(function () {
-                        //window.location.replace(data.API_URLs.EditBlogPage + '/' + response.Data.Id);
+                        window.location.reload();
                     }, 200);
                 }
             },
@@ -76,6 +76,26 @@ var CourseModel = function (data, parent) {
             },
         });
     };
+
+    self.deleteItem = function () {
+        alertify.confirm('Xác nhận', 'Bạn chắc chắn muốn xoá?', function () {
+            $.ajax({
+                url: data.API_URLs.DeleteCourse,
+                type: "POST",
+                data: { id: self.Id() },
+                success: function (response) {
+                    if (response.IsSuccess == true) {
+                        alertify.success('Xoá thành công');
+                        window.location.replace(data.API_URLs.CourseIndexUrl);
+                    }
+                },
+                error: function (xhr, error) {
+                    var e = 0;
+                },
+            });
+        }
+            , function () { alertify.error('Cancel') });
+    }
 
     function Init() {
         CKEDITOR.instances['editor1'].setData(unescape(self.Content()));

@@ -20,6 +20,8 @@
     <script src="~/Scripts/Admin/course_create-edit.js"></script>
     <script>
         $(document).ready(function () {
+         $('#treeCourse').addClass("active");
+            document.getElementById("treeCourse1").classList.add("active");
             CKEDITOR.replace('editor1')
             //Initialize Select2 Elements
             $('.select2').select2({
@@ -37,7 +39,8 @@
             urls.CreateCourse = "@Url.Action("CreateCourse", "CourseAdmin")";
             urls.UpdateCourse = "@Url.Action("UpdateCourse", "CourseAdmin")";
             urls.EditProductPage = "@Url.Action("Edit", "Product")";
-
+           urls.CourseIndexUrl= "@Url.Action("Index", "CourseAdmin")";
+            urls.DeleteCourse= "@Url.Action("Delete", "CourseAdmin")";
             data.API_URLs = urls;
             data.Options = options;
 
@@ -60,7 +63,7 @@
                 @Html.Partial("~/Areas/Admin/Views/CourseAdmin/Partial/CourseEditor.cshtml")
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="button" data-bind="click: update" class="btn btn-danger pull-right">Xoá</button>
+                    <button type="button" data-bind="click: deleteItem" class="btn btn-danger pull-right">Xoá</button>
                     <button type="button" data-bind="click: update" class="btn btn-primary">Cập nhập</button>
                 </div>
             </div>

@@ -30,7 +30,29 @@ namespace Dayboi_Web.Areas.Admin.Controllers
             _blogAdminService = blogAdminService;
             _unitOfWork = unitOfWork;
         }
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var item = _blogRepository.GetSingleById(id);
+            var toReturn = false;
+            if (item != null)
+            {
+                item.IsDeleted = true;
 
+                if (User.Identity.IsAuthenticated)
+                {
+                    item.UpdatedBy = User.Identity.GetUserId();
+                }
+
+                _unitOfWork.Commit();
+                toReturn = true;
+
+            }
+            return Json(new
+            {
+                IsSuccess = toReturn
+            });
+        }
         // GET: Admin/Blog
         public ActionResult Index()
         {

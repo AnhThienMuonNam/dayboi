@@ -18,6 +18,10 @@ namespace Dayboi_Infrastructure.Models
 
         public DateTime? BirthDay { set; get; }
 
+        public bool IsDeleted { get; set; }
+
+        public bool IsActive { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -27,6 +31,5 @@ namespace Dayboi_Infrastructure.Models
         }
 
         public ICollection<EnrollmentCourse> EnrollmentCourses { get; set; }
-
     }
 }

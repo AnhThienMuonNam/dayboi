@@ -77,6 +77,26 @@ var SkillModel = function (data, parent) {
         });
     };
 
+    self.deleteItem = function () {
+        alertify.confirm('Xác nhận', 'Bạn chắc chắn muốn xoá?', function () {
+            $.ajax({
+                url: data.API_URLs.DeleteSkill,
+                type: "POST",
+                data: { id: self.Id() },
+                success: function (response) {
+                    if (response.IsSuccess == true) {
+                        alertify.success('Xoá thành công');
+                        window.location.replace(data.API_URLs.SkillIndexUrl);
+                    }
+                },
+                error: function (xhr, error) {
+                    var e = 0;
+                },
+            });
+        }
+            , function () { alertify.error('Cancel') });
+    }
+
     function Init() {
         CKEDITOR.instances['editor1'].setData(unescape(self.Content()));
         for (var i = 0; i < self.Tags().length; i++) {
