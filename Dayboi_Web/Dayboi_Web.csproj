@@ -5924,6 +5924,7 @@
     <Content Include="Views\Course\Partial\RegisterCourseModal.cshtml" />
     <Content Include="Views\Skill\SkillDetail.cshtml" />
     <Content Include="Views\Checkout\CheckoutConfirmation.cshtml" />
+    <Content Include="Views\Feature\Lienhe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

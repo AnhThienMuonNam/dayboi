@@ -881,7 +881,7 @@ header.expanded nav {
 
         .navbar-default ul li a {
             background-color: transparent;
-            color: #fff !important;
+            color: #000 !important;
             font-weight: 900;
         }
 
