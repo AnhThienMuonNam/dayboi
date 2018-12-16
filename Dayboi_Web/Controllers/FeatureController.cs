@@ -9,10 +9,6 @@ namespace Dayboi_Web.Controllers
     public class FeatureController : Controller
     {
         // GET: Feature
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult Storykid()
         {
             return View();
