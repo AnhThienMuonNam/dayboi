@@ -16,6 +16,14 @@
         .navbar-nav .open .dropdown-menu {
             display: none !important;
         }
+
+        .caret {
+            float: right;
+        }
+
+        .menuAccountCustom {
+            height: 150px !important;
+        }
     }
 
     .sticky {
@@ -28,33 +36,49 @@
         background: #F6D565;
         padding: 15px 0;
     }
+
+    .navbar-default .dropdown-menu {
+        max-height: 10000px;
+    }
 </style>
 
 <header class="fallone-navbar" id="default-navbar">
     <div class="top-bar" style="background: #1a3e84" id="header-top">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3 col-xs-6">
+                <div class="col-lg-3 col-xs-6">
                     <p style="font-size: 15px; padding-top: 12px;">
                         <i class="fa fa-phone-square" style="font-size:24px ; color: white"></i>
                         <strong style="color:white">0947.808.297</strong>
                     </p>
                 </div>
-                <div class="col-sm-6 col-xs-6 visible-lg">
+                <div class="col-lg-6 visible-lg">
                     <p style="font-size: 15px; margin-left: 63px;padding-top: 12px;">
                         <strong style="color:white">
                             FREE SHIP TOÀN QUỐC CHO ĐƠN HÀNG TRÊN 1 TRIỆU
                         </strong>
                     </p>
                 </div>
-                <div class="col-sm-3 col-xs-6">
+                <div class="col-lg-3 col-xs-6">
                     <div class="social" style="text-align:right ; padding-top: 12px;">
-                        <a href="https://www.facebook.com/dayboihcm" target="_blank">
+                        <a href="https://www.facebook.com/kidSwim.club/" target="_blank">
                             <i class="fa fa-facebook-square" style="font-size:25px; color: white"></i>
                         </a>
-                        <i class="fa fa-twitter-square" style="font-size:25px; color: white"></i>
-                        <i class="fa fa-google-plus-square" style="font-size:25px; color:white"></i>
-                        <i class="fa fa-youtube-square" style="font-size:25px; color: white"></i>
+                        <a href="https://www.facebook.com/kidSwim.club/" target="_blank">
+                            <i class="fa fa-twitter-square" style="font-size:25px; color: white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/kidSwim.club/" target="_blank">
+                            <i class="fa fa-google-plus-square" style="font-size:25px; color:white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/kidSwim.club/" target="_blank">
+                            <i class="fa fa-youtube-square" style="font-size:25px; color: white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/kidSwim.club/" target="_blank">
+                            <i class="fa fa-linkedin-square" style="font-size:25px; color: white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/kidSwim.club/" target="_blank">
+                            <i class="fa fa-instagram" style="font-size:25px; color: white"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -64,23 +88,24 @@
     <nav class="navbar navbar-default" data-bind="with: headerModel">
         <div class="container">
             <div style="width:auto; float:right; padding-top:12px;">
-                <a href="@Url.Action("index","cart")" style="float:right;color:#fff;">
-                    <i class="iline2-shopping57">Giỏ hàng:</i>
+                <a href="@Url.Action("index","cart")" style="float:right;color:black;">
+                    <i class="iline2-shopping57"></i>
                     <span style="font-size:15px;" data-bind="text: NumberCart()"></span>
                 </a>
             </div>
+            <button style="float:left;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
 
-                <a class="navbar-brand" href="/" style="float:right;">
+                <a class="navbar-brand" href="/" style="display:contents;">
                     <img src="~/assets/images/logo.png" alt="KidSwim logo" class="img-responsive" />
                 </a>
-                <button style="float:left;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -143,8 +168,7 @@
                     <li><a href="@Url.Action("Lienhe", "Feature")">Liên hệ</a></li>
                     <li><a href="@Url.Action("FAQ", "Feature")">F.A.Q</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-
+                <ul class="nav navbar-nav navbar-right menuAccountCustom">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tài khoản <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -167,14 +191,3 @@
 </header>
 
 <!-- NAVIGATION END -->
-@*<script>
-        var header = document.getElementById('header-top');
-        var origOffsetY = header.offsetTop;
-
-        function onScroll(e) {
-            window.scrollY >= origOffsetY ? header.classList.add('sticky') :
-                                          header.classList.remove('sticky');
-        }
-
-        document.addEventListener('scroll', onScroll);
-    </script>*@
