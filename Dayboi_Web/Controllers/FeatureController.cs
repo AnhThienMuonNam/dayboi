@@ -43,5 +43,15 @@ namespace Dayboi_Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Book()
+        {
+            return View();
+        }
+
+        public ActionResult Baomat()
+        {
+            return View();
+        }
     }
 }
