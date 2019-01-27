@@ -1,7 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "FAQ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.ImageHeader = "";
 }
 
 <!-- HEADER TREE -->
@@ -36,7 +37,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="panel-group panel-accordion" id="accordion" role="tablist" aria-multiselectable="true">
                             <!-- panel 1 -->
                             <div class="panel panel-default">
@@ -66,7 +67,7 @@
                                     <div class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
                                         <h4 class="panel-title">
                                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                               Mua hàng ở đâu
+                                                Mua hàng ở đâu
                                             </a>
                                         </h4>
                                     </div>
@@ -104,9 +105,59 @@
                                 </div>
                             </div>
                             <!-- /panel 3 -->
+                            <!-- panel 4 -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <div class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Bao giờ mở cửa
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <i class="icon iline2-arrow407"></i>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <p class="panel-body no-margin-bottom">
+                                        Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
+                                        Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
+                                        nec luctus magna felis sollicitudin mauris. Integer in mauris eu
+                                        nibh euismod gravida. Duis ac tellus et risus vulputate.
+                                    </p>
+                                </div>
+                            </div>
                         </div><!-- /.panel-group -->
                     </div> <!-- /.col-md-6 -->
-                    
+                    <!-- lăp ở đây-->
+                    <div class="col-md-6 hidden-xs">
+                        <!-- begin notebook mockup -->
+                        <div class="md-notebook md-glare">
+                            <div class="md-lid">
+
+                                <!-- content goes here -->
+                                <div class="tab-featured-image">
+                                    <div class="tab-content">
+                                        <div class="tab-pane  in active" id="tab1">
+                                            <img src="~/assets/images/media/light-2.jpg" alt="" class="img img-responsive" />
+                                        </div>
+                                        <div class="tab-pane " id="tab2">
+                                            <img src="~/assets/images/media/light-3.jpg" alt="" class="img img-responsive" />
+                                        </div>
+                                        <div class="tab-pane fade" id="tab3">
+                                            <img src="~/assets/images/media/light.jpg" alt="" class="img img-responsive" />
+                                        </div>
+                                        <div class="tab-pane fade" id="tab3">
+                                            <img src="~/assets/images/media/light.jpg" alt="" class="img img-responsive" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div> <!-- end notebook mockup -->
+                    </div> <!-- /.col-md-6 -->
+
+
                 </div> <!--/ .row -->
             </div>
         </div>
