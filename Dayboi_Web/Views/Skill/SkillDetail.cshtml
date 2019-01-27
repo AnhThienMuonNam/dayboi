@@ -24,7 +24,7 @@
     <!-- HEADER TREE -->
     <section class="header-tree" data-speed="8" data-type="background">
         <!-- parallax background -->
-        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <div class="cover-1" style="background-image: url(@Model.Image);" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
@@ -56,9 +56,9 @@
                         <!-- Left part -->
                         <div class="col-md-8 blog-main">
                             <div class="post-detail ">
-                                <figure class="no-margin">
+                                @*<figure class="no-margin">
                                     <img data-bind="attr:{src: Skill().Image}" alt="" class="img-responsive" />
-                                </figure>
+                                </figure>*@
                                 <div class="post-detail-body sep-xs">
                                     <h3 class="text-uppercase" data-bind="text: Skill().Name"></h3>
                                     <span class="line-sep-gray"></span>
@@ -92,7 +92,7 @@
                                         @foreach (var item in Model.OtherSkills)
                                         {
                                             <li>
-                                                <a href="#">
+                                                <a href="/ky-nang/@item.Id/@item.Alias">
                                                     <span class="post-img">
                                                         <img src="@item.Image" alt="" class="img-responsive" />
                                                     </span>
@@ -105,17 +105,6 @@
                                 </div>
                             </div>
                             <!-- Popular Posts End -->
-                            <!-- Tags -->
-                            <div class="post-detail mar-top-md">
-                                <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">TAGS</h3>
-                                    <p>
-                                        <a class="label label-default" href="#">Kỹ năng bơi</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Tags End -->
-
                         </div>
                         <!-- /Right part -->
                     </div>

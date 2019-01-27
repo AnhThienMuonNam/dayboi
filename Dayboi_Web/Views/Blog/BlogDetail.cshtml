@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = Model.Title + " - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.LinkBanner = "google.com";
+    ViewBag.ImageBanner = "https://images-na.ssl-images-amazon.com/images/I/71nvgbope6L._SY355_.png";
 }
 @section Scripts{
     <script src="~/Scripts/Client/blog_detail.js"></script>
@@ -32,7 +35,7 @@
     <section class="header-tree" data-speed="8" data-type="background">
         <h2 class="hidden">Header tree</h2>
         <!-- parallax background -->
-        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <div class="cover-1" style="background-image: url(@Model.Image);" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
@@ -41,7 +44,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb clearfix mar-top-2x">
                         <li><a class="link text-success" href="/">Trang chủ</a></li>
-                        <li><a class="link" href="@Url.Action("Index","Blog")">Tin tức</a></li>
+                        <li><a class="link text-success" href="@Url.Action("Index","Blog")">Tin tức</a></li>
                         <li><a class="link" href="#">@Model.Title</a></li>
                     </ul>
                 </div>
@@ -77,9 +80,9 @@
                                     <div class="post-detail-bottom mar-top-sm">
                                         <p class="cat-links">
                                             <a class="text-capitalize"><i class="iline2-tag27 no-margin"></i></a>
-                                            <a href="#">design</a>
-                                            <a href="#">marketing</a>
-                                            <a href="#">products</a>
+                                            <!-- ko foreach: Blog().Tags -->
+                                            <a href="#" data-bind="text: $data"></a>
+                                            <!-- /ko -->
                                         </p>
                                     </div>
                                     <ul class="post-info pull-left">
@@ -107,120 +110,29 @@
                         <!-- /Left part -->
                         <!-- Right part -->
                         <div class="col-md-4 blog-sidebar">
-                            <!-- Categories List -->
+                            <!-- Popular Posts -->
                             <div class="post-detail">
-                                <div class="post-detail-body sep-xs">
-                                    @*<h3 class="text-primary text-uppercase text-center">Bộ sưu tập</h3>*@
-                                    <img src="~/assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
-                                    @*<ul class="text-capitalize sidebar">
-                    <li><a href="#" class="iline1-spiral4">Design</a></li>
-                    <li><a href="#" class="iline1-spiral4">Life Style</a></li>
-                    <li><a href="#" class="iline1-spiral4">Application</a></li>
-                    <li><a href="#" class="iline1-spiral4">Music</a></li>
-                    <li><a href="#" class="iline1-spiral4">Heath & Life</a></li>
-                </ul>*@
+                                <div class="post-detail-body sep-xs" style="padding:0em;">
+                                    <a href="@ViewBag.LinkBanner"><img src="@ViewBag.ImageBanner" alt="" class="img-responsive" /></a>
                                 </div>
                             </div>
+                            <div class="post-detail mar-top-md">
+                                <div class="post-detail-body sep-xs">
+                                    <h3 class="text-primary text-uppercase text-center">TOP Bài viết</h3>
+                                    <ul class="text-capitalize sidebar">
+                                        @foreach (var item in ViewBag.TopBlogs)
+                                        {
+                                            <li>
+                                                <a href="/blog/@item.Id/@item.Alias">
+                                                    <span class="post-img">
+                                                        <img src="@item.Image" alt="" class="img-responsive" />
+                                                    </span>
 
-                            <div class="post-detail">
-                                <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">Bộ sưu tập</h3>
-                                    <ul class="text-capitalize sidebar">
-                                        <li><a href="#" class="iline1-spiral4">Đồ bơi</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Dầu gội</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Mắt kính</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Khóa học người lớn</a></li>
-                                        <li><a href="#" class="iline1-spiral4">Khăn tắm</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Categories List End -->
-                            <!-- Popular Posts -->
-                            <div class="post-detail mar-top-md">
-                                <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">Tin tức liên quan</h3>
-                                    <ul class="text-capitalize sidebar">
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-success">MARKETING #1</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-3.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-primary">LOGO</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-4.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-primary">MARKETING #2</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-5.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-primary">PLACES</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Popular Posts End -->
-                            <!-- Popular Posts -->
-                            <div class="post-detail mar-top-md">
-                                <div class="post-detail-body sep-xs">
-                                    <h3 class="text-primary text-uppercase text-center">Sản phẩm</h3>
-                                    <ul class="text-capitalize sidebar">
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-success">MARKETING #1</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-3.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-primary">LOGO</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-4.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-primary">MARKETING #2</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="~/assets/images/blog/post-5.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-primary">PLACES</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
+                                                    <h4 class="text-uppercase text-success">@item.Title</h4>
+                                                    <i class="text-muted small">@item.CreatedOn</i>
+                                                </a>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                             </div>

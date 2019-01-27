@@ -24,7 +24,8 @@ namespace Dayboi_Web.Mappings
                 .ForMember(s => s.ImageList, t => t.MapFrom(src => string.IsNullOrEmpty(src.Images) ? null : src.Images.Split(',')))
                 .ForMember(s => s.Tags, t => t.MapFrom(src => src.ProductTags != null ? src.ProductTags.Select(x => x.Tag) : null));
 
-            base.CreateMap<Blog, BlogViewModel>();
+            base.CreateMap<Blog, BlogViewModel>()
+                .ForMember(s => s.Tags, t => t.MapFrom(src => src.BlogTags != null ? src.BlogTags.Select(x => x.Tag) : null));
 
             base.CreateMap<Blog, BlogModel>()
                 .ForMember(s => s.Tags, t => t.MapFrom(src => src.BlogTags != null ? src.BlogTags.Select(x => x.Tag) : null));

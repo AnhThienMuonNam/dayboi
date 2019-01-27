@@ -61,7 +61,8 @@ namespace Dayboi_Web.Controllers
                                                       Id = x.Id,
                                                       Name = x.Name,
                                                       Alias = x.Alias,
-                                                      Image = x.Image
+                                                      Image = x.Image,
+                                                      CreatedOn = x.CreatedOn
                                                   }).ToList();
             return returnBlog;
         }

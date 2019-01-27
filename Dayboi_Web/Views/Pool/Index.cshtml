@@ -40,11 +40,11 @@
                     <div class="mar-top-lg row">
                         <!-- Left part -->
                         <div class="col-md-8 blog-main">
-                            <section class="blog-post-list no-padding">
+                            <section class="blog-post-list no-padding" >
                                 @foreach (var item in Model.Pools)
                                 {
                                     <!-- .blog-post -->
-                                    <article class="blog-post wow fadeInUp" >
+                                    <article class="blog-post wow fadeInUp" style="padding-left:0px;">
                                         <div class="blog-body">
                                             <header class="entry-header">
                                                 <a href="/ho-boi/@item.Id/@item.Alias">
@@ -58,7 +58,9 @@
                                             <p>
                                                 <i class="iline2-timer18">Thời gian mở cửa: </i>@item.OpeningHour AM - @item.ClosedHour PM (@item.OpeningDay)
                                             </p>
-                                            <a class="btn btn-primary text-uppercase" href="/ho-boi/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
+                                            <div style="width:100%; text-align:center; ">
+                                                <a style=" margin-left: 0px;" class="btn btn-primary text-uppercase" href="/ho-boi/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
+                                            </div>
                                         </div>
                                     </article>
                                     <!-- /.blog-post -->

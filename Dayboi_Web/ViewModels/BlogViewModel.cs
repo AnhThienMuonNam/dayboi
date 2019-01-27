@@ -24,6 +24,10 @@ namespace Dayboi_Web.ViewModels
 
         public string Content { get; set; }
 
+        public int? ViewCount { get; set; }
+
+        public List<string> Tags { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public List<BlogViewModel> OtherCourses { get; set; }

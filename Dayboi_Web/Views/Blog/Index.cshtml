@@ -2,13 +2,18 @@
 @{
     ViewBag.Title = "Tin tức - KidSwim";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    ViewBag.ImageHeader = "";
+    ViewBag.LinkBanner = "google.com";
+    ViewBag.ImageBanner = "assets/images/blog/post-2.jpg";
 }
 
 <div>
     <!-- HEADER TREE -->
     <section class="header-tree" data-speed="8" data-type="background">
         <!-- parallax background -->
-        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <div class="cover-1" style="background-image: url(@ViewBag.ImageHeader);" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
         <!-- .container -->
         <div class="container">
             <!-- .row -->
@@ -58,10 +63,9 @@
                                             <p>
                                                 @item.SortDescription
                                             </p>
-                                        </div>
-                                        <div style="width:100%; text-align:center;">
-                                            <a class="btn btn-primary text-uppercase" href="/blog/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
-
+                                            <div style="width:100%; text-align:center; ">
+                                                <a style=" margin-left: 0px;" class="btn btn-primary text-uppercase" href="/blog/@item.Id/@item.Alias" role="button" title="continue reading">Xem chi tiết</a>
+                                            </div>
                                         </div>
                                     </article>
                                     <!-- /.blog-post -->
@@ -79,8 +83,8 @@
                         <div class="col-md-4 blog-sidebar">
                             <!-- Categories List -->
                             <div class="post-detail">
-                                <div class="post-detail-body sep-xs">
-                                    <img src="assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
+                                <div class="post-detail-body sep-xs" style="padding:0em;">
+                                    <a href="@ViewBag.LinkBanner"><img src="@ViewBag.ImageBanner" alt="" class="img-responsive" /></a>
                                 </div>
                             </div>
                             <!-- Categories List End -->
@@ -89,15 +93,20 @@
                                 <div class="post-detail-body sep-xs">
                                     <h3 class="text-primary text-uppercase text-center">TOP Bài viết</h3>
                                     <ul class="text-capitalize sidebar">
-                                        <li>
-                                            <a href="#">
-                                                <span class="post-img">
-                                                    <img src="assets/images/blog/post-2.jpg" alt="" class="img-responsive" />
-                                                </span>
-                                                <h4 class="text-uppercase text-success">MARKETING #1</h4>
-                                                <i class="text-muted small">34 Comments</i>
-                                            </a>
-                                        </li>
+                                        @foreach (var item in ViewBag.TopBlogs)
+                                        {
+
+                                            <li>
+                                                <a href="/blog/@item.Id/@item.Alias">
+                                                    <span class="post-img">
+                                                        <img src="@item.Image" alt="" class="img-responsive" />
+                                                    </span>
+
+                                                    <h4 class="text-uppercase text-success">@item.Title</h4>
+                                                    <i class="text-muted small">@item.CreatedOn</i>
+                                                </a>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                             </div>

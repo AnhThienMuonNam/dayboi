@@ -5924,6 +5924,8 @@
     <Content Include="Views\Skill\SkillDetail.cshtml" />
     <Content Include="Views\Checkout\CheckoutConfirmation.cshtml" />
     <Content Include="Views\Feature\Lienhe.cshtml" />
+    <Content Include="Views\Feature\Baomat.cshtml" />
+    <Content Include="Views\Feature\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
